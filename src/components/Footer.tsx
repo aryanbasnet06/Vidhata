@@ -1,11 +1,4 @@
-import {
-  Facebook,
-  Twitter,
-  Instagram,
-  Linkedin,
-  Mail,
-  Heart,
-} from "lucide-react";
+import { Facebook, Instagram, Linkedin, Mail } from "lucide-react";
 import logoImage from "/images/vidhata_logo.png";
 
 export function Footer() {
@@ -32,11 +25,14 @@ export function Footer() {
     },
   ];
 
+  // ✅ UPDATED QUICK LINKS (ONLY THIS SECTION CHANGED)
   const quickLinks = [
     { label: "Home", href: "#home" },
     { label: "About Us", href: "#about" },
     { label: "Programs", href: "#programs" },
-    { label: "Get Involved", href: "#get-involved" },
+    { label: "Partners", href: "#partners" },
+    { label: "Recognitions", href: "#recognitions" },
+    { label: "Our Team", href: "#team" },
     { label: "Contact", href: "#contact" },
   ];
 

@@ -1,21 +1,8 @@
 "use client";
 
-import { useState, useEffect } from "react";
 import { Users, Building2, Heart, Clock } from "lucide-react";
 
 export function ImpactMetrics() {
-  const [isSticky, setIsSticky] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      // Make it sticky after scrolling down 100vh (full screen height)
-      setIsSticky(window.scrollY > window.innerHeight);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
   const metrics = [
     {
       icon: Users,
@@ -44,11 +31,7 @@ export function ImpactMetrics() {
   ];
 
   return (
-    <div
-      className={`${
-        isSticky ? "fixed top-0" : "absolute bottom-0"
-      } left-0 right-0 z-30 bg-white/98 backdrop-blur-md border-t border-gray-200 shadow-lg transition-all duration-300`}
-    >
+    <div className="absolute bottom-0 left-0 right-0 z-30 bg-white/98 backdrop-blur-md border-t border-gray-200 shadow-lg">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
           {metrics.map((metric) => {

@@ -35,12 +35,12 @@ export function RecognitionSection() {
               />
 
               <a
-                href="https://glocalteenhero.com"
+                href="https://glocalteenhero.com/aryan-basnet/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="award-link"
               >
-                Read our feature on Glocal Teen Hero
+                Read our feature in Glocal Teen Hero
               </a>
             </div>
           </div>
