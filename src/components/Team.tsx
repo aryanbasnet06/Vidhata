@@ -8,7 +8,7 @@ export function Team() {
       position: "Founder & Chief Executive Officer",
       image: "/images/aryan_basnet_founder.png",
       description:
-        "Aryan is an emerging engineer and social entrepreneur with a strong commitment to social impact. With key expertise in social design, human-centric design, design thinking, and organizational leadership, Aryan spearheads change in the community through being an inventor. Using technology and design thinking as his foothold for innovation, he approaches every problem with a unique 360-degree view that keeps the user at the centre of solution building.",
+        "Aryan is an emerging engineer and entrepreneur with a strong commitment to social impact. With key expertise in social design, human-centric design, design thinking, and organizational leadership, Aryan spearheads change in the community through being an inventor. Using technology and design thinking as his foothold for innovation, he approaches every problem with a unique 360-degree view that keeps the user at the centre of solution building.",
       instagram: "https://www.instagram.com/__aryanbasnet__/",
       email: "mailto:basnetaryan05@gmail.com",
     },
