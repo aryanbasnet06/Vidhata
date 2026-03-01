@@ -28,8 +28,10 @@ export function Hero() {
       <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
         <div className="text-center mb-32">
           <h1
-            className="text-white text-5xl sm:text-6xl lg:text-7xl mb-6"
+            className="text-white font-semibold mb-6"
             style={{
+              fontSize: "clamp(2.8rem, 4.5vw, 4.5rem)",
+              lineHeight: "1.1",
               textShadow:
                 "0 6px 20px rgba(0,0,0,0.6), 0 3px 8px rgba(0,0,0,0.5)",
             }}
@@ -38,6 +40,7 @@ export function Hero() {
             <span
               className="block text-[#FFB199] mt-2"
               style={{
+                fontSize: "clamp(2.8rem, 4.5vw, 4.5rem)",
                 textShadow:
                   "0 6px 20px rgba(0,0,0,0.7), 0 3px 8px rgba(0,0,0,0.6)",
               }}
@@ -47,8 +50,11 @@ export function Hero() {
           </h1>
 
           <p
-            className="text-white text-xl sm:text-2xl mb-8 max-w-3xl mx-auto leading-relaxed"
-            style={{ textShadow: "0 4px 12px rgba(0,0,0,0.6)" }}
+            className="text-white max-w-3xl mx-auto leading-relaxed mb-8"
+            style={{
+              fontSize: "clamp(1.1rem, 1.5vw, 1.5rem)",
+              textShadow: "0 4px 12px rgba(0,0,0,0.6)",
+            }}
           >
             We provide structured non-academic and skill-based learning to
             foster holistic development among underserved students through a
