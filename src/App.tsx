@@ -15,28 +15,23 @@ import { Footer } from "./components/Footer";
 
 export default function App() {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen w-full overflow-x-hidden bg-white">
       <Navigation />
 
-      <Hero />
+      <main className="w-full">
+        <Hero />
+        <About />
+        <Programs />
+        <Partners />
+        <WorkInAction />
+        <RecognitionSection />
+        <GetInvolved />
+        <ImpactMetrics />
+        <VolunteerTrajectory />
+        <Team />
+        <Contact />
+      </main>
 
-      <About />
-
-      <Programs />
-      <Partners />
-
-      <WorkInAction />
-
-      <RecognitionSection />
-
-      <GetInvolved />
-
-      {/* ✅ ImpactMetrics placed just BEFORE VolunteerTrajectory */}
-      <ImpactMetrics />
-      <VolunteerTrajectory />
-
-      <Team />
-      <Contact />
       <Footer />
     </div>
   );

@@ -32,23 +32,32 @@ export function ImpactMetrics() {
 
   return (
     <div className="absolute bottom-0 left-0 right-0 z-30 bg-white/98 backdrop-blur-md border-t border-gray-200 shadow-lg">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-5 lg:py-6">
+        {/* Responsive Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 lg:gap-6">
           {metrics.map((metric) => {
             const Icon = metric.icon;
+
             return (
               <div
                 key={metric.label}
-                className="flex items-center justify-center gap-3 p-3 rounded-lg hover:bg-gray-50 transition-all"
+                className="flex items-center justify-center sm:justify-start gap-3 p-3 sm:p-4 rounded-lg hover:bg-gray-50 transition-all"
               >
+                {/* Icon */}
                 <div
-                  className={`w-10 h-10 ${metric.color} rounded-full flex items-center justify-center flex-shrink-0`}
+                  className={`w-10 h-10 sm:w-11 sm:h-11 ${metric.color} rounded-full flex items-center justify-center flex-shrink-0`}
                 >
-                  <Icon className="h-5 w-5 text-white" />
+                  <Icon className="h-5 w-5 sm:h-6 sm:w-6 text-white" />
                 </div>
-                <div className="text-left">
-                  <div className="text-2xl text-[#5B8A8D]">{metric.value}</div>
-                  <div className="text-gray-700 text-xs">{metric.label}</div>
+
+                {/* Text */}
+                <div className="text-center sm:text-left">
+                  <div className="text-xl sm:text-2xl lg:text-2xl text-[#5B8A8D] font-medium leading-tight">
+                    {metric.value}
+                  </div>
+                  <div className="text-gray-700 text-xs sm:text-sm">
+                    {metric.label}
+                  </div>
                 </div>
               </div>
             );
