@@ -64,14 +64,26 @@ export function Hero() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <button
               onClick={() => scrollToSection("#get-involved")}
-              className="h-12 px-8 text-lg rounded-xl bg-[#EA8166] text-white shadow-xl hover:bg-[#d4653f] hover:scale-105 transition-all"
+              className="rounded-xl bg-[#EA8166] text-white shadow-xl hover:bg-[#d4653f] hover:scale-105 transition-all"
+              style={{
+                height: "clamp(44px, 3.2vw, 52px)",
+                paddingLeft: "clamp(20px, 2.5vw, 32px)",
+                paddingRight: "clamp(20px, 2.5vw, 32px)",
+                fontSize: "clamp(0.95rem, 1.2vw, 1.125rem)",
+              }}
             >
               Get Involved
             </button>
 
             <a
               href="#about"
-              className="h-12 px-8 text-lg rounded-xl bg-white text-gray-700 border hover:bg-gray-100 hover:scale-105 transition-all flex items-center"
+              className="rounded-xl bg-white text-gray-700 border hover:bg-gray-100 hover:scale-105 transition-all flex items-center"
+              style={{
+                height: "clamp(44px, 3.2vw, 52px)",
+                paddingLeft: "clamp(20px, 2.5vw, 32px)",
+                paddingRight: "clamp(20px, 2.5vw, 32px)",
+                fontSize: "clamp(0.95rem, 1.2vw, 1.125rem)",
+              }}
             >
               Learn more ↓
             </a>
