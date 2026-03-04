@@ -13,7 +13,7 @@ import {
   CardHeader,
   CardTitle,
 } from "./ui/card";
-import lifeSkillsImage from "/images/holistic_development.jpg";
+import lifeSkillsImage from "/images/lifeskills.jpg";
 import creativeArtsImage from "/images/creative_arts.png";
 import musicPerformanceImage from "/images/music_and_performance.jpg";
 import innovationTechImage from "/images/innovation_and_technology.jpg";
