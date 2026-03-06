@@ -41,17 +41,18 @@ export function Partners() {
       name: "Minnath Aadarsha Shikshya Sadan",
       image: "/images/minnath_aadarsha_shikshya_sadan.png",
     },
+    { name: "Mahendra Sewa School", image: "/images/Mahendra_Sewa.jpg" },
     { name: "Gaga Nepal", image: "/images/gaga_nepal.jpg" },
     { name: "Hamro Mutu", image: "/images/hamro_mutu.webp" },
     {
       name: "Disabled Care Nepal",
       image: "/images/disabled_care_center_nepal.jpeg",
     },
-    { name: "JANTRA", image: "/images/jantra.png" },
     {
       name: "Pravananda Ashram",
       image: "/images/pravananda.png",
     },
+    { name: "JANTRA", image: "/images/jantra.png" },
   ];
 
   // Auto-scroll animation
