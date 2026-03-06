@@ -48,6 +48,10 @@ export function Partners() {
       image: "/images/disabled_care_center_nepal.jpeg",
     },
     { name: "JANTRA", image: "/images/jantra.png" },
+    {
+      name: "Pravananda Ashram",
+      image: "/images/pravananda.png",
+    },
   ];
 
   // Auto-scroll animation
