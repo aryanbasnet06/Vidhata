@@ -29,7 +29,7 @@ export function WorkInAction() {
       title: "Creative Arts Programs",
       description: "Fostering creativity and self-expression",
       icon: BookOpen,
-      image: "/images/creative_art_programs.jpg",
+      image: "/images/outdoor_learning.webp",
     },
     {
       type: "image",
@@ -43,7 +43,7 @@ export function WorkInAction() {
       title: "Outdoor Learning Activities",
       description: "Learning beyond the classroom walls",
       icon: Users,
-      image: "/images/outdoor_learning.webp",
+      image: "/images/creative_arts.jpg",
     },
   ];
 
