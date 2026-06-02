@@ -26,7 +26,7 @@ export function Team() {
       position: "Chief of Curriculum Development",
       image: "/images/swapnil_bhattarai.png",
       description:
-        "Swapnil Bhattarai is an aspiring educator, interdisciplinary thinker, and purpose-driven leader committed to shaping meaningful learning experiences for young students across Nepal. As the Chief of Curriculum Development, he blends pedagogical insight, storytelling, and design-driven thinking to create interactive modules that spark curiosity and build foundational life skills in learners. Swapnil brings a rare combination of empathy, clarity, and creativity into every classroom he steps into.",
+        "Swapnil Bhattarai is an aspiring educator, interdisciplinary thinker, and purpose-driven leader committed to shaping meaningful learning experiences for young students across Nepal.",
       instagram: "https://www.instagram.com/swap.nilbhattarai/",
       email: "mailto:swapnilbhattarai2006@gmail.com",
     },
@@ -35,7 +35,7 @@ export function Team() {
       position: "Chief Operating Officer",
       image: "/images/aryan_bhattarai.png",
       description:
-        "Aryan is a dedicated leader, guided by integrity and a strong will to serve his community. As the Chief Operating Officer, he oversees daily operations and ensures that all projects and members share Vidhata's core values. By designing strategies, aligning teams, and removing operational bottlenecks, he maintains efficient executions within the organization. Through his efforts, Vidhata's quality learning opportunities reach students as smoothly as possible.",
+        "Aryan is a dedicated leader, guided by integrity and a strong will to serve his community.",
       instagram: "https://www.instagram.com/aryanbhattarai_/",
       email: "mailto:aryanbhattarai007@gmail.com",
     },
@@ -44,16 +44,16 @@ export function Team() {
       position: "Chief of Project Management",
       image: "/images/bigyashree_khatri.png",
       description:
-        "Bigyashree Khatri is a committed youth activist and a student of psychology and social work, serving as the Chief of Project Management. She has strong experience in planning and executing impact-driven projects in areas such as mental health, climate advocacy, and SRHR awareness. Through her leadership in events, volunteering initiatives, and Model United Nations, she effectively translates ideas into organized action. Her structured approach and community-focused mindset make her a vital force behind Vidhata’s programs and impact.",
+        "Bigyashree Khatri is a committed youth activist and a student of psychology and social work.",
       instagram: "https://www.instagram.com/bigyashre.e/",
       email: "mailto:bigyashreez@gmail.com",
     },
     {
       name: "Bharat Oli",
       position: "Chief of Outreach and Media",
-      image: "images/bharat_oli.png",
+      image: "/images/bharat_oli.png",
       description:
-        "Bharat Oli is a dynamic student leader serving as the Chief of Outreach and Media, with a strong focus on public engagement and strategic communication. He brings experience in outreach planning, media coordination, and content creation to amplify organizational impact. Through his work at Vidhata, he has supported programs for underserved students while driving campaigns and audience engagement across platforms. His clarity in messaging and partnership-building strengthens Vidhata’s visibility and outreach.",
+        "Bharat Oli is a dynamic student leader serving as the Chief of Outreach and Media.",
       instagram: "https://www.instagram.com/_olibharat/",
       email: "mailto:olibharat947@gmail.com",
     },
@@ -67,9 +67,11 @@ export function Team() {
           <h2 className="text-[#5B8A8D] text-base sm:text-lg mb-3 tracking-wide font-semibold">
             OUR TEAM
           </h2>
+
           <h3 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-6">
             Meet the People Behind Vidhata
           </h3>
+
           <p className="text-gray-600 text-lg sm:text-xl max-w-3xl mx-auto leading-relaxed">
             Our dedicated leadership team brings together expertise in
             education, operations, technology, and curriculum development to
@@ -77,7 +79,7 @@ export function Team() {
           </p>
         </div>
 
-        {/* Team Grid — 3 Rows × 2 Columns */}
+        {/* Team Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-14">
           {teamMembers.map((member, index) => (
             <Card
@@ -96,17 +98,17 @@ export function Team() {
                 border border-gray-100
               "
             >
-              {/* Image */}
-              <div className="mb-6">
-                <div className="h-40 w-40 rounded-2xl overflow-hidden bg-gray-50 border border-gray-200 flex items-center justify-center">
+              {/* Circular Image */}
+              <div className="mb-4">
+                <div className="h-24 w-24 rounded-full overflow-hidden bg-gray-50 border border-gray-200 flex items-center justify-center">
                   {member.image ? (
                     <img
                       src={member.image}
                       alt={member.name}
-                      className="w-full h-full object-cover"
+                      className="w-24 h-24 object-cover rounded-full"
                     />
                   ) : (
-                    <span className="text-gray-400 text-3xl font-semibold">
+                    <span className="text-gray-400 text-xl font-semibold">
                       {member.name.charAt(0)}
                     </span>
                   )}
@@ -135,16 +137,7 @@ export function Team() {
                     href={member.instagram}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="
-                      w-11 h-11
-                      rounded-full
-                      flex items-center justify-center
-                      bg-[#5B8A8D]/10
-                      text-[#5B8A8D]
-                      hover:bg-[#5B8A8D]
-                      hover:text-white
-                      transition-all
-                    "
+                    className="w-11 h-11 rounded-full flex items-center justify-center bg-[#5B8A8D]/10 text-[#5B8A8D] hover:bg-[#5B8A8D] hover:text-white transition-all"
                   >
                     <Instagram size={20} />
                   </a>
@@ -155,16 +148,7 @@ export function Team() {
                     href={member.email}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="
-              w-11 h-11
-              rounded-full
-              flex items-center justify-center
-              bg-[#EA8166]/10
-              text-[#EA8166]
-              hover:bg-[#EA8166]
-              hover:text-white
-              transition-all
-            "
+                    className="w-11 h-11 rounded-full flex items-center justify-center bg-[#EA8166]/10 text-[#EA8166] hover:bg-[#EA8166] hover:text-white transition-all"
                   >
                     <Mail size={20} />
                   </a>
