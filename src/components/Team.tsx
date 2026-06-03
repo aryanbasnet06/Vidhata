@@ -26,7 +26,7 @@ export function Team() {
       position: "Chief of Curriculum Development",
       image: "/images/swapnil_bhattarai.png",
       description:
-        "Swapnil Bhattarai is an aspiring educator, interdisciplinary thinker, and purpose-driven leader committed to shaping meaningful learning experiences for young students across Nepal.",
+        "Swapnil Bhattarai is an aspiring educator, interdisciplinary thinker, and purpose-driven leader committed to shaping meaningful learning experiences for young students across Nepal. As the Chief of Curriculum Development, he blends pedagogical insight, storytelling, and design-driven thinking to create interactive modules that spark curiosity and build foundational life skills in learners. Swapnil brings a rare combination of empathy, clarity, and creativity into every classroom he steps into..",
       instagram: "https://www.instagram.com/swap.nilbhattarai/",
       email: "mailto:swapnilbhattarai2006@gmail.com",
     },
@@ -35,7 +35,7 @@ export function Team() {
       position: "Chief Operating Officer",
       image: "/images/aryan_bhattarai.png",
       description:
-        "Aryan is a dedicated leader, guided by integrity and a strong will to serve his community.",
+        "Aryan is a dedicated leader, guided by integrity and a strong will to serve his community. As the Chief Operating Officer, he oversees daily operations and ensures that all projects and members share Vidhata's core values. By designing strategies, aligning teams, and removing operational bottlenecks, he maintains efficient executions within the organization. Through his efforts, Vidhata's quality learning opportunities reach students as smoothly as possible.",
       instagram: "https://www.instagram.com/aryanbhattarai_/",
       email: "mailto:aryanbhattarai007@gmail.com",
     },
@@ -44,7 +44,7 @@ export function Team() {
       position: "Chief of Project Management",
       image: "/images/bigyashree_khatri.png",
       description:
-        "Bigyashree Khatri is a committed youth activist and a student of psychology and social work.",
+        "Bigyashree Khatri is a committed youth activist and a student of psychology and social work, serving as the Chief of Project Management. She has strong experience in planning and executing impact-driven projects in areas such as mental health, climate advocacy, and SRHR awareness. Through her leadership in events, volunteering initiatives, and Model United Nations, she effectively translates ideas into organized action. Her structured approach and community-focused mindset make her a vital force behind Vidhata’s programs and impact.",
       instagram: "https://www.instagram.com/bigyashre.e/",
       email: "mailto:bigyashreez@gmail.com",
     },
@@ -53,7 +53,7 @@ export function Team() {
       position: "Chief of Outreach and Media",
       image: "/images/bharat_oli.png",
       description:
-        "Bharat Oli is a dynamic student leader serving as the Chief of Outreach and Media.",
+        "Bharat Oli is a dynamic student leader serving as the Chief of Outreach and Media, with a strong focus on public engagement and strategic communication. He brings experience in outreach planning, media coordination, and content creation to amplify organizational impact. Through his work at Vidhata, he has supported programs for underserved students while driving campaigns and audience engagement across platforms. His clarity in messaging and partnership-building strengthens Vidhata’s visibility and outreach.",
       instagram: "https://www.instagram.com/_olibharat/",
       email: "mailto:olibharat947@gmail.com",
     },
