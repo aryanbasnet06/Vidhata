@@ -84,7 +84,7 @@ export function Contact() {
               <Input
                 id="email"
                 type="email"
-                placeholder="your@email.com"
+                placeholder="your@gmail.com"
                 value={formData.email}
                 onChange={handleChange}
               />
