@@ -49,45 +49,55 @@ export function Navigation() {
       ref={navRef}
       className="fixed top-0 left-0 right-0 bg-white/98 backdrop-blur-sm shadow-md z-50"
     >
-      {/* Embedded CSS */}
-      <style>{`
-        .nav-logo img {
-          height: 4rem;
-          width: 4rem;
-        }
+{/* Embedded CSS */}
+<style>{`
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+  }
 
-        .nav-logo span {
-          font-size: 2.25rem;
-          font-weight: 400;
-          color: #5B8A8D;
-        }
+  .nav-logo img {
+    height: 4.75rem;
+    width: 4.75rem;
+    flex-shrink: 0;
+    object-fit: contain;
+  }
 
-        .join-us-btn {
-          margin-left: 2rem;
-          padding: 0.55rem 1.8rem;
-          font-size: 1.125rem;
-          border-radius: 0.75rem;
-          background-color: #EB8F78;
-          color: white;
-          transition: all 0.3s ease;
-        }
+  .nav-logo span {
+    font-size: clamp(2.7rem, 3.2vw, 3.1rem);
+    font-weight: 400;
+    line-height: 1;
+    color: #5B8A8D;
+    white-space: nowrap;
+  }
 
-        .join-us-btn:hover {
-          background-color: #d87f69;
-        }
-      `}</style>
+  .join-us-btn {
+    margin-left: 2rem;
+    padding: 0.55rem 1.8rem;
+    font-size: 1.125rem;
+    border-radius: 0.75rem;
+    background-color: #EB8F78;
+    color: white;
+    transition: all 0.3s ease;
+  }
+
+  .join-us-btn:hover {
+    background-color: #d87f69;
+  }
+`}</style>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
           {/* Logo */}
-          <a
-            href="#home"
-            onClick={(e) => handleNavClick(e, "#home")}
-            className="nav-logo flex items-center space-x-3 cursor-pointer"
-          >
-            <img src="/images/vidhata_logo.png" alt="Vidhata Logo" />
-            <span>Vidhata</span>
-          </a>
+        <a
+  href="#home"
+  onClick={(e) => handleNavClick(e, "#home")}
+  className="nav-logo flex items-center gap-3 cursor-pointer"
+>
+  <img src="/images/vidhata_logo.png" alt="Vidhata Logo" />
+  <span>Vidhata</span>
+</a>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center pl-10">
