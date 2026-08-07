@@ -38,10 +38,10 @@ export function Footer() {
 
   return (
     <footer className="bg-gradient-to-b from-[#5B8A8D] to-[#4a7174] text-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-10 mb-8">
           {/* Logo and Description */}
-          <div className="md:col-span-2">
+          <div className="sm:col-span-2">
             <div className="flex items-center space-x-3 mb-4">
               <img src={logoImage} alt="Vidhata Logo" className="h-12 w-12" />
               <span className="text-2xl">Vidhata</span>

@@ -92,12 +92,12 @@ export function Partners() {
       className="py-16 bg-gradient-to-b from-white to-[#F0F9F9] scroll-mt-24"
     >
       {/* HEADER */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-14 text-center">
-        <h2 className="text-[#5B8A8D] text-lg mb-3 tracking-wide">PARTNERS</h2>
-        <h3 className="text-4xl sm:text-5xl text-gray-900 mb-4">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-10 sm:mb-14 text-center">
+        <h2 className="text-[#5B8A8D] text-base sm:text-lg mb-3 tracking-wide">PARTNERS</h2>
+        <h3 className="text-3xl sm:text-4xl lg:text-5xl text-gray-900 mb-4">
           Trusted by Leading Organizations
         </h3>
-        <p className="text-gray-600 text-lg max-w-2xl mx-auto">
+        <p className="text-gray-600 text-base sm:text-lg max-w-2xl mx-auto">
           We collaborate with 18 partner organizations across Nepal to maximize
           our impact
         </p>
@@ -107,26 +107,26 @@ export function Partners() {
       <div className="relative max-w-7xl mx-auto">
         <button
           onClick={() => boostSpeed("left")}
-          className="partner-arrow left-4"
+          className="partner-arrow left-2 sm:left-4"
         >
           <ChevronLeft size={28} />
         </button>
 
         <button
           onClick={() => boostSpeed("right")}
-          className="partner-arrow right-4"
+          className="partner-arrow right-2 sm:right-4"
         >
           <ChevronRight size={28} />
         </button>
 
         <div
           ref={trackRef}
-          className="partner-track flex gap-6 overflow-hidden px-24"
+          className="partner-track flex gap-4 sm:gap-6 overflow-hidden px-6 sm:px-16 lg:px-24"
         >
           {[...partners, ...partners].map((partner, index) => (
             <div
               key={index}
-              className="flex-shrink-0 w-64 h-32 bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 flex items-center justify-center p-6 border border-gray-100"
+              className="flex-shrink-0 w-52 sm:w-64 h-28 sm:h-32 bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 flex items-center justify-center p-5 sm:p-6 border border-gray-100"
             >
               <div className="text-center">
                 <PartnerCircle name={partner.name} image={partner.image} />
@@ -151,8 +151,8 @@ export function Partners() {
           transform: translateY(-50%);
           z-index: 20;
           background: white;
-          width: 52px;
-          height: 52px;
+          width: 44px;
+          height: 44px;
           border-radius: 9999px;
           box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
           display: flex;
@@ -160,6 +160,13 @@ export function Partners() {
           justify-content: center;
           color: #5b8a8d;
           transition: all 0.25s ease;
+        }
+
+        @media (min-width: 640px) {
+          .partner-arrow {
+            width: 52px;
+            height: 52px;
+          }
         }
 
         .partner-arrow:hover {

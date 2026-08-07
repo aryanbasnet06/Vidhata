@@ -60,19 +60,19 @@ export function Team() {
   ];
 
   return (
-    <section id="team" className="py-28 bg-white">
+    <section id="team" className="py-16 sm:py-24 lg:py-28 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <div className="text-center mb-20">
+        <div className="text-center mb-12 sm:mb-20">
           <h2 className="text-[#5B8A8D] text-base sm:text-lg mb-3 tracking-wide font-semibold">
             OUR TEAM
           </h2>
 
-          <h3 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-6">
+          <h3 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
             Meet the People Behind Vidhata
           </h3>
 
-          <p className="text-gray-600 text-lg sm:text-xl max-w-3xl mx-auto leading-relaxed">
+          <p className="text-gray-600 text-base sm:text-lg lg:text-xl max-w-3xl mx-auto leading-relaxed">
             Our dedicated leadership team brings together expertise in
             education, operations, technology, and curriculum development to
             create lasting impact across Nepal.
@@ -80,7 +80,7 @@ export function Team() {
         </div>
 
         {/* Team Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-14">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-10 lg:gap-14">
           {teamMembers.map((member, index) => (
             <Card
               key={index}
@@ -89,7 +89,7 @@ export function Team() {
                 shadow-md
                 hover:shadow-xl
                 transition-all
-                p-10
+                p-6 sm:p-8 lg:p-10
                 flex
                 flex-col
                 items-center
@@ -116,12 +116,12 @@ export function Team() {
               </div>
 
               {/* Name */}
-              <h4 className="text-2xl font-semibold text-gray-900 mb-1">
+              <h4 className="text-xl sm:text-2xl font-semibold text-gray-900 mb-1">
                 {member.name}
               </h4>
 
               {/* Position */}
-              <p className="text-[#5B8A8D] font-medium text-lg mb-4">
+              <p className="text-[#5B8A8D] font-medium text-base sm:text-lg mb-4">
                 {member.position}
               </p>
 

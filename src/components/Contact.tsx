@@ -53,12 +53,12 @@ export function Contact() {
   };
 
   return (
-    <section id="contact" className="py-24 bg-gray-50">
-      <div className="max-w-2xl mx-auto px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl text-gray-900 mb-8">Get in Touch</h2>
-          <div className="w-16 h-1 bg-[#5B8A8D] mx-auto mb-12" />
-          <p className="text-lg text-gray-600">
+    <section id="contact" className="py-16 sm:py-24 bg-gray-50">
+      <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-10 sm:mb-16">
+          <h2 className="text-3xl sm:text-4xl text-gray-900 mb-6 sm:mb-8">Get in Touch</h2>
+          <div className="w-16 h-1 bg-[#5B8A8D] mx-auto mb-8 sm:mb-12" />
+          <p className="text-base sm:text-lg text-gray-600">
             Have questions or want to get involved? We'd love to hear from you.
           </p>
         </div>
@@ -127,7 +127,7 @@ export function Contact() {
             <Button
               type="submit"
               disabled={status === "sending"}
-              className="bg-[#5B8A8D] hover:bg-[#4a7174] text-white px-12 py-6 rounded-full shadow-lg transition-all disabled:opacity-50"
+              className="bg-[#5B8A8D] hover:bg-[#4a7174] text-white w-full sm:w-auto px-10 sm:px-12 py-6 rounded-full shadow-lg transition-all disabled:opacity-50"
             >
               {status === "sending" ? "Sending..." : "Send Message"}
             </Button>

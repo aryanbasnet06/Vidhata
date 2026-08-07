@@ -7,7 +7,7 @@ export function Hero() {
   return (
     <section
       id="home"
-      className="relative min-h-screen flex items-center pt-20"
+      className="relative min-h-screen flex items-center pt-16 sm:pt-20"
     >
       {/* Background Image */}
       <div className="absolute inset-0">
@@ -25,13 +25,13 @@ export function Hero() {
       </div>
 
       {/* Hero Content */}
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-        <div className="text-center mb-32">
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20">
+        <div className="text-center mb-12 sm:mb-20 lg:mb-32">
           <h1
-            className="text-white font-semibold mb-6"
+            className="text-white font-semibold mb-4 sm:mb-6"
             style={{
-              fontSize: "clamp(2.8rem, 4.5vw, 4.5rem)",
-              lineHeight: "1.1",
+              fontSize: "clamp(2rem, 6vw, 4.5rem)",
+              lineHeight: "1.12",
               textShadow:
                 "0 6px 20px rgba(0,0,0,0.6), 0 3px 8px rgba(0,0,0,0.5)",
             }}
@@ -40,7 +40,7 @@ export function Hero() {
             <span
               className="block text-[#FFB199] mt-2"
               style={{
-                fontSize: "clamp(2.8rem, 4.5vw, 4.5rem)",
+                fontSize: "clamp(2rem, 6vw, 4.5rem)",
                 textShadow:
                   "0 6px 20px rgba(0,0,0,0.7), 0 3px 8px rgba(0,0,0,0.6)",
               }}
@@ -52,7 +52,7 @@ export function Hero() {
           <p
             className="text-white max-w-3xl mx-auto leading-relaxed mb-8"
             style={{
-              fontSize: "clamp(1.1rem, 1.5vw, 1.5rem)",
+              fontSize: "clamp(1rem, 2.5vw, 1.5rem)",
               textShadow: "0 4px 12px rgba(0,0,0,0.6)",
             }}
           >

@@ -50,7 +50,7 @@ export function RecognitionSection() {
       <style>{`
         .recognition-section {
           background: #f8fcfb;
-          padding: 110px 24px;
+          padding: clamp(64px, 9vw, 110px) clamp(16px, 5vw, 24px);
         }
 
         .recognition-container {
@@ -69,7 +69,7 @@ export function RecognitionSection() {
         }
 
         .recognition-title {
-          font-size: 40px;
+          font-size: clamp(28px, 5vw, 40px);
           font-weight: 700;
           color: #0f172a;
           margin-bottom: 18px;
@@ -77,8 +77,8 @@ export function RecognitionSection() {
 
         .recognition-intro {
           max-width: 720px;
-          margin: 0 auto 70px;
-          font-size: 16px;
+          margin: 0 auto clamp(40px, 7vw, 70px);
+          font-size: clamp(15px, 2vw, 16px);
           line-height: 1.75;
           color: #475569;
         }
@@ -86,26 +86,27 @@ export function RecognitionSection() {
         .recognition-grid {
           display: grid;
           grid-template-columns: 1fr 1fr;
-          gap: 80px;
+          gap: clamp(40px, 6vw, 80px);
           align-items: center;
         }
 
         .recognition-left {
           display: flex;
           justify-content: center;
+          min-width: 0;
         }
 
-        /* ✅ FIXED */
         .certificate-frame {
           display: inline-block;
+          max-width: 100%;
           background: #ffffff;
           box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
         }
 
         .certificate-frame img {
           width: 600px;
-          hieght:600px
           max-width: 100%;
+          height: auto;
           display: block;
         }
 
@@ -113,10 +114,13 @@ export function RecognitionSection() {
           display: flex;
           flex-direction: column;
           align-items: center;
+          min-width: 0;
         }
 
         .award-image {
-          max-width: 320px;
+          width: 320px;
+          max-width: 100%;
+          height: auto;
           margin-bottom: 20px;
         }
 
@@ -133,25 +137,8 @@ export function RecognitionSection() {
         }
 
         @media (max-width: 900px) {
-          .recognition-section {
-            padding: 90px 20px;
-          }
-
-          .recognition-title {
-            font-size: 32px;
-          }
-
           .recognition-grid {
             grid-template-columns: 1fr;
-            gap: 60px;
-          }
-
-          .certificate-frame img {
-            width: 360px;
-          }
-
-          .award-image {
-            max-width: 280px;
           }
         }
       `}</style>

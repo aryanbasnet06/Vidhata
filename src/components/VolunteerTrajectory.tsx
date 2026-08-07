@@ -32,14 +32,14 @@ export function VolunteerTrajectory() {
   ];
 
   return (
-    <section className="py-20 bg-gradient-to-b from-[#F0F9F9] to-white">
+    <section className="py-16 sm:py-20 bg-gradient-to-b from-[#F0F9F9] to-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="text-center mb-16">
-          <h2 className="text-[#5B8A8D] text-lg mb-3 tracking-wide">
+        <div className="text-center mb-12 sm:mb-16">
+          <h2 className="text-[#5B8A8D] text-base sm:text-lg mb-3 tracking-wide">
             VOLUNTEER TRAJECTORY
           </h2>
-          <h3 className="text-4xl sm:text-5xl text-gray-900 mb-6">
+          <h3 className="text-3xl sm:text-4xl lg:text-5xl text-gray-900 mb-4 sm:mb-6">
             Your Journey to Making an Impact
           </h3>
           <p className="text-gray-600 text-lg max-w-3xl mx-auto">
@@ -56,12 +56,12 @@ export function VolunteerTrajectory() {
           />
 
           {/* Steps Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12 relative">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 lg:gap-12 relative">
             {steps.map((step, index) => {
               const Icon = step.icon;
               return (
                 <div key={step.number} className="relative">
-                  <div className="bg-white rounded-2xl p-8 shadow-xl hover:shadow-2xl transition-all duration-300 border-t-4 border-transparent hover:border-[#5B8A8D] group h-full">
+                  <div className="bg-white rounded-2xl p-6 sm:p-8 shadow-xl hover:shadow-2xl transition-all duration-300 border-t-4 border-transparent hover:border-[#5B8A8D] group h-full">
                     {/* Step Number Badge */}
                     <div className="absolute -top-4 -right-4 w-12 h-12 bg-gradient-to-br from-[#5B8A8D] to-[#4a7174] rounded-full flex items-center justify-center text-white shadow-lg">
                       <span className="text-lg">{step.number}</span>
@@ -69,13 +69,13 @@ export function VolunteerTrajectory() {
 
                     {/* Icon */}
                     <div
-                      className={`w-20 h-20 bg-gradient-to-br ${step.color} rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform shadow-lg mx-auto`}
+                      className={`w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br ${step.color} rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform shadow-lg mx-auto`}
                     >
-                      <Icon className="h-10 w-10 text-white" />
+                      <Icon className="h-8 w-8 sm:h-10 sm:w-10 text-white" />
                     </div>
 
                     {/* Content */}
-                    <h4 className="text-2xl text-gray-900 mb-4 text-center">
+                    <h4 className="text-xl sm:text-2xl text-gray-900 mb-4 text-center">
                       {step.title}
                     </h4>
                     <p className="text-gray-600 text-center leading-relaxed">
@@ -96,9 +96,9 @@ export function VolunteerTrajectory() {
         </div>
 
         {/* CTA Section */}
-        <div className="mt-16 text-center bg-gradient-to-r from-[#5B8A8D] to-[#4a7174] rounded-2xl p-10 sm:p-12 shadow-2xl">
-          <h4 className="text-3xl text-white mb-4">Ready to Get Started?</h4>
-          <p className="text-white/90 text-lg mb-8 max-w-2xl mx-auto">
+        <div className="mt-12 sm:mt-16 text-center bg-gradient-to-r from-[#5B8A8D] to-[#4a7174] rounded-2xl p-8 sm:p-10 lg:p-12 shadow-2xl">
+          <h4 className="text-2xl sm:text-3xl text-white mb-4">Ready to Get Started?</h4>
+          <p className="text-white/90 text-base sm:text-lg mb-8 max-w-2xl mx-auto">
             Fill out our volunteer application form today and begin your journey
             to making a meaningful difference in students' lives across Nepal.
           </p>

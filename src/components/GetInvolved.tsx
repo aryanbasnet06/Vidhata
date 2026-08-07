@@ -60,15 +60,15 @@ export function GetInvolved() {
   return (
     <section
       id="get-involved"
-      className="py-20 bg-gradient-to-b from-[#F0F9F9] to-white"
+      className="py-16 sm:py-20 bg-gradient-to-b from-[#F0F9F9] to-white"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <div className="text-center mb-16">
-          <h2 className="text-[#5B8A8D] text-lg mb-3 tracking-wide">
+        <div className="text-center mb-12 sm:mb-16">
+          <h2 className="text-[#5B8A8D] text-base sm:text-lg mb-3 tracking-wide">
             GET INVOLVED
           </h2>
-          <h3 className="text-4xl sm:text-5xl text-gray-900 mb-6">
+          <h3 className="text-3xl sm:text-4xl lg:text-5xl text-gray-900 mb-4 sm:mb-6">
             Be Part of the Change
           </h3>
           <p className="text-gray-600 text-lg max-w-3xl mx-auto">
@@ -78,7 +78,7 @@ export function GetInvolved() {
         </div>
 
         {/* Opportunities */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 mb-12 sm:mb-16">
           {opportunities.map((opportunity) => {
             const Icon = opportunity.icon;
             return (
@@ -88,11 +88,11 @@ export function GetInvolved() {
               >
                 <CardHeader className="text-center pb-4">
                   <div
-                    className={`w-20 h-20 ${opportunity.color} rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform shadow-lg`}
+                    className={`w-16 h-16 sm:w-20 sm:h-20 ${opportunity.color} rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform shadow-lg`}
                   >
-                    <Icon className="h-10 w-10 text-white" />
+                    <Icon className="h-8 w-8 sm:h-10 sm:w-10 text-white" />
                   </div>
-                  <CardTitle className="text-2xl mb-3">
+                  <CardTitle className="text-xl sm:text-2xl mb-3">
                     {opportunity.title}
                   </CardTitle>
                   <CardDescription className="text-base text-gray-600">

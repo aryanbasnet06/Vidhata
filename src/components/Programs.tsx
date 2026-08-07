@@ -73,14 +73,14 @@ export function Programs() {
   ];
 
   return (
-    <section id="programs" className="py-20 bg-white">
+    <section id="programs" className="py-16 sm:py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="text-center mb-16">
-          <h2 className="text-[#5B8A8D] text-lg mb-3 tracking-wide">
+        <div className="text-center mb-12 sm:mb-16">
+          <h2 className="text-[#5B8A8D] text-base sm:text-lg mb-3 tracking-wide">
             OUR PROGRAMS
           </h2>
-          <h3 className="text-4xl sm:text-5xl text-gray-900 mb-6">
+          <h3 className="text-3xl sm:text-4xl lg:text-5xl text-gray-900 mb-4 sm:mb-6">
             Comprehensive Learning Experiences
           </h3>
           <p className="text-gray-600 text-lg max-w-3xl mx-auto">
@@ -91,7 +91,7 @@ export function Programs() {
         </div>
 
         {/* Programs Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
           {programs.map((program) => {
             const Icon = program.icon;
             return (
@@ -137,8 +137,8 @@ export function Programs() {
         </div>
 
         {/* Call to Action */}
-        <div className="mt-16 text-center">
-          <p className="text-gray-700 text-lg mb-6">
+        <div className="mt-12 sm:mt-16 text-center">
+          <p className="text-gray-700 text-base sm:text-lg mb-6">
             Want to learn more about our programs or bring them to your
             community?
           </p>
@@ -146,7 +146,7 @@ export function Programs() {
             href="https://www.instagram.com/vidhata.np/"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-block bg-[#EA8166] hover:bg-[#d97359] text-white px-8 py-4 rounded-lg text-lg transition-colors shadow-lg hover:shadow-xl"
+            className="inline-block bg-[#EA8166] hover:bg-[#d97359] text-white px-6 sm:px-8 py-3.5 sm:py-4 rounded-lg text-base sm:text-lg transition-colors shadow-lg hover:shadow-xl"
           >
             Explore Our Programs
           </a>

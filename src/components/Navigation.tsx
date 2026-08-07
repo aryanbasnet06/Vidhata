@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState } from "react";
-import { Button } from "./ui/button";
 import { Menu, X } from "lucide-react";
 
 export function Navigation() {
@@ -10,7 +9,7 @@ export function Navigation() {
     { label: "Home", href: "#home" },
     { label: "About Us", href: "#about" },
     { label: "Programs", href: "#programs" },
-    { label: "Partners", href: "#partners" }, // ✅ Updated label
+    { label: "Partners", href: "#partners" },
     { label: "Recognitions", href: "#recognitions" },
     { label: "Our Team", href: "#team" },
     { label: "Contact", href: "#contact" },
@@ -20,12 +19,33 @@ export function Navigation() {
     },
   ];
 
+  const linkItems = navItems.slice(0, -1);
+  const joinUs = navItems[navItems.length - 1];
+
   useEffect(() => {
     document.documentElement.style.scrollBehavior = "smooth";
     return () => {
       document.documentElement.style.scrollBehavior = "";
     };
   }, []);
+
+  // Lock body scroll and enable Escape-to-close while the mobile menu is open
+  useEffect(() => {
+    if (!isOpen) return;
+
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setIsOpen(false);
+    };
+    window.addEventListener("keydown", onKeyDown);
+
+    return () => {
+      document.body.style.overflow = prevOverflow;
+      window.removeEventListener("keydown", onKeyDown);
+    };
+  }, [isOpen]);
 
   const handleNavClick = (e: React.MouseEvent, href: string) => {
     if (!href.startsWith("#")) return;
@@ -36,7 +56,7 @@ export function Navigation() {
 
     if (!target) return;
 
-    const navHeight = navRef.current?.getBoundingClientRect().height || 80;
+    const navHeight = navRef.current?.getBoundingClientRect().height || 72;
     const targetY =
       target.getBoundingClientRect().top + window.pageYOffset - navHeight - 8;
 
@@ -49,123 +69,102 @@ export function Navigation() {
       ref={navRef}
       className="fixed top-0 left-0 right-0 bg-white/98 backdrop-blur-sm shadow-md z-50"
     >
-{/* Embedded CSS */}
-<style>{`
-  .nav-logo {
-    display: flex;
-    align-items: center;
-    gap: 0.9rem;
-  }
-
-  .nav-logo img {
-    height: 4.75rem;
-    width: 4.75rem;
-    flex-shrink: 0;
-    object-fit: contain;
-  }
-
-  .nav-logo span {
-    font-size: clamp(2.7rem, 3.2vw, 3.1rem);
-    font-weight: 400;
-    line-height: 1;
-    color: #5B8A8D;
-    white-space: nowrap;
-  }
-
-  .join-us-btn {
-    margin-left: 2rem;
-    padding: 0.55rem 1.8rem;
-    font-size: 1.125rem;
-    border-radius: 0.75rem;
-    background-color: #EB8F78;
-    color: white;
-    transition: all 0.3s ease;
-  }
-
-  .join-us-btn:hover {
-    background-color: #d87f69;
-  }
-`}</style>
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-20">
+      <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="flex h-16 items-center justify-between gap-3 sm:h-20">
           {/* Logo */}
-        <a
-  href="#home"
-  onClick={(e) => handleNavClick(e, "#home")}
-  className="nav-logo flex items-center gap-3 cursor-pointer"
->
-  <img src="/images/vidhata_logo.png" alt="Vidhata Logo" />
-  <span>Vidhata</span>
-</a>
-
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center pl-10">
-            <div className="flex items-center space-x-8">
-              {navItems.slice(0, -1).map((item) => (
-                <a
-                  key={item.label}
-                  href={item.href}
-                  onClick={(e) => handleNavClick(e, item.href)}
-                  className="text-gray-700 hover:text-[#5B8A8D] transition-colors text-lg"
-                >
-                  {item.label}
-                </a>
-              ))}
-            </div>
-
-            {/* Join Us */}
-            <a
-              href={navItems[navItems.length - 1].href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="join-us-btn"
+          <a
+            href="#home"
+            onClick={(e) => handleNavClick(e, "#home")}
+            className="flex min-w-0 flex-shrink items-center gap-2 sm:gap-3 cursor-pointer"
+          >
+            <img
+              src="/images/vidhata_logo.png"
+              alt="Vidhata Logo"
+              className="w-auto flex-shrink-0 object-contain"
+              style={{ height: "clamp(2.5rem, 7vw, 4.25rem)" }}
+            />
+            <span
+              className="truncate font-normal leading-none text-[#5B8A8D]"
+              style={{ fontSize: "clamp(1.5rem, 4.5vw, 2.9rem)" }}
             >
-              Join Us
-            </a>
-          </div>
+              Vidhata
+            </span>
+          </a>
 
-          {/* Mobile Menu Button */}
-          <div className="md:hidden">
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={() => setIsOpen(!isOpen)}
-            >
-              {isOpen ? (
-                <X className="h-6 w-6" />
-              ) : (
-                <Menu className="h-6 w-6" />
-              )}
-            </Button>
-          </div>
-        </div>
-
-        {/* Mobile Navigation */}
-        {isOpen && (
-          <div className="md:hidden pb-4 space-y-3 pl-4">
-            {navItems.slice(0, -1).map((item) => (
+          {/* Desktop Navigation (>= lg) */}
+          <div className="hidden lg:flex items-center gap-5 xl:gap-8">
+            {linkItems.map((item) => (
               <a
                 key={item.label}
                 href={item.href}
                 onClick={(e) => handleNavClick(e, item.href)}
-                className="block text-gray-700 hover:text-[#5B8A8D] py-2 text-base"
+                className="whitespace-nowrap text-gray-700 transition-colors hover:text-[#5B8A8D] text-base xl:text-lg"
               >
                 {item.label}
               </a>
             ))}
 
             <a
-              href={navItems[navItems.length - 1].href}
+              href={joinUs.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="block bg-[#EB8F78] hover:bg-[#d87f69] text-white px-6 py-2 text-center rounded-lg text-base"
+              className="whitespace-nowrap rounded-xl bg-[#EB8F78] px-5 py-2.5 text-base text-white transition-colors hover:bg-[#d87f69] xl:px-7 xl:text-lg"
             >
               Join Us
             </a>
           </div>
-        )}
+
+          {/* Mobile Menu Button (< lg) */}
+          <button
+            type="button"
+            onClick={() => setIsOpen((v) => !v)}
+            aria-label={isOpen ? "Close menu" : "Open menu"}
+            aria-expanded={isOpen}
+            aria-controls="mobile-menu"
+            className="lg:hidden inline-flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-lg text-gray-700 transition-colors hover:bg-gray-100"
+          >
+            {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+          </button>
+        </div>
       </div>
+
+      {/* Mobile Navigation Overlay + Panel (< lg) */}
+      {isOpen && (
+        <div className="lg:hidden">
+          <div
+            className="fixed inset-0 top-16 z-40 bg-black/30 backdrop-blur-[2px] sm:top-20"
+            onClick={() => setIsOpen(false)}
+            aria-hidden="true"
+          />
+          <div
+            id="mobile-menu"
+            className="absolute left-0 right-0 top-full z-50 max-h-[calc(100vh-4rem)] overflow-y-auto border-t border-gray-100 bg-white shadow-xl sm:max-h-[calc(100vh-5rem)]"
+          >
+            <div className="mx-auto flex w-full max-w-7xl flex-col gap-1 px-4 py-4 sm:px-6">
+              {linkItems.map((item) => (
+                <a
+                  key={item.label}
+                  href={item.href}
+                  onClick={(e) => handleNavClick(e, item.href)}
+                  className="block rounded-lg px-3 py-3 text-base text-gray-700 transition-colors hover:bg-[#F0F9F9] hover:text-[#5B8A8D]"
+                >
+                  {item.label}
+                </a>
+              ))}
+
+              <a
+                href={joinUs.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => setIsOpen(false)}
+                className="mt-2 block rounded-lg bg-[#EB8F78] px-6 py-3 text-center text-base text-white transition-colors hover:bg-[#d87f69]"
+              >
+                Join Us
+              </a>
+            </div>
+          </div>
+        </div>
+      )}
     </nav>
   );
 }
