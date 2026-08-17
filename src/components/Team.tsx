@@ -1,7 +1,11 @@
 import { Card } from "./ui/card";
 import { Instagram, Mail } from "lucide-react";
 
-export function Team() {
+interface TeamProps {
+  hideHeader?: boolean;
+}
+
+export function Team({ hideHeader = false }: TeamProps) {
   const teamMembers = [
     {
       name: "Aryan Basnet",
@@ -60,27 +64,27 @@ export function Team() {
   ];
 
   return (
-    <section id="team" className="py-16 sm:py-24 lg:py-28 bg-white">
+    <section className="py-16 sm:py-24 lg:py-28 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header */}
-        <div className="text-center mb-12 sm:mb-20">
-          <h2 className="text-[#5B8A8D] text-base sm:text-lg mb-3 tracking-wide font-semibold">
-            OUR TEAM
-          </h2>
-
-          <h3 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
-            Meet the People Behind Vidhata
-          </h3>
-
-          <p className="text-gray-600 text-base sm:text-lg lg:text-xl max-w-3xl mx-auto leading-relaxed">
-            Our dedicated leadership team brings together expertise in
-            education, operations, technology, and curriculum development to
-            create lasting impact across Nepal.
-          </p>
-        </div>
+        {!hideHeader && (
+          <div className="text-center mb-12 sm:mb-20">
+            <h2 className="text-vidhata-teal text-base sm:text-lg mb-3 tracking-wide font-semibold uppercase">
+              Our Team
+            </h2>
+            <h3 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-vidhata-navy mb-6">
+              Meet the People Behind Vidhata
+            </h3>
+            <p className="text-gray-600 text-base sm:text-lg lg:text-xl max-w-3xl mx-auto leading-relaxed">
+              Our dedicated leadership team brings together expertise in
+              education, operations, technology, and curriculum development to
+              create lasting impact across Nepal.
+            </p>
+          </div>
+        )}
 
         {/* Team Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-10 lg:gap-14">
+
           {teamMembers.map((member, index) => (
             <Card
               key={index}
@@ -89,73 +93,179 @@ export function Team() {
                 shadow-md
                 hover:shadow-xl
                 transition-all
-                p-6 sm:p-8 lg:p-10
+                duration-300
+                overflow-hidden
+                bg-white
+                border
+                border-gray-100
                 flex
                 flex-col
                 items-center
                 text-center
-                bg-white
-                border border-gray-100
               "
             >
-              {/* Circular Image */}
-              <div className="mb-4">
-                <div className="h-24 w-24 rounded-full overflow-hidden bg-gray-50 border border-gray-200 flex items-center justify-center">
+
+              {/* =========================================
+                  LARGE CIRCULAR PROFILE IMAGE
+                  ========================================= */}
+              <div className="w-full flex justify-center pt-6 sm:pt-8 px-4">
+                <div
+                  className="
+                    w-full
+                    max-w-[550px]
+                    aspect-square
+                    rounded-full
+                    overflow-hidden
+                    bg-gray-50
+                    border
+                    border-gray-200
+                    flex
+                    items-center
+                    justify-center
+                  "
+                >
                   {member.image ? (
                     <img
                       src={member.image}
                       alt={member.name}
-                      className="w-24 h-24 object-cover rounded-full"
+                      className="
+                        w-full
+                        h-full
+                        object-cover
+                        rounded-full
+                      "
                     />
                   ) : (
-                    <span className="text-gray-400 text-xl font-semibold">
+                    <span className="text-gray-400 text-5xl font-semibold">
                       {member.name.charAt(0)}
                     </span>
                   )}
                 </div>
               </div>
 
-              {/* Name */}
-              <h4 className="text-xl sm:text-2xl font-semibold text-gray-900 mb-1">
-                {member.name}
-              </h4>
+              {/* =========================================
+                  CONTENT
+                  ========================================= */}
+              <div
+                className="
+                  w-full
+                  px-6
+                  sm:px-8
+                  lg:px-10
+                  pt-8
+                  sm:pt-10
+                  pb-8
+                  sm:pb-10
+                  flex
+                  flex-col
+                  flex-1
+                  items-center
+                "
+              >
 
-              {/* Position */}
-              <p className="text-[#5B8A8D] font-medium text-base sm:text-lg mb-4">
-                {member.position}
-              </p>
+                {/* Name */}
+                <h4
+                  className="
+                    text-2xl
+                    sm:text-3xl
+                    font-semibold
+                    text-gray-900
+                    mb-3
+                  "
+                >
+                  {member.name}
+                </h4>
 
-              {/* Description */}
-              <p className="text-gray-600 text-base leading-relaxed mb-6">
-                {member.description}
-              </p>
+                {/* Position */}
+                <p
+                  className="
+                    text-[#5B8A8D]
+                    font-semibold
+                    text-base
+                    sm:text-lg
+                    lg:text-xl
+                    mb-7
+                  "
+                >
+                  {member.position}
+                </p>
 
-              {/* Social Icons */}
-              <div className="flex gap-4 mt-auto">
-                {member.instagram && (
-                  <a
-                    href={member.instagram}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-11 h-11 rounded-full flex items-center justify-center bg-[#5B8A8D]/10 text-[#5B8A8D] hover:bg-[#5B8A8D] hover:text-white transition-all"
-                  >
-                    <Instagram size={20} />
-                  </a>
-                )}
+                {/* Description */}
+                <p
+                  className="
+                    text-gray-600
+                    text-base
+                    sm:text-lg
+                    leading-relaxed
+                    max-w-xl
+                    mb-8
+                  "
+                >
+                  {member.description}
+                </p>
 
-                {member.email && (
-                  <a
-                    href={member.email}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-11 h-11 rounded-full flex items-center justify-center bg-[#EA8166]/10 text-[#EA8166] hover:bg-[#EA8166] hover:text-white transition-all"
-                  >
-                    <Mail size={20} />
-                  </a>
-                )}
+                {/* Social Icons */}
+                <div className="flex gap-4 mt-auto">
+
+                  {member.instagram && (
+                    <a
+                      href={member.instagram}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`${member.name}'s Instagram`}
+                      className="
+                        w-12
+                        h-12
+                        rounded-full
+                        flex
+                        items-center
+                        justify-center
+                        bg-[#5B8A8D]/10
+                        text-[#5B8A8D]
+                        hover:bg-[#5B8A8D]
+                        hover:text-white
+                        transition-all
+                        duration-300
+                      "
+                    >
+                      <Instagram
+                        size={21}
+                        strokeWidth={1.8}
+                      />
+                    </a>
+                  )}
+
+                  {member.email && (
+                    <a
+                      href={member.email}
+                      aria-label={`Email ${member.name}`}
+                      className="
+                        w-12
+                        h-12
+                        rounded-full
+                        flex
+                        items-center
+                        justify-center
+                        bg-[#EA8166]/10
+                        text-[#EA8166]
+                        hover:bg-[#EA8166]
+                        hover:text-white
+                        transition-all
+                        duration-300
+                      "
+                    >
+                      <Mail
+                        size={21}
+                        strokeWidth={1.8}
+                      />
+                    </a>
+                  )}
+
+                </div>
               </div>
             </Card>
           ))}
+
         </div>
       </div>
     </section>

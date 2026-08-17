@@ -1,21 +1,27 @@
 "use client";
 
-export function RecognitionSection() {
+interface RecognitionSectionProps {
+  hideHeader?: boolean;
+}
+
+export function RecognitionSection({ hideHeader = false }: RecognitionSectionProps) {
   return (
     <>
-      <section id="recognitions" className="recognition-section">
+      <section className="recognition-section">
         <div className="recognition-container">
-          <span className="recognition-eyebrow">RECOGNITION</span>
+          {!hideHeader && (
+            <>
+              <span className="recognition-eyebrow">RECOGNITION</span>
+              <h2 className="recognition-title">Our Recognition</h2>
+              <p className="recognition-intro">
+                Our work has received formal recognition for its contribution to
+                social impact, youth leadership, and community development at both
+                national and international platforms.
+              </p>
+            </>
+          )}
 
-          <h2 className="recognition-title">Our Recognition</h2>
-
-          <p className="recognition-intro">
-            Our work has received formal recognition for its contribution to
-            social impact, youth leadership, and community development at both
-            national and international platforms.
-          </p>
-
-          <div className="recognition-grid">
+          <div className={`recognition-grid ${hideHeader ? "recognition-grid--no-header" : ""}`}>
             {/* LEFT */}
             <div className="recognition-left">
               <div className="certificate-frame">
@@ -134,6 +140,10 @@ export function RecognitionSection() {
 
         .award-link:hover {
           opacity: 0.75;
+        }
+
+        .recognition-grid--no-header {
+          margin-top: clamp(20px, 4vw, 40px);
         }
 
         @media (max-width: 900px) {

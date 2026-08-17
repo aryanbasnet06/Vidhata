@@ -3,6 +3,14 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
+  --vidhata-teal: #5B8A8D;
+  --vidhata-teal-dark: #4a7174;
+  --vidhata-coral: #EA8166;
+  --vidhata-coral-dark: #d97359;
+  --vidhata-coral-light: #FFB199;
+  --vidhata-yellow: #F0C78A;
+  --vidhata-navy: #1a3638;
+  --vidhata-light: #F0F9F9;
   --font-size: 16px;
   --background: #ffffff;
   --foreground: oklch(0.145 0 0);
@@ -120,6 +128,15 @@
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
 
+  --color-vidhata-teal: var(--vidhata-teal);
+  --color-vidhata-teal-dark: var(--vidhata-teal-dark);
+  --color-vidhata-coral: var(--vidhata-coral);
+  --color-vidhata-coral-dark: var(--vidhata-coral-dark);
+  --color-vidhata-coral-light: var(--vidhata-coral-light);
+  --color-vidhata-yellow: var(--vidhata-yellow);
+  --color-vidhata-navy: var(--vidhata-navy);
+  --color-vidhata-light: var(--vidhata-light);
+
   /* Extra breakpoint for large / ultrawide displays (mobile-first) */
   --breakpoint-3xl: 120rem; /* 1920px */
 }
@@ -167,6 +184,91 @@
   section[id],
   [id="home"] {
     scroll-margin-top: 5.5rem;
+  }
+
+  /* Hero background responsive positioning */
+  .hero-bg-image {
+    object-position: center 35%;
+    filter: brightness(0.85) contrast(1.05);
+  }
+
+  @media (max-width: 640px) {
+    .hero-bg-image {
+      object-position: 60% 30%;
+    }
+  }
+
+  @media (min-width: 641px) and (max-width: 1024px) {
+    .hero-bg-image {
+      object-position: center 32%;
+    }
+  }
+}
+
+/* Animations */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slide-down {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.7s ease-out forwards;
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 0.6s ease-out forwards;
+  opacity: 0;
+}
+
+.animate-slide-down {
+  animation: slide-down 0.25s ease-out forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .animate-fade-in,
+  .animate-fade-in-up,
+  .animate-slide-down {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+
+  .hero-bg-image,
+  * {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
   }
 }
 

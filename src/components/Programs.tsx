@@ -20,7 +20,11 @@ import innovationTechImage from "/images/innovation_and_technology.jpg";
 import environmentalImage from "/images/environmental_awareness.png";
 import socialEmotionalImage from "/images/underserved.jpg";
 
-export function Programs() {
+interface ProgramsProps {
+  hideHeader?: boolean;
+}
+
+export function Programs({ hideHeader = false }: ProgramsProps) {
   const programs = [
     {
       icon: BookOpen,
@@ -73,22 +77,23 @@ export function Programs() {
   ];
 
   return (
-    <section id="programs" className="py-16 sm:py-20 bg-white">
+    <section className="py-16 sm:py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
-        <div className="text-center mb-12 sm:mb-16">
-          <h2 className="text-[#5B8A8D] text-base sm:text-lg mb-3 tracking-wide">
-            OUR PROGRAMS
-          </h2>
-          <h3 className="text-3xl sm:text-4xl lg:text-5xl text-gray-900 mb-4 sm:mb-6">
-            Comprehensive Learning Experiences
-          </h3>
-          <p className="text-gray-600 text-lg max-w-3xl mx-auto">
-            Our diverse programs are designed to nurture every aspect of student
-            development, from creativity and innovation to emotional
-            intelligence and social responsibility.
-          </p>
-        </div>
+        {!hideHeader && (
+          <div className="text-center mb-12 sm:mb-16">
+            <h2 className="text-vidhata-teal text-base sm:text-lg mb-3 tracking-wide font-semibold uppercase">
+              Our Programs
+            </h2>
+            <h3 className="text-3xl sm:text-4xl lg:text-5xl text-vidhata-navy font-bold mb-4 sm:mb-6">
+              Comprehensive Learning Experiences
+            </h3>
+            <p className="text-gray-600 text-lg max-w-3xl mx-auto">
+              Our diverse programs are designed to nurture every aspect of student
+              development, from creativity and innovation to emotional
+              intelligence and social responsibility.
+            </p>
+          </div>
+        )}
 
         {/* Programs Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">

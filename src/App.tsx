@@ -1,38 +1,29 @@
-import React from "react";
-import { Navigation } from "./components/Navigation";
-import { Hero } from "./components/Hero";
-import { ImpactMetrics } from "./components/ImpactMetrics";
-import { About } from "./components/About";
-import { Programs } from "./components/Programs";
-import { Partners } from "./components/Partners";
-import { WorkInAction } from "./components/WorkInAction";
-import { RecognitionSection } from "./components/RecognitionSection";
-import { GetInvolved } from "./components/GetInvolved";
-import { VolunteerTrajectory } from "./components/VolunteerTrajectory";
-import { Team } from "./components/Team";
-import { Contact } from "./components/Contact";
-import { Footer } from "./components/Footer";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Layout } from "./components/layout/Layout";
+import HomePage from "./pages/HomePage";
+import AboutPage from "./pages/AboutPage";
+import ProgramsPage from "./pages/ProgramsPage";
+import PartnersPage from "./pages/PartnersPage";
+import RecognitionsPage from "./pages/RecognitionsPage";
+import TeamPage from "./pages/TeamPage";
+import ContactPage from "./pages/ContactPage";
+import JoinUsPage from "./pages/JoinUsPage";
 
 export default function App() {
   return (
-    <div className="min-h-screen w-full overflow-x-hidden bg-white">
-      <Navigation />
-
-      <main className="w-full">
-        <Hero />
-        <About />
-        <Programs />
-        <Partners />
-        <WorkInAction />
-        <RecognitionSection />
-        <GetInvolved />
-        <ImpactMetrics />
-        <VolunteerTrajectory />
-        <Team />
-        <Contact />
-      </main>
-
-      <Footer />
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route element={<Layout />}>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/about" element={<AboutPage />} />
+          <Route path="/programs" element={<ProgramsPage />} />
+          <Route path="/partners" element={<PartnersPage />} />
+          <Route path="/recognitions" element={<RecognitionsPage />} />
+          <Route path="/team" element={<TeamPage />} />
+          <Route path="/contact" element={<ContactPage />} />
+          <Route path="/join-us" element={<JoinUsPage />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   );
 }

@@ -23,7 +23,11 @@ function PartnerCircle({ name, image }: { name: string; image?: string }) {
   );
 }
 
-export function Partners() {
+interface PartnersProps {
+  hideHeader?: boolean;
+}
+
+export function Partners({ hideHeader = false }: PartnersProps) {
   const trackRef = useRef<HTMLDivElement>(null);
   const animationRef = useRef<number | null>(null);
   const speedRef = useRef(0.35);
@@ -87,21 +91,19 @@ export function Partners() {
 
   return (
     /* ✅ THIS ID IS THE FIX */
-    <section
-      id="partners"
-      className="py-16 bg-gradient-to-b from-white to-[#F0F9F9] scroll-mt-24"
-    >
-      {/* HEADER */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-10 sm:mb-14 text-center">
-        <h2 className="text-[#5B8A8D] text-base sm:text-lg mb-3 tracking-wide">PARTNERS</h2>
-        <h3 className="text-3xl sm:text-4xl lg:text-5xl text-gray-900 mb-4">
-          Trusted by Leading Organizations
-        </h3>
-        <p className="text-gray-600 text-base sm:text-lg max-w-2xl mx-auto">
-          We collaborate with 18 partner organizations across Nepal to maximize
-          our impact
-        </p>
-      </div>
+    <section className="py-16 sm:py-20 bg-gradient-to-b from-white to-vidhata-light">
+      {!hideHeader && (
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-10 sm:mb-14 text-center">
+          <h2 className="text-vidhata-teal text-base sm:text-lg mb-3 tracking-wide font-semibold uppercase">Partners</h2>
+          <h3 className="text-3xl sm:text-4xl lg:text-5xl text-vidhata-navy font-bold mb-4">
+            Trusted by Leading Organizations
+          </h3>
+          <p className="text-gray-600 text-base sm:text-lg max-w-2xl mx-auto">
+            We collaborate with 18 partner organizations across Nepal to maximize
+            our impact
+          </p>
+        </div>
+      )}
 
       {/* SLIDER */}
       <div className="relative max-w-7xl mx-auto">

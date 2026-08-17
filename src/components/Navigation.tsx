@@ -1,166 +1,272 @@
 import { useEffect, useRef, useState } from "react";
-import { Menu, X } from "lucide-react";
+import { Link, NavLink, useLocation } from "react-router-dom";
+import { Menu, X, ArrowRight } from "lucide-react";
+import { NAV_ITEMS } from "../data/constants";
 
 export function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
   const navRef = useRef<HTMLElement | null>(null);
+  const location = useLocation();
 
-  const navItems = [
-    { label: "Home", href: "#home" },
-    { label: "About Us", href: "#about" },
-    { label: "Programs", href: "#programs" },
-    { label: "Partners", href: "#partners" },
-    { label: "Recognitions", href: "#recognitions" },
-    { label: "Our Team", href: "#team" },
-    { label: "Contact", href: "#contact" },
-    {
-      label: "Join Us",
-      href: "https://docs.google.com/forms/d/e/1FAIpQLScv_6fRDRiEsQXGr45T3pJVbA-kop2gEB3Dhkte1DnF55Vwcg/viewform?usp=dialog",
-    },
-  ];
-
-  const linkItems = navItems.slice(0, -1);
-  const joinUs = navItems[navItems.length - 1];
-
+  // Close mobile menu whenever the route changes
   useEffect(() => {
-    document.documentElement.style.scrollBehavior = "smooth";
-    return () => {
-      document.documentElement.style.scrollBehavior = "";
-    };
-  }, []);
+    setIsOpen(false);
+  }, [location.pathname]);
 
-  // Lock body scroll and enable Escape-to-close while the mobile menu is open
+  // Prevent background scrolling while mobile menu is open
   useEffect(() => {
     if (!isOpen) return;
 
-    const prevOverflow = document.body.style.overflow;
+    const previousOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
 
-    const onKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setIsOpen(false);
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setIsOpen(false);
+      }
     };
+
     window.addEventListener("keydown", onKeyDown);
 
     return () => {
-      document.body.style.overflow = prevOverflow;
+      document.body.style.overflow = previousOverflow;
       window.removeEventListener("keydown", onKeyDown);
     };
   }, [isOpen]);
 
-  const handleNavClick = (e: React.MouseEvent, href: string) => {
-    if (!href.startsWith("#")) return;
+  /*
+   * Desktop navigation links
+   * Active page = Vidhata coral
+   * Inactive links = dark gray / black
+   */
+  const navLinkClass = ({ isActive }: { isActive: boolean }) =>
+    [
+      "whitespace-nowrap",
+      "text-[0.95rem]",
+      "xl:text-base",
+      "font-medium",
+      "transition-colors",
+      "duration-200",
+      isActive
+        ? "text-vidhata-coral"
+        : "text-gray-800 hover:text-vidhata-coral",
+    ].join(" ");
 
-    e.preventDefault();
-    const id = href.replace("#", "");
-    const target = document.getElementById(id);
-
-    if (!target) return;
-
-    const navHeight = navRef.current?.getBoundingClientRect().height || 72;
-    const targetY =
-      target.getBoundingClientRect().top + window.pageYOffset - navHeight - 8;
-
-    window.scrollTo({ top: targetY, behavior: "smooth" });
-    setIsOpen(false);
-  };
+  /*
+   * Mobile navigation links
+   */
+  const mobileLinkClass = ({ isActive }: { isActive: boolean }) =>
+    [
+      "block",
+      "rounded-lg",
+      "px-3",
+      "py-3",
+      "text-base",
+      "font-medium",
+      "transition-colors",
+      "duration-200",
+      isActive
+        ? "bg-orange-50 text-vidhata-coral"
+        : "text-gray-800 hover:bg-gray-50 hover:text-vidhata-coral",
+    ].join(" ");
 
   return (
     <nav
       ref={navRef}
-      className="fixed top-0 left-0 right-0 bg-white/98 backdrop-blur-sm shadow-md z-50"
+      className="fixed top-0 left-0 right-0 z-50 border-b border-gray-200 bg-white shadow-sm"
+      aria-label="Main navigation"
     >
+      {/* Main navigation container */}
       <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="flex h-16 items-center justify-between gap-3 sm:h-20">
-          {/* Logo */}
-          <a
-            href="#home"
-            onClick={(e) => handleNavClick(e, "#home")}
-            className="flex min-w-0 flex-shrink items-center gap-2 sm:gap-3 cursor-pointer"
+        <div className="flex h-16 items-center justify-between gap-4 sm:h-[4.75rem]">
+          {/* =========================
+              LOGO / BRAND
+          ========================== */}
+          <Link
+            to="/"
+            className="flex min-w-0 flex-shrink-0 items-center gap-2 sm:gap-3"
+            aria-label="Vidhata home"
           >
             <img
               src="/images/vidhata_logo.png"
               alt="Vidhata Logo"
               className="w-auto flex-shrink-0 object-contain"
-              style={{ height: "clamp(2.5rem, 7vw, 4.25rem)" }}
+              style={{
+                height: "clamp(2.5rem, 5vw, 3.75rem)",
+              }}
             />
+
             <span
-              className="truncate font-normal leading-none text-[#5B8A8D]"
-              style={{ fontSize: "clamp(1.5rem, 4.5vw, 2.9rem)" }}
+              className="font-semibold leading-none text-[#5B8A8D]"
+              style={{
+                fontSize: "clamp(1.5rem, 3vw, 2rem)",
+              }}
             >
               Vidhata
             </span>
-          </a>
+          </Link>
 
-          {/* Desktop Navigation (>= lg) */}
-          <div className="hidden lg:flex items-center gap-5 xl:gap-8">
-            {linkItems.map((item) => (
-              <a
-                key={item.label}
-                href={item.href}
-                onClick={(e) => handleNavClick(e, item.href)}
-                className="whitespace-nowrap text-gray-700 transition-colors hover:text-[#5B8A8D] text-base xl:text-lg"
+          {/* =========================
+              DESKTOP NAVIGATION
+          ========================== */}
+          <div className="hidden lg:flex items-center gap-5 xl:gap-7">
+            {NAV_ITEMS.map((item) => (
+              <NavLink
+                key={item.path}
+                to={item.path}
+                className={navLinkClass}
               >
                 {item.label}
-              </a>
+              </NavLink>
             ))}
 
-            <a
-              href={joinUs.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="whitespace-nowrap rounded-xl bg-[#EB8F78] px-5 py-2.5 text-base text-white transition-colors hover:bg-[#d87f69] xl:px-7 xl:text-lg"
+            {/* Join Us Button */}
+            <Link
+              to="/join-us"
+              className="
+                ml-1
+                inline-flex
+                h-12
+                items-center
+                justify-center
+                gap-2
+                whitespace-nowrap
+                rounded-full
+                bg-vidhata-coral
+                px-7
+                text-base
+                font-semibold
+                text-white
+                shadow-sm
+                transition-all
+                duration-200
+                hover:bg-vidhata-coral-dark
+                hover:shadow-md
+                hover:scale-[1.02]
+                focus-visible:outline-none
+                focus-visible:ring-2
+                focus-visible:ring-vidhata-coral
+                focus-visible:ring-offset-2
+              "
             >
-              Join Us
-            </a>
+              <span>Join Us</span>
+              <ArrowRight className="h-5 w-5" strokeWidth={2} />
+            </Link>
           </div>
 
-          {/* Mobile Menu Button (< lg) */}
+          {/* =========================
+              MOBILE MENU BUTTON
+          ========================== */}
           <button
             type="button"
-            onClick={() => setIsOpen((v) => !v)}
+            onClick={() => setIsOpen((value) => !value)}
             aria-label={isOpen ? "Close menu" : "Open menu"}
             aria-expanded={isOpen}
             aria-controls="mobile-menu"
-            className="lg:hidden inline-flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-lg text-gray-700 transition-colors hover:bg-gray-100"
+            className="
+              inline-flex
+              h-11
+              w-11
+              flex-shrink-0
+              items-center
+              justify-center
+              rounded-lg
+              text-gray-800
+              transition-colors
+              hover:bg-gray-100
+              focus-visible:outline-none
+              focus-visible:ring-2
+              focus-visible:ring-vidhata-teal
+              lg:hidden
+            "
           >
-            {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+            {isOpen ? (
+              <X className="h-6 w-6" />
+            ) : (
+              <Menu className="h-6 w-6" />
+            )}
           </button>
         </div>
       </div>
 
-      {/* Mobile Navigation Overlay + Panel (< lg) */}
+      {/* =========================
+          MOBILE MENU
+      ========================== */}
       {isOpen && (
         <div className="lg:hidden">
+          {/* Background overlay */}
           <div
-            className="fixed inset-0 top-16 z-40 bg-black/30 backdrop-blur-[2px] sm:top-20"
+            className="
+              fixed
+              inset-0
+              top-16
+              z-40
+              bg-black/30
+              backdrop-blur-[2px]
+              sm:top-[4.75rem]
+            "
             onClick={() => setIsOpen(false)}
             aria-hidden="true"
           />
+
+          {/* Menu panel */}
           <div
             id="mobile-menu"
-            className="absolute left-0 right-0 top-full z-50 max-h-[calc(100vh-4rem)] overflow-y-auto border-t border-gray-100 bg-white shadow-xl sm:max-h-[calc(100vh-5rem)]"
+            className="
+              absolute
+              left-0
+              right-0
+              top-full
+              z-50
+              max-h-[calc(100dvh-4rem)]
+              overflow-y-auto
+              border-t
+              border-gray-200
+              bg-white
+              shadow-xl
+              sm:max-h-[calc(100dvh-4.75rem)]
+              animate-slide-down
+            "
           >
             <div className="mx-auto flex w-full max-w-7xl flex-col gap-1 px-4 py-4 sm:px-6">
-              {linkItems.map((item) => (
-                <a
-                  key={item.label}
-                  href={item.href}
-                  onClick={(e) => handleNavClick(e, item.href)}
-                  className="block rounded-lg px-3 py-3 text-base text-gray-700 transition-colors hover:bg-[#F0F9F9] hover:text-[#5B8A8D]"
+              {/* Mobile navigation links */}
+              {NAV_ITEMS.map((item) => (
+                <NavLink
+                  key={item.path}
+                  to={item.path}
+                  className={mobileLinkClass}
+                  onClick={() => setIsOpen(false)}
                 >
                   {item.label}
-                </a>
+                </NavLink>
               ))}
 
-              <a
-                href={joinUs.href}
-                target="_blank"
-                rel="noopener noreferrer"
+              {/* Mobile Join Us button */}
+              <Link
+                to="/join-us"
                 onClick={() => setIsOpen(false)}
-                className="mt-2 block rounded-lg bg-[#EB8F78] px-6 py-3 text-center text-base text-white transition-colors hover:bg-[#d87f69]"
+                className="
+                  mt-2
+                  flex
+                  items-center
+                  justify-center
+                  gap-2
+                  rounded-full
+                  bg-vidhata-coral
+                  px-6
+                  py-3
+                  text-center
+                  text-base
+                  font-semibold
+                  text-white
+                  transition-all
+                  duration-200
+                  hover:bg-vidhata-coral-dark
+                "
               >
-                Join Us
-              </a>
+                <span>Join Us</span>
+                <ArrowRight className="h-5 w-5" strokeWidth={2} />
+              </Link>
             </div>
           </div>
         </div>

@@ -1,69 +1,42 @@
+import { Link } from "react-router-dom";
 import { Facebook, Instagram, Linkedin, Mail } from "lucide-react";
-import logoImage from "/images/vidhata_logo.png";
+import { CONTACT_EMAIL, NAV_ITEMS, SOCIAL_LINKS } from "../data/constants";
+
+const iconMap = {
+  Instagram,
+  Facebook,
+  LinkedIn: Linkedin,
+  Email: Mail,
+} as const;
 
 export function Footer() {
-  const socialLinks = [
-    {
-      icon: Instagram,
-      href: "https://www.instagram.com/vidhata.np/",
-      label: "Instagram",
-    },
-    {
-      icon: Facebook,
-      href: "https://www.facebook.com/profile.php?id=61577618310013",
-      label: "Facebook",
-    },
-    {
-      icon: Linkedin,
-      href: "https://np.linkedin.com/company/vidhata1",
-      label: "LinkedIn",
-    },
-    {
-      icon: Mail,
-      href: "mailto:contact.vidhata@gmail.com",
-      label: "Gmail",
-    },
-  ];
-
-  // ✅ UPDATED QUICK LINKS (ONLY THIS SECTION CHANGED)
-  const quickLinks = [
-    { label: "Home", href: "#home" },
-    { label: "About Us", href: "#about" },
-    { label: "Programs", href: "#programs" },
-    { label: "Partners", href: "#partners" },
-    { label: "Recognitions", href: "#recognitions" },
-    { label: "Our Team", href: "#team" },
-    { label: "Contact", href: "#contact" },
-  ];
-
   return (
-    <footer className="bg-gradient-to-b from-[#5B8A8D] to-[#4a7174] text-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-12">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-10 mb-8">
-          {/* Logo and Description */}
-          <div className="sm:col-span-2">
-            <div className="flex items-center space-x-3 mb-4">
-              <img src={logoImage} alt="Vidhata Logo" className="h-12 w-12" />
-              <span className="text-2xl">Vidhata</span>
+    <footer className="bg-gradient-to-b from-vidhata-teal to-vidhata-teal-dark text-white">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8 mb-10">
+          <div className="sm:col-span-2 lg:col-span-5">
+            <div className="flex items-center gap-3 mb-5">
+              <img src="/images/vidhata_logo.png" alt="Vidhata Logo" className="h-11 w-11" />
+              <span className="text-2xl font-semibold">Vidhata</span>
             </div>
 
-            <p className="text-white/90 mb-4 max-w-md">
+            <p className="text-white/90 mb-6 max-w-md leading-relaxed">
               Empowering underserved students across Nepal through structured
-              non-academic learning that fosters holistic development and
-              creates lasting impact.
+              non-academic learning that fosters holistic development and creates
+              lasting impact.
             </p>
 
-            <div className="flex space-x-4">
-              {socialLinks.map((link) => {
-                const Icon = link.icon;
+            <div className="flex gap-3">
+              {SOCIAL_LINKS.map((link) => {
+                const Icon = iconMap[link.label as keyof typeof iconMap] ?? Mail;
                 return (
                   <a
                     key={link.label}
                     href={link.href}
                     aria-label={link.label}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-[#EA8166] transition-colors"
+                    target={link.href.startsWith("mailto:") ? undefined : "_blank"}
+                    rel={link.href.startsWith("mailto:") ? undefined : "noopener noreferrer"}
+                    className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-vidhata-coral transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
                   >
                     <Icon className="h-5 w-5" />
                   </a>
@@ -72,49 +45,58 @@ export function Footer() {
             </div>
           </div>
 
-          {/* Quick Links */}
-          <div>
-            <h5 className="mb-4 text-lg">Quick Links</h5>
-            <ul className="space-y-2">
-              {quickLinks.map((link) => (
-                <li key={link.label}>
-                  <a
-                    href={link.href}
-                    className="text-white/80 hover:text-[#F0C78A] transition-colors"
+          <div className="lg:col-span-3">
+            <h5 className="mb-4 text-lg font-semibold">Quick Links</h5>
+            <ul className="space-y-2.5">
+              {NAV_ITEMS.map((link) => (
+                <li key={link.path}>
+                  <Link
+                    to={link.path}
+                    className="text-white/80 hover:text-vidhata-yellow transition-colors"
                   >
                     {link.label}
-                  </a>
+                  </Link>
                 </li>
               ))}
+              <li>
+                <Link
+                  to="/join-us"
+                  className="text-white/80 hover:text-vidhata-yellow transition-colors"
+                >
+                  Join Us
+                </Link>
+              </li>
             </ul>
           </div>
 
-          {/* Newsletter */}
-          <div>
-            <h5 className="mb-4 text-lg">Stay Updated</h5>
-            <p className="text-white/80 mb-4 text-sm">
-              Subscribe to our newsletter for updates on our programs and
-              impact.
-            </p>
+          <div className="lg:col-span-4">
+            <h5 className="mb-4 text-lg font-semibold">Get in Touch</h5>
+            <ul className="space-y-3 text-white/80">
+              <li>
+                <a
+                  href={`mailto:${CONTACT_EMAIL}`}
+                  className="hover:text-vidhata-yellow transition-colors"
+                >
+                  {CONTACT_EMAIL}
+                </a>
+              </li>
+              <li>Kathmandu, Nepal</li>
+            </ul>
 
-            <div className="flex">
-              <input
-                type="email"
-                placeholder="Your email"
-                className="flex-1 px-4 py-2 bg-white/10 text-white placeholder-white/60 rounded-l-lg focus:outline-none focus:ring-2 focus:ring-[#EA8166] border border-white/20"
-              />
-              <button className="px-4 py-2 bg-[#EA8166] hover:bg-[#d97359] rounded-r-lg transition-colors">
-                <Mail className="h-5 w-5" />
-              </button>
-            </div>
+            <Link
+              to="/join-us"
+              className="inline-flex mt-6 items-center justify-center h-11 px-6 rounded-xl bg-vidhata-coral text-white font-medium hover:bg-vidhata-coral-dark transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-vidhata-teal"
+            >
+              Become a Volunteer
+            </Link>
           </div>
         </div>
 
-        {/* Bottom Bar */}
-        <div className="border-t border-white/20 pt-8 flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-          <p className="text-white/80 text-sm text-center md:text-left">
+        <div className="border-t border-white/20 pt-8 flex flex-col sm:flex-row justify-between items-center gap-4">
+          <p className="text-white/75 text-sm text-center sm:text-left">
             &copy; {new Date().getFullYear()} Vidhata. All rights reserved.
           </p>
+          <p className="text-white/60 text-sm">Empowering students through holistic learning</p>
         </div>
       </div>
     </footer>

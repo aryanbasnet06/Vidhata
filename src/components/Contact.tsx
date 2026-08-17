@@ -5,7 +5,11 @@ import { Input } from "./ui/input";
 import { Textarea } from "./ui/textarea";
 import { Button } from "./ui/button";
 
-export function Contact() {
+interface ContactProps {
+  hideHeader?: boolean;
+}
+
+export function Contact({ hideHeader = false }: ContactProps) {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -53,15 +57,17 @@ export function Contact() {
   };
 
   return (
-    <section id="contact" className="py-16 sm:py-24 bg-gray-50">
+    <section className="py-16 sm:py-24 bg-gray-50">
       <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-10 sm:mb-16">
-          <h2 className="text-3xl sm:text-4xl text-gray-900 mb-6 sm:mb-8">Get in Touch</h2>
-          <div className="w-16 h-1 bg-[#5B8A8D] mx-auto mb-8 sm:mb-12" />
-          <p className="text-base sm:text-lg text-gray-600">
-            Have questions or want to get involved? We'd love to hear from you.
-          </p>
-        </div>
+        {!hideHeader && (
+          <div className="text-center mb-10 sm:mb-16">
+            <h2 className="text-3xl sm:text-4xl text-vidhata-navy font-bold mb-6 sm:mb-8">Get in Touch</h2>
+            <div className="w-16 h-1 bg-vidhata-teal mx-auto mb-8 sm:mb-12" />
+            <p className="text-base sm:text-lg text-gray-600">
+              Have questions or want to get involved? We'd love to hear from you.
+            </p>
+          </div>
+        )}
 
         <form className="space-y-6" onSubmit={handleSubmit}>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">

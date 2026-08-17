@@ -5,7 +5,11 @@ import holisticDevImage from "/images/holistic_development.jpg";
 import volunteeringImage from "/images/streamlined_volunteering.png";
 import underservedImage from "/images/underserved.jpg";
 
-export function About() {
+interface AboutProps {
+  hideHeader?: boolean;
+}
+
+export function About({ hideHeader = false }: AboutProps) {
   const features = [
     {
       icon: GraduationCap,
@@ -38,27 +42,25 @@ export function About() {
   ];
 
   return (
-    <section
-      id="about"
-      className="py-16 sm:py-20 bg-gradient-to-b from-white to-[#F0F9F9] pb-20 sm:pb-24"
-    >
+    <section className="py-16 sm:py-20 bg-gradient-to-b from-white to-vidhata-light pb-20 sm:pb-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
-        <div className="text-center mb-12 sm:mb-16">
-          <h2 className="text-[#5B8A8D] text-base sm:text-lg mb-3 tracking-wide">
-            ABOUT VIDHATA
-          </h2>
-          <h3 className="text-3xl sm:text-4xl lg:text-5xl text-gray-900 mb-4 sm:mb-6">
-            Transforming Education in Nepal
-          </h3>
-          <p className="text-gray-600 text-lg max-w-3xl mx-auto">
-            Vidhata is dedicated to providing structured non-academic learning
-            opportunities that foster holistic development among underserved
-            students. Through our streamlined volunteering gateway, we connect
-            passionate educators with students across Nepal, creating lasting
-            impact in communities that need it most.
-          </p>
-        </div>
+        {!hideHeader && (
+          <div className="text-center mb-12 sm:mb-16">
+            <h2 className="text-vidhata-teal text-base sm:text-lg mb-3 tracking-wide font-semibold uppercase">
+              About Vidhata
+            </h2>
+            <h3 className="text-3xl sm:text-4xl lg:text-5xl text-vidhata-navy font-bold mb-4 sm:mb-6">
+              Transforming Education in Nepal
+            </h3>
+            <p className="text-gray-600 text-lg max-w-3xl mx-auto">
+              Vidhata is dedicated to providing structured non-academic learning
+              opportunities that foster holistic development among underserved
+              students. Through our streamlined volunteering gateway, we connect
+              passionate educators with students across Nepal, creating lasting
+              impact in communities that need it most.
+            </p>
+          </div>
+        )}
 
         {/* Feature Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
