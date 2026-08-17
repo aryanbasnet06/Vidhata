@@ -84,7 +84,7 @@ export function Navigation() {
           ========================== */}
           <Link
             to="/"
-            className="flex min-w-0 flex-shrink-0 items-center gap-2 sm:gap-3"
+            className="flex min-w-0 flex-shrink-0 items-center gap-3 sm:gap-4"
             aria-label="Vidhata home"
           >
             <img
@@ -92,14 +92,14 @@ export function Navigation() {
               alt="Vidhata Logo"
               className="w-auto flex-shrink-0 object-contain"
               style={{
-                height: "clamp(2.5rem, 5vw, 3.75rem)",
+                height: "clamp(3rem, 6vw, 4.5rem)",
               }}
             />
 
             <span
               className="font-semibold leading-none text-[#5B8A8D]"
               style={{
-                fontSize: "clamp(1.5rem, 3vw, 2rem)",
+                fontSize: "clamp(1.8rem, 3.5vw, 2.5rem)",
               }}
             >
               Vidhata

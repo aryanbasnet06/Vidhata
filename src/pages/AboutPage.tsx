@@ -224,7 +224,7 @@ export default function AboutPage() {
           <div className="impact-item">
             <div className="impact-icon">⌂</div>
 
-            <strong>5,600+</strong>
+            <strong>12,000+</strong>
 
             <span>STUDENTS REACHED</span>
           </div>
@@ -233,7 +233,7 @@ export default function AboutPage() {
           <div className="impact-item">
             <div className="impact-icon">♧</div>
 
-            <strong>18</strong>
+            <strong>30</strong>
 
             <span>PARTNER ORGANIZATIONS</span>
           </div>
@@ -260,10 +260,6 @@ export default function AboutPage() {
 
       {/* =========================================================
           WHITE VERTICAL GAP
-          
-          The CTA intentionally starts after a white gap so that
-          the green section does not directly touch the Impact
-          section.
       ========================================================= */}
       <div className="cta-gap" />
 
@@ -292,10 +288,6 @@ export default function AboutPage() {
             </a>
           </div>
         </div>
-
-        {/* =======================================================
-            FOOTER AREA
-        ======================================================= */}
       </section>
 
       {/* =========================================================
@@ -307,9 +299,9 @@ export default function AboutPage() {
         ===================================================== */
 
         .about-page {
-          --green: #5B8A8D;
-          --green-dark: #5B8A8D;
-          --green-light: #EAF1F1;
+          --green: #1F3839;
+          --green-dark: #1F3839;
+          --green-light: #1F3839;
 
           --orange: #FF6545;
           --orange-light: #FFF0EC;
@@ -383,9 +375,9 @@ export default function AboutPage() {
           background:
             linear-gradient(
               90deg,
-              rgba(17, 57, 59, 0.94) 0%,
-              rgba(17, 57, 59, 0.84) 45%,
-              rgba(17, 57, 59, 0.55) 100%
+              rgba(31, 56, 57, 0.94) 0%,
+              rgba(31, 56, 57, 0.84) 45%,
+              rgba(31, 56, 57, 0.55) 100%
             );
 
           z-index: -1;
@@ -778,9 +770,9 @@ export default function AboutPage() {
 
           border-radius: 50%;
 
-          background: var(--green-light);
+          background: #1F3839;
 
-          color: var(--green);
+          color: var(--white);
 
           font-size: 27px;
         }
@@ -838,7 +830,7 @@ export default function AboutPage() {
 
           padding: 120px 7% 0;
 
-          background: #5B8A8D;
+          background: #1F3839;
 
           color: var(--white);
 
@@ -932,7 +924,7 @@ export default function AboutPage() {
         .cta-secondary {
           background: var(--white);
 
-          color: #5B8A8D;
+          color: #1F3839;
         }
 
         .cta-primary:hover,
@@ -1002,7 +994,7 @@ export default function AboutPage() {
 
           background: var(--white);
 
-          color: #5B8A8D;
+          color: #1F3839;
 
           font-weight: 800;
         }
@@ -1228,7 +1220,7 @@ export default function AboutPage() {
 
             padding: 90px 25px 0;
 
-            background: #5B8A8D;
+            background: #1F3839;
 
             /*
               WHITE GAP BETWEEN CTA AND FOOTER

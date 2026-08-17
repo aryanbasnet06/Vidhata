@@ -44,7 +44,7 @@ export default function RecognitionsPage() {
 
 
         {/* =========================================================
-            REST OF RECOGNITIONS PAGE
+            RECOGNITIONS CONTENT
         ========================================================= */}
 
         <section className="recognitions-content">
@@ -73,19 +73,22 @@ export default function RecognitionsPage() {
               <div className="recognition-feature-text">
 
                 <h3>
-                  Vidhata's Founder Featured as a Glocal Teen Hero
+                  Our Founder Featured as 
+                  the
+                  
+                   Glocal Teen Hero Nepal
                 </h3>
 
                 <p>
                   The Glocal Teen Hero award recognizes outstanding teenagers
                   whose work creates meaningful change in their communities.
-                  Vidhata's founder, Aryan Basnet, was featured for building a
-                  volunteering gateway that brings holistic, skill-based
+                  Vidhata's founder, Aryan Basnet, was featured for building
+                  a volunteering gateway that brings holistic, skill-based
                   education to underserved students across Nepal.
                 </p>
 
                 <a
-                  href="#"
+                  href="https://glocalteenhero.com/aryan-basnet/"
                   className="feature-button"
                 >
                   Read the full feature
@@ -145,6 +148,16 @@ export default function RecognitionsPage() {
 
         </section>
 
+
+        {/* =========================================================
+            WHITE SPACE BEFORE FOOTER
+        ========================================================= */}
+
+        <div
+          className="recognitions-footer-spacer"
+          aria-hidden="true"
+        />
+
       </main>
 
 
@@ -159,15 +172,19 @@ export default function RecognitionsPage() {
         ========================================================= */
 
         .recognitions-page {
-          --green: #4a7174;
-          --green-dark: #17383a;
+          --green: #1F3839;
+          --green-dark: #1F3839;
+
           --orange: #f87556;
           --orange-light: #ff876b;
+
           --dark: #192130;
           --cream: #fdfbf8;
           --text-gray: #686e76;
 
           width: 100%;
+          min-height: 100vh;
+
           margin: 0;
           padding: 0;
 
@@ -201,18 +218,15 @@ export default function RecognitionsPage() {
 
           overflow: hidden;
 
+          display: flex;
+          align-items: center;
+
           background: var(--green-dark);
         }
 
 
         /* =========================================================
            HERO BACKGROUND IMAGE
-
-           Make sure the image is located at:
-
-           public/images/students_celebration.jpg
-
-           Do not import the image in TypeScript.
         ========================================================= */
 
         .recognition-hero-background {
@@ -223,14 +237,11 @@ export default function RecognitionsPage() {
           width: 100%;
           height: 100%;
 
-          background-image: url("/images/student_celebration.jpg");
+          background-image:
+            url("/images/students_celebration.jpg");
 
           background-size: cover;
 
-          /*
-            Slightly shift the image so the students remain visible
-            while leaving enough dark space behind the text.
-          */
           background-position: center center;
 
           background-repeat: no-repeat;
@@ -243,11 +254,7 @@ export default function RecognitionsPage() {
 
         /* =========================================================
            GREEN COLOR EFFECT
-
-           Main effect used to reproduce the reference screenshot.
-
-           The image remains visible underneath while the entire
-           hero receives a dark teal/green photographic treatment.
+           Primary green: #1F3839
         ========================================================= */
 
         .recognition-hero-overlay {
@@ -257,24 +264,21 @@ export default function RecognitionsPage() {
 
           z-index: 1;
 
+          pointer-events: none;
+
           background:
             linear-gradient(
               90deg,
-              rgba(24, 61, 63, 0.88) 0%,
-              rgba(48, 88, 90, 0.82) 32%,
-              rgba(57, 96, 98, 0.76) 65%,
-              rgba(36, 70, 72, 0.80) 100%
+              rgba(31, 56, 57, 0.92) 0%,
+              rgba(31, 56, 57, 0.86) 32%,
+              rgba(31, 56, 57, 0.80) 65%,
+              rgba(31, 56, 57, 0.86) 100%
             );
-
-          pointer-events: none;
         }
 
 
         /* =========================================================
-           EXTRA DARKENING
-
-           Gives the image the darker cinematic appearance visible
-           in the reference design.
+           EXTRA DARK OVERLAY
         ========================================================= */
 
         .recognition-hero-dark-overlay {
@@ -289,9 +293,9 @@ export default function RecognitionsPage() {
           background:
             linear-gradient(
               180deg,
-              rgba(8, 25, 27, 0.12) 0%,
-              rgba(8, 25, 27, 0.18) 55%,
-              rgba(8, 25, 27, 0.24) 100%
+              rgba(8, 25, 27, 0.10) 0%,
+              rgba(8, 25, 27, 0.16) 55%,
+              rgba(8, 25, 27, 0.22) 100%
             );
         }
 
@@ -349,17 +353,18 @@ export default function RecognitionsPage() {
         ========================================================= */
 
         .recognition-title {
-          margin: 0;
-
           max-width: 1100px;
+
+          margin: 0;
 
           color: #ffffff;
 
-          font-size: clamp(
-            55px,
-            5vw,
-            82px
-          );
+          font-size:
+            clamp(
+              55px,
+              5vw,
+              82px
+            );
 
           line-height: 0.98;
 
@@ -383,12 +388,13 @@ export default function RecognitionsPage() {
 
           margin: 37px 0 0;
 
-          color: rgba(
-            255,
-            255,
-            255,
-            0.76
-          );
+          color:
+            rgba(
+              255,
+              255,
+              255,
+              0.76
+            );
 
           font-size: 25px;
 
@@ -407,7 +413,10 @@ export default function RecognitionsPage() {
         .recognitions-content {
           width: 100%;
 
-          padding: 75px 0 100px;
+          padding:
+            75px
+            0
+            100px;
 
           background: var(--cream);
         }
@@ -421,6 +430,10 @@ export default function RecognitionsPage() {
           margin: 0 auto;
         }
 
+
+        /* =========================================================
+           CONTENT EYEBROW
+        ========================================================= */
 
         .content-eyebrow {
           margin-bottom: 25px;
@@ -437,18 +450,26 @@ export default function RecognitionsPage() {
         }
 
 
-        .recognitions-content h2 {
-          margin: 0 auto 75px;
+        /* =========================================================
+           CONTENT HEADING
+        ========================================================= */
 
+        .recognitions-content h2 {
           max-width: 1050px;
+
+          margin:
+            0
+            auto
+            75px;
 
           color: var(--dark);
 
-          font-size: clamp(
-            48px,
-            4.5vw,
-            72px
-          );
+          font-size:
+            clamp(
+              48px,
+              4.5vw,
+              72px
+            );
 
           line-height: 0.98;
 
@@ -490,7 +511,12 @@ export default function RecognitionsPage() {
 
           box-shadow:
             0 18px 35px
-            rgba(25, 33, 48, 0.12);
+            rgba(
+              25,
+              33,
+              48,
+              0.12
+            );
         }
 
 
@@ -505,16 +531,24 @@ export default function RecognitionsPage() {
         }
 
 
+        /* =========================================================
+           FEATURE TEXT
+        ========================================================= */
+
         .recognition-feature-text h3 {
-          margin: 0 0 25px;
+          margin:
+            0
+            0
+            25px;
 
           color: var(--dark);
 
-          font-size: clamp(
-            35px,
-            3vw,
-            50px
-          );
+          font-size:
+            clamp(
+              35px,
+              3vw,
+              50px
+            );
 
           line-height: 1.08;
 
@@ -534,6 +568,8 @@ export default function RecognitionsPage() {
           font-size: 22px;
 
           line-height: 1.55;
+
+          font-weight: 400;
         }
 
 
@@ -552,7 +588,9 @@ export default function RecognitionsPage() {
 
           min-height: 60px;
 
-          padding: 0 34px;
+          padding:
+            0
+            34px;
 
           border-radius: 999px;
 
@@ -597,9 +635,11 @@ export default function RecognitionsPage() {
 
           justify-content: center;
 
-          padding: 90px 40px;
+          padding:
+            90px
+            40px;
 
-          background: var(--green);
+          background: #1F3839;
         }
 
 
@@ -611,6 +651,10 @@ export default function RecognitionsPage() {
           text-align: center;
         }
 
+
+        /* =========================================================
+           CTA EYEBROW
+        ========================================================= */
 
         .cta-eyebrow {
           margin-bottom: 28px;
@@ -625,16 +669,21 @@ export default function RecognitionsPage() {
         }
 
 
+        /* =========================================================
+           CTA HEADING
+        ========================================================= */
+
         .cta-container h2 {
           margin: 0;
 
           color: #ffffff;
 
-          font-size: clamp(
-            48px,
-            4.5vw,
-            70px
-          );
+          font-size:
+            clamp(
+              48px,
+              4.5vw,
+              70px
+            );
 
           line-height: 1;
 
@@ -644,17 +693,25 @@ export default function RecognitionsPage() {
         }
 
 
+        /* =========================================================
+           CTA DESCRIPTION
+        ========================================================= */
+
         .cta-container p {
           max-width: 920px;
 
-          margin: 28px auto 0;
+          margin:
+            28px
+            auto
+            0;
 
-          color: rgba(
-            255,
-            255,
-            255,
-            0.75
-          );
+          color:
+            rgba(
+              255,
+              255,
+              255,
+              0.75
+            );
 
           font-size: 21px;
 
@@ -690,7 +747,9 @@ export default function RecognitionsPage() {
 
           min-height: 60px;
 
-          padding: 0 35px;
+          padding:
+            0
+            35px;
 
           border-radius: 999px;
 
@@ -709,6 +768,10 @@ export default function RecognitionsPage() {
         }
 
 
+        /* =========================================================
+           PRIMARY CTA
+        ========================================================= */
+
         .cta-button-primary {
           min-width: 255px;
 
@@ -723,17 +786,54 @@ export default function RecognitionsPage() {
         }
 
 
+        /* =========================================================
+           SECONDARY CTA
+        ========================================================= */
+
         .cta-button-secondary {
           min-width: 210px;
 
           background: #ffffff;
 
-          color: var(--green);
+          color: #1F3839;
         }
 
 
         /* =========================================================
-           TABLET
+           WHITE SPACE BEFORE FOOTER
+        ========================================================= */
+
+        .recognitions-footer-spacer {
+          width: 100%;
+
+          height: 95px;
+
+          background: #ffffff;
+        }
+
+
+        /* =========================================================
+           LARGE DESKTOP
+        ========================================================= */
+
+        @media (min-width: 1600px) {
+
+          .recognition-hero-container {
+            padding-left: 8.7%;
+
+            padding-right: 8.7%;
+          }
+
+
+          .recognitions-footer-spacer {
+            height: 105px;
+          }
+
+        }
+
+
+        /* =========================================================
+           TABLET / SMALL DESKTOP
         ========================================================= */
 
         @media (max-width: 1100px) {
@@ -749,11 +849,12 @@ export default function RecognitionsPage() {
 
 
           .recognition-title {
-            font-size: clamp(
-              52px,
-              6vw,
-              70px
-            );
+            font-size:
+              clamp(
+                52px,
+                6vw,
+                70px
+              );
           }
 
 
@@ -779,6 +880,62 @@ export default function RecognitionsPage() {
           .recognition-feature-image {
             height: 500px;
           }
+
+
+          .recognitions-footer-spacer {
+            height: 90px;
+          }
+
+        }
+
+
+        /* =========================================================
+           TABLET
+        ========================================================= */
+
+        @media (max-width: 900px) {
+
+          .recognitions-content {
+            padding:
+              70px
+              0
+              90px;
+          }
+
+
+          .recognitions-content h2 {
+            font-size: 55px;
+          }
+
+
+          .recognition-feature-text h3 {
+            font-size: 45px;
+          }
+
+
+          .recognition-feature-text p {
+            font-size: 20px;
+          }
+
+
+          .recognition-cta {
+            min-height: 390px;
+
+            padding:
+              85px
+              30px;
+          }
+
+
+          .cta-container h2 {
+            font-size: 55px;
+          }
+
+
+          .recognitions-footer-spacer {
+            height: 85px;
+          }
+
         }
 
 
@@ -787,6 +944,10 @@ export default function RecognitionsPage() {
         ========================================================= */
 
         @media (max-width: 700px) {
+
+          /* =====================================================
+             MOBILE HERO
+          ===================================================== */
 
           .recognition-hero {
             min-height: 600px;
@@ -805,19 +966,42 @@ export default function RecognitionsPage() {
 
 
           /*
-            Stronger green gradient on mobile.
-            This keeps the text readable while preserving
-            the students in the background.
+             Stronger #1F3839 gradient on mobile.
+             Keeps the text readable while preserving
+             the students in the background.
           */
 
           .recognition-hero-overlay {
             background:
               linear-gradient(
                 180deg,
-                rgba(32, 70, 72, 0.58) 0%,
-                rgba(42, 82, 84, 0.72) 42%,
-                rgba(29, 61, 63, 0.91) 78%,
-                rgba(20, 48, 50, 0.97) 100%
+                rgba(
+                  31,
+                  56,
+                  57,
+                  0.58
+                ) 0%,
+
+                rgba(
+                  31,
+                  56,
+                  57,
+                  0.72
+                ) 42%,
+
+                rgba(
+                  31,
+                  56,
+                  57,
+                  0.91
+                ) 78%,
+
+                rgba(
+                  31,
+                  56,
+                  57,
+                  0.97
+                ) 100%
               );
           }
 
@@ -826,8 +1010,19 @@ export default function RecognitionsPage() {
             background:
               linear-gradient(
                 180deg,
-                rgba(8, 25, 27, 0.05) 0%,
-                rgba(8, 25, 27, 0.14) 100%
+                rgba(
+                  8,
+                  25,
+                  27,
+                  0.05
+                ) 0%,
+
+                rgba(
+                  8,
+                  25,
+                  27,
+                  0.14
+                ) 100%
               );
           }
 
@@ -879,7 +1074,10 @@ export default function RecognitionsPage() {
           ===================================================== */
 
           .recognitions-content {
-            padding: 60px 0 75px;
+            padding:
+              60px
+              0
+              75px;
           }
 
 
@@ -934,25 +1132,61 @@ export default function RecognitionsPage() {
 
 
           /* =====================================================
+             FEATURE BUTTON
+          ===================================================== */
+
+          .feature-button {
+            min-height: 58px;
+
+            padding:
+              0
+              28px;
+
+            margin-top: 30px;
+
+            font-size: 16px;
+          }
+
+
+          /* =====================================================
              CTA
           ===================================================== */
 
           .recognition-cta {
             min-height: 420px;
 
-            padding: 70px 20px;
+            padding:
+              70px
+              20px;
+
+            background: #1F3839;
+          }
+
+
+          .cta-eyebrow {
+            margin-bottom: 23px;
+
+            font-size: 11px;
+
+            letter-spacing: 4px;
           }
 
 
           .cta-container h2 {
             font-size: 43px;
 
+            line-height: 1.04;
+
             letter-spacing: -2px;
           }
 
 
           .cta-container p {
+            margin-top: 24px;
+
             font-size: 18px;
+
+            line-height: 1.55;
           }
 
 
@@ -960,6 +1194,8 @@ export default function RecognitionsPage() {
             flex-direction: column;
 
             gap: 13px;
+
+            margin-top: 38px;
           }
 
 
@@ -967,7 +1203,21 @@ export default function RecognitionsPage() {
             width: 100%;
 
             max-width: 300px;
+
+            min-height: 64px;
+
+            font-size: 17px;
           }
+
+
+          /* =====================================================
+             WHITE FOOTER GAP
+          ===================================================== */
+
+          .recognitions-footer-spacer {
+            height: 70px;
+          }
+
         }
 
 
@@ -1012,9 +1262,39 @@ export default function RecognitionsPage() {
           }
 
 
+          .recognition-feature-text p {
+            font-size: 17px;
+          }
+
+
           .cta-container h2 {
             font-size: 38px;
           }
+
+
+          .cta-container p {
+            font-size: 17px;
+          }
+
+
+          .recognitions-footer-spacer {
+            height: 60px;
+          }
+
+        }
+
+
+        /* =========================================================
+           REDUCED MOTION
+        ========================================================= */
+
+        @media (prefers-reduced-motion: reduce) {
+
+          .feature-button,
+          .cta-button {
+            transition: none;
+          }
+
         }
 
       `}</style>

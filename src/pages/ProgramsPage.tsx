@@ -281,9 +281,6 @@ export default function ProgramsPage() {
 
       {/* =========================================================
           WHITE SPACE BETWEEN CTA AND FOOTER
-
-          This creates a completely white separation between
-          the "Bring Vidhata to You" CTA section and the footer.
       ========================================================= */}
 
       <div
@@ -490,7 +487,10 @@ export default function ProgramsPage() {
 
           border-radius: 18px;
 
-          background: #0b2d2e;
+          /*
+            Updated green background to #1F3839
+          */
+          background: #1F3839;
 
           isolation: isolate;
         }
@@ -823,7 +823,10 @@ export default function ProgramsPage() {
 
           border-radius: 18px;
 
-          background: #0b2d2e;
+          /*
+            Updated green background to #1F3839
+          */
+          background: #1F3839;
 
           isolation: isolate;
         }
@@ -917,7 +920,10 @@ export default function ProgramsPage() {
 
           justify-content: center;
 
-          background: #5b8a8d;
+          /*
+            UPDATED GREEN BACKGROUND
+          */
+          background: #1F3839;
 
           padding: 100px 30px;
         }
@@ -1048,7 +1054,7 @@ export default function ProgramsPage() {
         .cta-secondary {
           background: #ffffff;
 
-          color: #173b3c;
+          color: #1F3839;
         }
 
         .cta-primary:hover,
@@ -1062,12 +1068,6 @@ export default function ProgramsPage() {
 
         /* =====================================================
            WHITE SPACE BETWEEN CTA AND FOOTER
-
-           THIS IS THE IMPORTANT PART.
-
-           The CTA ends with the teal background.
-           This element creates a completely white area
-           before your footer begins.
         ===================================================== */
 
         .cta-footer-spacer {
@@ -1396,6 +1396,11 @@ export default function ProgramsPage() {
             min-height: 600px;
 
             padding: 90px 25px;
+
+            /*
+              UPDATED GREEN BACKGROUND
+            */
+            background: #1F3839;
           }
 
           .cta-content h2 {

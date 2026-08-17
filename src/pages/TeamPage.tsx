@@ -26,10 +26,6 @@ export default function TeamPage() {
 
       {/* =========================================================
           JOIN THE TEAM CTA
-          
-          Designed to match the second reference image.
-          Background color taken directly from the first
-          reference image: #537D80.
       ========================================================= */}
 
       <section className="team-cta">
@@ -89,6 +85,19 @@ export default function TeamPage() {
 
 
       {/* =========================================================
+          WHITE SPACE BETWEEN CTA AND FOOTER
+          
+          This visually separates the Join the Team section
+          from the global footer.
+      ========================================================= */}
+
+      <div
+        className="team-footer-spacer"
+        aria-hidden="true"
+      />
+
+
+      {/* =========================================================
           PAGE-SPECIFIC STYLES
       ========================================================= */}
 
@@ -117,14 +126,7 @@ export default function TeamPage() {
 
           overflow: hidden;
 
-          /*
-            EXACT background color sampled from the first
-            screenshot:
-
-            RGB: 83, 125, 128
-            HEX: #537D80
-          */
-          background: #537D80;
+          background: #1F3839;
 
           color: #ffffff;
         }
@@ -317,7 +319,7 @@ export default function TeamPage() {
 
           background: #ffffff;
 
-          color: #183b3d;
+          color: #1F3839;
 
           box-shadow:
             0 10px 20px
@@ -352,6 +354,32 @@ export default function TeamPage() {
         .team-cta-primary:hover
         .team-cta-arrow {
           transform: translateX(5px);
+        }
+
+
+        /* =======================================================
+           WHITE SPACE BEFORE FOOTER
+        ======================================================= */
+
+        .team-footer-spacer {
+          width: 100%;
+
+          height: 95px;
+
+          background: #ffffff;
+        }
+
+
+        /* =======================================================
+           LARGE DESKTOP
+        ======================================================= */
+
+        @media (min-width: 1600px) {
+
+          .team-footer-spacer {
+            height: 105px;
+          }
+
         }
 
 
@@ -406,6 +434,11 @@ export default function TeamPage() {
 
           .team-cta-secondary {
             min-width: 220px;
+          }
+
+
+          .team-footer-spacer {
+            height: 85px;
           }
 
         }
@@ -485,6 +518,11 @@ export default function TeamPage() {
             font-size: 17px;
           }
 
+
+          .team-footer-spacer {
+            height: 70px;
+          }
+
         }
 
 
@@ -526,6 +564,11 @@ export default function TeamPage() {
 
           .team-cta-arrow {
             font-size: 24px;
+          }
+
+
+          .team-footer-spacer {
+            height: 60px;
           }
 
         }

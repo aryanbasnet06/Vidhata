@@ -14,7 +14,7 @@ export default function PartnersPage() {
         {/* Background image */}
         <div className="partners-hero-background" />
 
-        {/* Green color wash */}
+        {/* Dark teal color wash */}
         <div className="partners-hero-overlay" />
 
         {/* Subtle dark overlay */}
@@ -100,7 +100,6 @@ export default function PartnersPage() {
           aria-hidden="true"
         />
 
-
         <div className="partners-cta-inner">
 
           <p className="partners-eyebrow">
@@ -108,7 +107,7 @@ export default function PartnersPage() {
           </p>
 
           <h2>
-            Join Our Network of 18 Partners
+            Join Our Network of 30 Partners
           </h2>
 
           <p className="partners-cta-description">
@@ -122,7 +121,7 @@ export default function PartnersPage() {
           <div className="partners-cta-buttons">
 
             <a
-              href={PARTNER_FORM}
+              href="https://forms.gle/vQBP7QE4ak5LaUG39"
               target="_blank"
               rel="noopener noreferrer"
               className="partners-cta-primary"
@@ -172,8 +171,8 @@ export default function PartnersPage() {
         ========================================================= */
 
         .partners-page {
-          --green: #4a7174;
-          --green-dark: #14393a;
+          --green: #1F3839;
+          --green-dark: #1F3839;
 
           --orange: #f26441;
           --orange-light: #ff795c;
@@ -247,16 +246,12 @@ export default function PartnersPage() {
 
           align-items: center;
 
-          background: var(--green-dark);
+          background: #1F3839;
         }
 
 
         /* =========================================================
            HERO BACKGROUND IMAGE
-
-           File location:
-
-           public/images/community_workshops.jpg
         ========================================================= */
 
         .partners-hero-background {
@@ -283,12 +278,9 @@ export default function PartnersPage() {
 
 
         /* =========================================================
-           GREEN COLOR WASH
+           DARK TEAL COLOR WASH
 
-           This is the main effect matching the reference image.
-
-           Unlike a left-to-right gradient, this uses one
-           consistent green/teal wash across the photograph.
+           Uses #1F3839 as the main brand background.
         ========================================================= */
 
         .partners-hero-overlay {
@@ -302,19 +294,16 @@ export default function PartnersPage() {
 
           background:
             rgba(
-              20,
+              31,
+              56,
               57,
-              58,
-              0.70
+              0.76
             );
         }
 
 
         /* =========================================================
            SUBTLE DARK OVERLAY
-
-           Keeps the photograph dark enough for the white
-           typography while retaining visible image details.
         ========================================================= */
 
         .partners-hero-dark-overlay {
@@ -328,10 +317,10 @@ export default function PartnersPage() {
 
           background:
             rgba(
-              7,
-              30,
-              31,
-              0.12
+              8,
+              24,
+              25,
+              0.15
             );
         }
 
@@ -400,7 +389,6 @@ export default function PartnersPage() {
         }
 
 
-        /* Orange word */
         .partners-hero h1 span {
           color: var(--orange-light);
         }
@@ -549,6 +537,8 @@ export default function PartnersPage() {
 
         /* =========================================================
            CTA SECTION
+
+           ALL GREEN BACKGROUND REPLACED WITH #1F3839
         ========================================================= */
 
         .partners-cta {
@@ -591,7 +581,7 @@ export default function PartnersPage() {
               ),
               transparent 25%
             ),
-            #4a7174;
+            #1F3839;
         }
 
 
@@ -755,7 +745,7 @@ export default function PartnersPage() {
 
           background: #ffffff;
 
-          color: #173b3c;
+          color: #1F3839;
         }
 
 
@@ -881,6 +871,8 @@ export default function PartnersPage() {
 
           .partners-hero {
             height: 560px;
+
+            background: #1F3839;
           }
 
 
@@ -958,6 +950,8 @@ export default function PartnersPage() {
 
           .partners-hero {
             height: 520px;
+
+            background: #1F3839;
           }
 
 
@@ -1021,6 +1015,8 @@ export default function PartnersPage() {
             padding:
               90px
               25px;
+
+            background: #1F3839;
           }
 
 
@@ -1074,22 +1070,18 @@ export default function PartnersPage() {
             height: auto;
 
             align-items: flex-end;
+
+            background: #1F3839;
           }
 
-
-          /*
-             Keep the same green treatment on mobile,
-             but slightly strengthen it because mobile
-             text occupies more of the image.
-          */
 
           .partners-hero-overlay {
             background:
               rgba(
-                20,
+                31,
+                56,
                 57,
-                58,
-                0.73
+                0.79
               );
           }
 
@@ -1097,10 +1089,10 @@ export default function PartnersPage() {
           .partners-hero-dark-overlay {
             background:
               rgba(
-                7,
-                30,
-                31,
-                0.14
+                8,
+                24,
+                25,
+                0.17
               );
           }
 
@@ -1213,6 +1205,8 @@ export default function PartnersPage() {
             padding:
               85px
               22px;
+
+            background: #1F3839;
           }
 
 
@@ -1285,6 +1279,8 @@ export default function PartnersPage() {
 
           .partners-hero {
             min-height: 560px;
+
+            background: #1F3839;
           }
 
 
@@ -1351,6 +1347,8 @@ export default function PartnersPage() {
             padding:
               75px
               20px;
+
+            background: #1F3839;
           }
 
 
