@@ -1288,7 +1288,7 @@ function VolunteerTrajectorySection() {
 
         <div className="mt-16 flex flex-col items-center sm:mt-20 lg:mt-16">
           <Link
-            to="/volunteer"
+            to="https://forms.gle/nQzovtKror3Ujb1H9"
             target="_blank"
             rel="noopener noreferrer"
             className="
@@ -1452,8 +1452,8 @@ function GetInvolvedSection() {
           "
         >
           <Link
-            to="/volunteer"
-            target="_blank"
+            to="/join-us"
+           
             rel="noopener noreferrer"
             className="
               group
