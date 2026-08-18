@@ -35,9 +35,15 @@ export function Navigation() {
   }, [isOpen]);
 
   /*
+   * Go to the actual landing page
+   */
+  const goToLandingPage = () => {
+    setIsOpen(false);
+    window.location.href = "/";
+  };
+
+  /*
    * Desktop navigation links
-   * Active page = Vidhata coral
-   * Inactive links = dark gray / black
    */
   const navLinkClass = ({ isActive }: { isActive: boolean }) =>
     [
@@ -79,32 +85,50 @@ export function Navigation() {
       {/* Main navigation container */}
       <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between gap-4 sm:h-[4.75rem]">
+
           {/* =========================
               LOGO / BRAND
           ========================== */}
-          <Link
-            to="/"
-            className="flex min-w-0 flex-shrink-0 items-center gap-3 sm:gap-4"
-            aria-label="Vidhata home"
-          >
-            <img
-              src="/images/vidhata_logo.png"
-              alt="Vidhata Logo"
-              className="w-auto flex-shrink-0 object-contain"
-              style={{
-                height: "clamp(3rem, 6vw, 4.5rem)",
-              }}
-            />
+          <div className="flex min-w-0 flex-shrink-0 items-center gap-3 sm:gap-4">
 
-            <span
-              className="font-semibold leading-none text-[#5B8A8D]"
+            {/* LOGO */}
+            <button
+              type="button"
+              onClick={goToLandingPage}
+              aria-label="Go to Vidhata landing page"
+              className="flex flex-shrink-0 items-center border-0 bg-transparent p-0 cursor-pointer"
+            >
+              <img
+                src="/images/vidhata_logo.png"
+                alt="Vidhata Logo"
+                className="w-auto flex-shrink-0 object-contain"
+                style={{
+                  height: "clamp(3rem, 6vw, 4.5rem)",
+                }}
+              />
+            </button>
+
+            {/* VIDHATA TEXT */}
+            <button
+              type="button"
+              onClick={goToLandingPage}
+              aria-label="Go to Vidhata landing page"
+              className="
+                border-0
+                bg-transparent
+                p-0
+                cursor-pointer
+                font-semibold
+                leading-none
+                text-[#5B8A8D]
+              "
               style={{
                 fontSize: "clamp(1.8rem, 3.5vw, 2.5rem)",
               }}
             >
               Vidhata
-            </span>
-          </Link>
+            </button>
+          </div>
 
           {/* =========================
               DESKTOP NAVIGATION
@@ -194,6 +218,7 @@ export function Navigation() {
       ========================== */}
       {isOpen && (
         <div className="lg:hidden">
+
           {/* Background overlay */}
           <div
             className="
@@ -229,6 +254,7 @@ export function Navigation() {
             "
           >
             <div className="mx-auto flex w-full max-w-7xl flex-col gap-1 px-4 py-4 sm:px-6">
+
               {/* Mobile navigation links */}
               {NAV_ITEMS.map((item) => (
                 <NavLink
@@ -267,6 +293,7 @@ export function Navigation() {
                 <span>Join Us</span>
                 <ArrowRight className="h-5 w-5" strokeWidth={2} />
               </Link>
+
             </div>
           </div>
         </div>
