@@ -1,5 +1,11 @@
+import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import { ArrowRight, ArrowUpRight } from "lucide-react";
+import {
+  ArrowRight,
+  ArrowUpRight,
+  ChevronLeft,
+  ChevronRight,
+} from "lucide-react";
 
 import { Hero } from "../components/Hero";
 import { ImpactMetrics } from "../components/ImpactMetrics";
@@ -83,10 +89,6 @@ const partnerLogos = [
     alt: "Minnath Aadarsha Shikshya Sadan",
   },
   {
-    src: "/images/mahendra_sewa.jpg",
-    alt: "Nepal Secondary School",
-  },
-  {
     src: "/images/jantra.png",
     alt: "JANTRA",
   },
@@ -129,7 +131,6 @@ function ProgramCard({
         }
       `}
     >
-      {/* FULL-BLEED IMAGE */}
       <img
         src={image}
         alt={title}
@@ -149,7 +150,6 @@ function ProgramCard({
         loading="lazy"
       />
 
-      {/* BASE IMAGE OVERLAY */}
       <div
         className="
           absolute
@@ -162,7 +162,6 @@ function ProgramCard({
         "
       />
 
-      {/* HOVER OVERLAY */}
       <div
         className="
           absolute
@@ -175,7 +174,6 @@ function ProgramCard({
         "
       />
 
-      {/* CONTENT */}
       <div
         className={`
           absolute
@@ -256,8 +254,104 @@ function ProgramCard({
    ========================================================= */
 
 function PartnersSection() {
+  const trackRef = useRef<HTMLDivElement>(null);
+  const animationRef = useRef<number | null>(null);
+  const boostTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const autoSpeedRef = useRef(0.32);
+  const currentSpeedRef = useRef(0.32);
+  const isHoveredRef = useRef(false);
+
+  const [isReady, setIsReady] = useState(false);
+
+  /* =======================================================
+     INFINITE AUTO-SCROLL
+     ======================================================= */
+
+  useEffect(() => {
+    const track = trackRef.current;
+
+    if (!track) return;
+
+    setIsReady(true);
+
+    const animate = () => {
+      if (!isHoveredRef.current) {
+        track.scrollLeft += currentSpeedRef.current;
+      }
+
+      const halfWidth = track.scrollWidth / 2;
+
+      if (halfWidth > 0) {
+        if (track.scrollLeft >= halfWidth) {
+          track.scrollLeft -= halfWidth;
+        }
+
+        if (track.scrollLeft <= 0 && currentSpeedRef.current < 0) {
+          track.scrollLeft += halfWidth;
+        }
+      }
+
+      animationRef.current = requestAnimationFrame(animate);
+    };
+
+    animationRef.current = requestAnimationFrame(animate);
+
+    return () => {
+      if (animationRef.current !== null) {
+        cancelAnimationFrame(animationRef.current);
+      }
+
+      if (boostTimeoutRef.current) {
+        clearTimeout(boostTimeoutRef.current);
+      }
+    };
+  }, []);
+
+  /* =======================================================
+     ARROW MOVEMENT
+     ======================================================= */
+
+  const movePartners = (direction: "left" | "right") => {
+    const track = trackRef.current;
+
+    if (!track) return;
+
+    const moveAmount = 280;
+
+    track.scrollLeft +=
+      direction === "left" ? -moveAmount : moveAmount;
+
+    currentSpeedRef.current =
+      direction === "left" ? -3.2 : 3.2;
+
+    if (boostTimeoutRef.current) {
+      clearTimeout(boostTimeoutRef.current);
+    }
+
+    boostTimeoutRef.current = setTimeout(() => {
+      currentSpeedRef.current = autoSpeedRef.current;
+    }, 500);
+  };
+
+  /* =======================================================
+     MOUSE INTERACTION
+     ======================================================= */
+
+  const handleMouseEnter = () => {
+    isHoveredRef.current = true;
+  };
+
+  const handleMouseLeave = () => {
+    isHoveredRef.current = false;
+  };
+
   return (
     <section className="relative w-full overflow-hidden bg-white">
+      {/* =====================================================
+          HEADER
+          ===================================================== */}
+
       <div
         className="
           mx-auto
@@ -316,126 +410,237 @@ function PartnersSection() {
               lg:text-[20px]
             "
           >
-            We collaborate with 18 partner organizations across Nepal to
+            We collaborate with 30 partner organizations across Nepal to
             maximize our impact.
           </p>
         </div>
       </div>
 
-      <div className="relative w-full overflow-hidden pb-10 sm:pb-12 lg:pb-14">
-        <div className="partner-marquee flex w-max items-center">
-          <div
-            className="
-              flex
-              shrink-0
-              items-center
-              gap-20
-              px-10
-              sm:gap-28
-              sm:px-14
-              lg:gap-36
-              lg:px-20
-              xl:gap-44
-              xl:px-24
-            "
-          >
-            {partnerLogos.map((partner, index) => (
-              <div
-                key={`partner-first-${index}`}
-                className="
-                  flex
-                  h-[100px]
-                  w-[150px]
-                  shrink-0
-                  items-center
-                  justify-center
-                  sm:h-[110px]
-                  sm:w-[170px]
-                  lg:h-[120px]
-                  lg:w-[190px]
-                "
-              >
-                <img
-                  src={partner.src}
-                  alt={partner.alt}
-                  className="
-                    max-h-[90px]
-                    max-w-[145px]
-                    object-contain
-                    opacity-75
-                    grayscale
-                    transition-all
-                    duration-300
-                    hover:opacity-100
-                    hover:grayscale-0
-                    sm:max-h-[100px]
-                    sm:max-w-[165px]
-                    lg:max-h-[110px]
-                    lg:max-w-[185px]
-                  "
-                  loading="lazy"
-                />
-              </div>
-            ))}
-          </div>
+      {/* =====================================================
+          CAROUSEL
+          ===================================================== */}
 
-          <div
-            className="
-              flex
-              shrink-0
-              items-center
-              gap-20
-              px-10
-              sm:gap-28
-              sm:px-14
-              lg:gap-36
-              lg:px-20
-              xl:gap-44
-              xl:px-24
-            "
-            aria-hidden="true"
-          >
-            {partnerLogos.map((partner, index) => (
-              <div
-                key={`partner-second-${index}`}
+      <div className="relative w-full pb-10 sm:pb-12 lg:pb-14">
+        {/* LEFT EDGE FADE */}
+
+        <div
+          className="
+            pointer-events-none
+            absolute
+            left-0
+            top-0
+            bottom-0
+            z-20
+            w-20
+            bg-gradient-to-r
+            from-white
+            via-white/90
+            to-transparent
+            sm:w-28
+            lg:w-40
+          "
+        />
+
+        {/* RIGHT EDGE FADE */}
+
+        <div
+          className="
+            pointer-events-none
+            absolute
+            right-0
+            top-0
+            bottom-0
+            z-20
+            w-20
+            bg-gradient-to-l
+            from-white
+            via-white/90
+            to-transparent
+            sm:w-28
+            lg:w-40
+          "
+        />
+
+        {/* LEFT ARROW */}
+
+        <button
+          type="button"
+          aria-label="Move partners left"
+          onClick={() => movePartners("left")}
+          className="
+            partner-home-arrow
+            left-3
+            sm:left-5
+            lg:left-7
+          "
+        >
+          <ChevronLeft
+            className="h-5 w-5 sm:h-6 sm:w-6"
+            strokeWidth={2.4}
+          />
+        </button>
+
+        {/* RIGHT ARROW */}
+
+        <button
+          type="button"
+          aria-label="Move partners right"
+          onClick={() => movePartners("right")}
+          className="
+            partner-home-arrow
+            right-3
+            sm:right-5
+            lg:right-7
+          "
+        >
+          <ChevronRight
+            className="h-5 w-5 sm:h-6 sm:w-6"
+            strokeWidth={2.4}
+          />
+        </button>
+
+        {/* TRACK */}
+
+        <div
+          ref={trackRef}
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+          className={`
+            partner-home-track
+            flex
+            w-full
+            items-center
+            gap-8
+            overflow-hidden
+            px-16
+            py-5
+            sm:gap-12
+            sm:px-20
+            lg:gap-16
+            lg:px-28
+            xl:gap-20
+            xl:px-32
+            ${isReady ? "opacity-100" : "opacity-0"}
+          `}
+        >
+          {/* =================================================
+              FIRST SET
+              ================================================= */}
+
+          {partnerLogos.map((partner, index) => (
+            <div
+              key={`partner-home-first-${index}`}
+              className="
+                partner-logo-card
+                group
+                flex
+                h-[120px]
+                w-[180px]
+                shrink-0
+                items-center
+                justify-center
+                rounded-2xl
+                border
+                border-[#e9eded]
+                bg-white
+                px-5
+                shadow-[0_8px_25px_rgba(11,53,54,0.05)]
+                transition-all
+                duration-300
+                sm:h-[135px]
+                sm:w-[210px]
+                sm:px-6
+                lg:h-[145px]
+                lg:w-[230px]
+                lg:px-7
+              "
+            >
+              <img
+                src={partner.src}
+                alt={partner.alt}
                 className="
-                  flex
-                  h-[100px]
-                  w-[150px]
-                  shrink-0
-                  items-center
-                  justify-center
-                  sm:h-[110px]
-                  sm:w-[170px]
-                  lg:h-[120px]
-                  lg:w-[190px]
+                  max-h-[82px]
+                  max-w-[145px]
+                  object-contain
+                  opacity-75
+                  grayscale
+                  transition-all
+                  duration-500
+                  group-hover:scale-105
+                  group-hover:opacity-100
+                  group-hover:grayscale-0
+                  sm:max-h-[92px]
+                  sm:max-w-[170px]
+                  lg:max-h-[102px]
+                  lg:max-w-[190px]
                 "
-              >
-                <img
-                  src={partner.src}
-                  alt=""
-                  className="
-                    max-h-[90px]
-                    max-w-[145px]
-                    object-contain
-                    opacity-75
-                    grayscale
-                    transition-all
-                    duration-300
-                    hover:opacity-100
-                    hover:grayscale-0
-                    sm:max-h-[100px]
-                    sm:max-w-[165px]
-                    lg:max-h-[110px]
-                    lg:max-w-[185px]
-                  "
-                  loading="lazy"
-                />
-              </div>
-            ))}
-          </div>
+                loading="lazy"
+              />
+            </div>
+          ))}
+
+          {/* =================================================
+              SECOND SET — FOR INFINITE LOOP
+              ================================================= */}
+
+          {partnerLogos.map((partner, index) => (
+            <div
+              key={`partner-home-second-${index}`}
+              aria-hidden="true"
+              className="
+                partner-logo-card
+                group
+                flex
+                h-[120px]
+                w-[180px]
+                shrink-0
+                items-center
+                justify-center
+                rounded-2xl
+                border
+                border-[#e9eded]
+                bg-white
+                px-5
+                shadow-[0_8px_25px_rgba(11,53,54,0.05)]
+                transition-all
+                duration-300
+                sm:h-[135px]
+                sm:w-[210px]
+                sm:px-6
+                lg:h-[145px]
+                lg:w-[230px]
+                lg:px-7
+              "
+            >
+              <img
+                src={partner.src}
+                alt=""
+                className="
+                  max-h-[82px]
+                  max-w-[145px]
+                  object-contain
+                  opacity-75
+                  grayscale
+                  transition-all
+                  duration-500
+                  group-hover:scale-105
+                  group-hover:opacity-100
+                  group-hover:grayscale-0
+                  sm:max-h-[92px]
+                  sm:max-w-[170px]
+                  lg:max-h-[102px]
+                  lg:max-w-[190px]
+                "
+                loading="lazy"
+              />
+            </div>
+          ))}
         </div>
       </div>
+
+      {/* =====================================================
+          BOTTOM LINK
+          ===================================================== */}
 
       <div className="flex justify-center pb-20 sm:pb-24 lg:pb-28">
         <Link
@@ -471,47 +676,154 @@ function PartnersSection() {
         </Link>
       </div>
 
+      {/* =====================================================
+          PARTNER STYLES
+          ===================================================== */}
+
       <style>{`
-        @keyframes vidhataPartnerMarquee {
-          from {
-            transform: translateX(0);
+        .partner-home-track {
+          scrollbar-width: none;
+          -ms-overflow-style: none;
+          scroll-behavior: auto;
+          transition: opacity 0.3s ease;
+        }
+
+        .partner-home-track::-webkit-scrollbar {
+          display: none;
+        }
+
+        .partner-logo-card {
+          position: relative;
+        }
+
+        .partner-logo-card::before {
+          content: "";
+          position: absolute;
+          inset: 0;
+          border-radius: 1rem;
+          padding: 1px;
+          background:
+            linear-gradient(
+              135deg,
+              rgba(21, 86, 87, 0.12),
+              transparent 45%,
+              rgba(242, 101, 70, 0.10)
+            );
+
+          -webkit-mask:
+            linear-gradient(#fff 0 0) content-box,
+            linear-gradient(#fff 0 0);
+
+          -webkit-mask-composite: xor;
+          mask-composite: exclude;
+
+          pointer-events: none;
+        }
+
+        .partner-logo-card:hover {
+          transform: translateY(-5px);
+          border-color: rgba(21, 86, 87, 0.15);
+          box-shadow:
+            0 18px 38px rgba(11, 53, 54, 0.10),
+            0 5px 15px rgba(21, 86, 87, 0.06);
+        }
+
+        .partner-home-arrow {
+          position: absolute;
+          top: 50%;
+          z-index: 40;
+
+          display: flex;
+          align-items: center;
+          justify-content: center;
+
+          width: 46px;
+          height: 46px;
+
+          transform: translateY(-50%);
+
+          border-radius: 9999px;
+
+          color: #155657;
+
+          background:
+            linear-gradient(
+              145deg,
+              rgba(255, 255, 255, 0.98),
+              rgba(247, 250, 249, 0.98)
+            );
+
+          border: 1px solid rgba(21, 86, 87, 0.12);
+
+          box-shadow:
+            0 10px 28px rgba(11, 53, 54, 0.12),
+            0 3px 8px rgba(0, 0, 0, 0.06);
+
+          cursor: pointer;
+
+          transition:
+            transform 0.25s ease,
+            background 0.25s ease,
+            color 0.25s ease,
+            box-shadow 0.25s ease;
+        }
+
+        @media (min-width: 640px) {
+          .partner-home-arrow {
+            width: 52px;
+            height: 52px;
           }
+        }
 
-          to {
-            transform: translateX(-50%);
+        @media (min-width: 1024px) {
+          .partner-home-arrow {
+            width: 56px;
+            height: 56px;
           }
         }
 
-        .partner-marquee {
-          animation: vidhataPartnerMarquee 95s linear infinite;
-          will-change: transform;
+        .partner-home-arrow:hover {
+          color: white;
+
+          background:
+            linear-gradient(
+              135deg,
+              #155657,
+              #0b3536
+            );
+
+          transform:
+            translateY(-50%)
+            scale(1.08);
+
+          box-shadow:
+            0 14px 32px rgba(21, 86, 87, 0.25),
+            0 4px 12px rgba(0, 0, 0, 0.08);
         }
 
-        .partner-marquee:hover {
-          animation-play-state: paused;
+        .partner-home-arrow:active {
+          transform:
+            translateY(-50%)
+            scale(0.94);
         }
 
-        @media (max-width: 1024px) {
-          .partner-marquee {
-            animation-duration: 80s;
-          }
+        .partner-home-arrow:focus-visible {
+          outline: 3px solid rgba(242, 101, 70, 0.35);
+          outline-offset: 3px;
         }
 
-        @media (max-width: 768px) {
-          .partner-marquee {
-            animation-duration: 65s;
-          }
-        }
-
-        @media (max-width: 480px) {
-          .partner-marquee {
-            animation-duration: 55s;
+        @media (max-width: 639px) {
+          .partner-home-arrow {
+            width: 40px;
+            height: 40px;
           }
         }
 
         @media (prefers-reduced-motion: reduce) {
-          .partner-marquee {
-            animation: none;
+          .partner-logo-card,
+          .partner-logo-card img,
+          .partner-home-arrow {
+            transition: none;
           }
         }
       `}</style>
@@ -697,8 +1009,8 @@ function RecognitionSection() {
               />
             </Link>
 
-            <a
-              href="https://glocalteenhero.com/aryan-basnet/"
+            <Link
+              to="https://glocalteenhero.com/aryan-basnet/"
               target="_blank"
               rel="noopener noreferrer"
               className="
@@ -732,7 +1044,7 @@ function RecognitionSection() {
                   group-hover:-translate-y-0.5
                 "
               />
-            </a>
+            </Link>
           </div>
         </div>
       </div>
@@ -1034,407 +1346,6 @@ function VolunteerTrajectorySection() {
 }
 
 /* =========================================================
-   JOIN US SECTION
-   ========================================================= */
-
-function JoinUsSection() {
-  return (
-    <section
-      id="join-us"
-      className="
-        relative
-        w-full
-        overflow-hidden
-        bg-[#f4f2ed]
-      "
-    >
-      {/* Decorative background elements */}
-      <div
-        className="
-          pointer-events-none
-          absolute
-          -right-32
-          -top-32
-          h-[420px]
-          w-[420px]
-          rounded-full
-          bg-[#ff6948]/10
-          blur-3xl
-        "
-        aria-hidden="true"
-      />
-
-      <div
-        className="
-          pointer-events-none
-          absolute
-          -bottom-40
-          -left-32
-          h-[420px]
-          w-[420px]
-          rounded-full
-          bg-[#15595a]/10
-          blur-3xl
-        "
-        aria-hidden="true"
-      />
-
-      <div
-        className="
-          relative
-          z-10
-          mx-auto
-          w-full
-          max-w-[1600px]
-          px-5
-          py-20
-          sm:px-8
-          sm:py-24
-          lg:px-12
-          lg:py-28
-          xl:px-16
-        "
-      >
-        <div
-          className="
-            mx-auto
-            grid
-            max-w-[1350px]
-            grid-cols-1
-            items-center
-            gap-12
-            lg:grid-cols-[1.15fr_0.85fr]
-            lg:gap-20
-            xl:gap-28
-          "
-        >
-          {/* LEFT CONTENT */}
-          <div>
-            <p
-              className="
-                mb-6
-                text-[12px]
-                font-semibold
-                uppercase
-                tracking-[0.34em]
-                text-[#f26546]
-                sm:text-[13px]
-                lg:text-[14px]
-              "
-            >
-              JOIN US
-            </p>
-
-            <h2
-              className="
-                max-w-[900px]
-                text-[43px]
-                font-bold
-                leading-[0.97]
-                tracking-[-0.05em]
-                text-[#18202f]
-                sm:text-[52px]
-                md:text-[60px]
-                lg:text-[68px]
-                xl:text-[76px]
-              "
-            >
-              Your Time Can
-              <br />
-              Change a Life.
-            </h2>
-
-            <p
-              className="
-                mt-7
-                max-w-[760px]
-                text-[17px]
-                leading-[1.6]
-                text-[#6d7078]
-                sm:text-[18px]
-                md:text-[19px]
-                lg:text-[20px]
-              "
-            >
-              Whether you want to volunteer your skills, bring your
-              organization on board, or help expand access to meaningful
-              learning, there is a place for you at Vidhata.
-            </p>
-
-            <div
-              className="
-                mt-10
-                flex
-                flex-col
-                items-start
-                gap-4
-                sm:mt-12
-                sm:flex-row
-                sm:items-center
-              "
-            >
-              <Link
-                to="/join-us"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="
-                  group
-                  inline-flex
-                  min-h-[60px]
-                  items-center
-                  justify-center
-                  gap-3
-                  rounded-full
-                  bg-[#ff6948]
-                  px-9
-                  text-[16px]
-                  font-semibold
-                  text-white
-                  shadow-lg
-                  transition-all
-                  duration-300
-                  hover:-translate-y-1
-                  hover:bg-[#f25d3d]
-                  hover:shadow-xl
-                  sm:min-h-[64px]
-                  sm:px-10
-                  sm:text-[17px]
-                "
-              >
-                <span>Join Us</span>
-
-                <ArrowRight
-                  className="
-                    h-5
-                    w-5
-                    transition-transform
-                    duration-300
-                    group-hover:translate-x-1
-                  "
-                />
-              </Link>
-
-              <Link
-                to="/contact"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="
-                  group
-                  inline-flex
-                  min-h-[60px]
-                  items-center
-                  justify-center
-                  gap-3
-                  rounded-full
-                  border-2
-                  border-[#155657]
-                  px-8
-                  text-[16px]
-                  font-semibold
-                  text-[#155657]
-                  transition-all
-                  duration-300
-                  hover:bg-[#155657]
-                  hover:text-white
-                  sm:min-h-[64px]
-                  sm:px-9
-                  sm:text-[17px]
-                "
-              >
-                <span>Talk to Us</span>
-
-                <ArrowUpRight
-                  className="
-                    h-[19px]
-                    w-[19px]
-                    transition-transform
-                    duration-300
-                    group-hover:translate-x-0.5
-                    group-hover:-translate-y-0.5
-                  "
-                />
-              </Link>
-            </div>
-          </div>
-
-          {/* RIGHT — PARTICIPATION CARDS */}
-          <div
-            className="
-              grid
-              grid-cols-1
-              gap-4
-              sm:grid-cols-2
-              lg:grid-cols-1
-            "
-          >
-            <Link
-              to="/volunteer"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="
-                group
-                rounded-[22px]
-                bg-[#0b3536]
-                p-7
-                text-white
-                shadow-[0_18px_45px_rgba(11,53,54,0.12)]
-                transition-all
-                duration-300
-                hover:-translate-y-1
-                hover:shadow-[0_24px_55px_rgba(11,53,54,0.18)]
-                sm:p-8
-              "
-            >
-              <div className="flex items-start justify-between gap-5">
-                <div>
-                  <p
-                    className="
-                      text-[11px]
-                      font-semibold
-                      uppercase
-                      tracking-[0.28em]
-                      text-[#ff7658]
-                    "
-                  >
-                    VOLUNTEER
-                  </p>
-
-                  <h3
-                    className="
-                      mt-4
-                      text-[26px]
-                      font-bold
-                      leading-[1.05]
-                      tracking-[-0.035em]
-                      sm:text-[29px]
-                    "
-                  >
-                    Give Your Time
-                  </h3>
-                </div>
-
-                <div
-                  className="
-                    flex
-                    h-11
-                    w-11
-                    shrink-0
-                    items-center
-                    justify-center
-                    rounded-full
-                    bg-[#ff6948]
-                    transition-transform
-                    duration-300
-                    group-hover:scale-110
-                  "
-                >
-                  <ArrowUpRight className="h-5 w-5" />
-                </div>
-              </div>
-
-              <p
-                className="
-                  mt-5
-                  text-[15px]
-                  leading-[1.55]
-                  text-white/65
-                  sm:text-[16px]
-                "
-              >
-                Share your knowledge, skills, and energy with students across
-                Nepal.
-              </p>
-            </Link>
-
-            <Link
-              to="/partners"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="
-                group
-                rounded-[22px]
-                border
-                border-[#d9d8d3]
-                bg-white
-                p-7
-                shadow-[0_14px_40px_rgba(24,32,47,0.05)]
-                transition-all
-                duration-300
-                hover:-translate-y-1
-                hover:shadow-[0_20px_45px_rgba(24,32,47,0.09)]
-                sm:p-8
-              "
-            >
-              <div className="flex items-start justify-between gap-5">
-                <div>
-                  <p
-                    className="
-                      text-[11px]
-                      font-semibold
-                      uppercase
-                      tracking-[0.28em]
-                      text-[#f26546]
-                    "
-                  >
-                    PARTNER
-                  </p>
-
-                  <h3
-                    className="
-                      mt-4
-                      text-[26px]
-                      font-bold
-                      leading-[1.05]
-                      tracking-[-0.035em]
-                      text-[#18202f]
-                      sm:text-[29px]
-                    "
-                  >
-                    Grow the Impact
-                  </h3>
-                </div>
-
-                <div
-                  className="
-                    flex
-                    h-11
-                    w-11
-                    shrink-0
-                    items-center
-                    justify-center
-                    rounded-full
-                    bg-[#15595a]
-                    text-white
-                    transition-transform
-                    duration-300
-                    group-hover:scale-110
-                  "
-                >
-                  <ArrowUpRight className="h-5 w-5" />
-                </div>
-              </div>
-
-              <p
-                className="
-                  mt-5
-                  text-[15px]
-                  leading-[1.55]
-                  text-[#6d7078]
-                  sm:text-[16px]
-                "
-              >
-                Partner with us to create larger and more sustainable
-                educational opportunities.
-              </p>
-            </Link>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-/* =========================================================
    GET INVOLVED SECTION
    ========================================================= */
 
@@ -1541,8 +1452,8 @@ function GetInvolvedSection() {
           "
         >
           <Link
-            to="/join-us"
-           
+            to="/volunteer"
+            target="_blank"
             rel="noopener noreferrer"
             className="
               group
@@ -1626,13 +1537,19 @@ function GetInvolvedSection() {
 export default function HomePage() {
   return (
     <>
-      {/* HERO */}
+      {/* =====================================================
+          HERO
+          ===================================================== */}
       <Hero />
 
-      {/* IMPACT METRICS */}
+      {/* =====================================================
+          IMPACT METRICS
+          ===================================================== */}
       <ImpactMetrics />
 
-      {/* ABOUT VIDHATA */}
+      {/* =====================================================
+          ABOUT VIDHATA
+          ===================================================== */}
       <section
         id="about-preview"
         className="relative overflow-hidden bg-[#faf9f6]"
@@ -1872,7 +1789,9 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* VALUES */}
+      {/* =====================================================
+          VALUES
+          ===================================================== */}
       <section className="relative w-full overflow-hidden bg-white">
         <div
           className="
@@ -1938,15 +1857,12 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* PROGRAMS */}
+      {/* =========================================================
+          PROGRAMS
+          ========================================================= */}
       <section
         id="programs-preview"
-        className="
-          bg-[#faf9f6]
-          py-20
-          sm:py-24
-          lg:py-28
-        "
+        className="bg-[#faf9f6] py-20 sm:py-24 lg:py-28"
       >
         <div
           className="
@@ -2019,14 +1935,7 @@ export default function HomePage() {
             </p>
           </div>
 
-          <div
-            className="
-              hidden
-              grid-cols-12
-              gap-6
-              lg:grid
-            "
-          >
+          <div className="hidden grid-cols-12 gap-6 lg:grid">
             <div className="col-span-8 row-span-2 min-h-[600px]">
               <ProgramCard {...programs[0]} />
             </div>
@@ -2114,22 +2023,29 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* PARTNERS */}
+      {/* =========================================================
+          PARTNERS — INTERACTIVE INFINITE CAROUSEL
+          ========================================================= */}
       <PartnersSection />
 
-      {/* RECOGNITION */}
+      {/* =========================================================
+          RECOGNITION
+          ========================================================= */}
       <RecognitionSection />
 
-      {/* VOLUNTEER TRAJECTORY */}
+      {/* =========================================================
+          VOLUNTEER TRAJECTORY
+          ========================================================= */}
       <VolunteerTrajectorySection />
 
-      {/* JOIN US */}
-      {/* <JoinUsSection /> */}
-
-      {/* GET INVOLVED */}
+      {/* =========================================================
+          GET INVOLVED
+          ========================================================= */}
       <GetInvolvedSection />
 
-      {/* MARQUEE CSS */}
+      {/* =========================================================
+          VALUES MARQUEE
+          ========================================================= */}
       <style>{`
         @keyframes vidhataTextMarquee {
           from {
