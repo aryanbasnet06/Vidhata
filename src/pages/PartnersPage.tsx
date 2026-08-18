@@ -33,7 +33,7 @@ export default function PartnersPage() {
           </h1>
 
           <p className="partners-hero-description">
-            We collaborate with 30 partner organizations across Nepal —
+            We collaborate with 18 partner organizations across Nepal —
             schools, care homes, and community groups — to maximize our impact.
           </p>
 
@@ -107,7 +107,7 @@ export default function PartnersPage() {
           </p>
 
           <h2>
-            Join Our Network of 30 Partners
+            Join Our Network of 18 Partners
           </h2>
 
           <p className="partners-cta-description">

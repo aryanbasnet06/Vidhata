@@ -224,7 +224,7 @@ export default function AboutPage() {
           <div className="impact-item">
             <div className="impact-icon">⌂</div>
 
-            <strong>12,000+</strong>
+            <strong>5600+</strong>
 
             <span>STUDENTS REACHED</span>
           </div>
@@ -233,7 +233,7 @@ export default function AboutPage() {
           <div className="impact-item">
             <div className="impact-icon">♧</div>
 
-            <strong>30</strong>
+            <strong>18</strong>
 
             <span>PARTNER ORGANIZATIONS</span>
           </div>

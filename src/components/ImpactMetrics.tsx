@@ -53,14 +53,14 @@ export function ImpactMetrics({ variant = "section", className = "" }: ImpactMet
   const metrics = [
     {
       icon: Users,
-      value: 12000,
+      value: 5600,
       suffix: "+",
       label: "Students Reached",
       iconBg: "bg-vidhata-coral",
     },
     {
       icon: Building2,
-      value: 30,
+      value: 18,
       suffix: "",
       label: "Partner Organizations",
       iconBg: "bg-vidhata-teal",
