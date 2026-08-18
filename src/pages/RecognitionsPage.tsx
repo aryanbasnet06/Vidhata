@@ -82,7 +82,7 @@ export default function RecognitionsPage() {
                 <p>
                   The Glocal Teen Hero award recognizes outstanding teenagers
                   whose work creates meaningful change in their communities.
-                  Vidhata's founder, Aryan Basnet, was featured for building
+                 Our founder, Aryan Basnet, was featured for building
                   a volunteering gateway that brings holistic, skill-based
                   education to underserved students across Nepal.
                 </p>
