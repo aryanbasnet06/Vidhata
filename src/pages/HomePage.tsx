@@ -129,9 +129,7 @@ function ProgramCard({
         }
       `}
     >
-      {/* =====================================================
-          FULL-BLEED IMAGE
-          ===================================================== */}
+      {/* FULL-BLEED IMAGE */}
       <img
         src={image}
         alt={title}
@@ -151,9 +149,7 @@ function ProgramCard({
         loading="lazy"
       />
 
-      {/* =====================================================
-          BASE IMAGE OVERLAY
-          ===================================================== */}
+      {/* BASE IMAGE OVERLAY */}
       <div
         className="
           absolute
@@ -166,7 +162,7 @@ function ProgramCard({
         "
       />
 
-      {/* Additional subtle overlay on hover */}
+      {/* HOVER OVERLAY */}
       <div
         className="
           absolute
@@ -179,9 +175,7 @@ function ProgramCard({
         "
       />
 
-      {/* =====================================================
-          CONTENT
-          ===================================================== */}
+      {/* CONTENT */}
       <div
         className={`
           absolute
@@ -194,7 +188,6 @@ function ProgramCard({
         `}
       >
         <div className="flex items-end justify-between gap-5">
-          {/* Text */}
           <div className="min-w-0 flex-1">
             <h3
               className={`
@@ -228,7 +221,6 @@ function ProgramCard({
             </p>
           </div>
 
-          {/* Arrow */}
           <Link
             to="/programs"
             target="_blank"
@@ -330,7 +322,6 @@ function PartnersSection() {
         </div>
       </div>
 
-      {/* Logo marquee */}
       <div className="relative w-full overflow-hidden pb-10 sm:pb-12 lg:pb-14">
         <div className="partner-marquee flex w-max items-center">
           <div
@@ -706,8 +697,8 @@ function RecognitionSection() {
               />
             </Link>
 
-            <Link
-              to="https://glocalteenhero.com/aryan-basnet/"
+            <a
+              href="https://glocalteenhero.com/aryan-basnet/"
               target="_blank"
               rel="noopener noreferrer"
               className="
@@ -741,7 +732,7 @@ function RecognitionSection() {
                   group-hover:-translate-y-0.5
                 "
               />
-            </Link>
+            </a>
           </div>
         </div>
       </div>
@@ -1043,6 +1034,407 @@ function VolunteerTrajectorySection() {
 }
 
 /* =========================================================
+   JOIN US SECTION
+   ========================================================= */
+
+function JoinUsSection() {
+  return (
+    <section
+      id="join-us"
+      className="
+        relative
+        w-full
+        overflow-hidden
+        bg-[#f4f2ed]
+      "
+    >
+      {/* Decorative background elements */}
+      <div
+        className="
+          pointer-events-none
+          absolute
+          -right-32
+          -top-32
+          h-[420px]
+          w-[420px]
+          rounded-full
+          bg-[#ff6948]/10
+          blur-3xl
+        "
+        aria-hidden="true"
+      />
+
+      <div
+        className="
+          pointer-events-none
+          absolute
+          -bottom-40
+          -left-32
+          h-[420px]
+          w-[420px]
+          rounded-full
+          bg-[#15595a]/10
+          blur-3xl
+        "
+        aria-hidden="true"
+      />
+
+      <div
+        className="
+          relative
+          z-10
+          mx-auto
+          w-full
+          max-w-[1600px]
+          px-5
+          py-20
+          sm:px-8
+          sm:py-24
+          lg:px-12
+          lg:py-28
+          xl:px-16
+        "
+      >
+        <div
+          className="
+            mx-auto
+            grid
+            max-w-[1350px]
+            grid-cols-1
+            items-center
+            gap-12
+            lg:grid-cols-[1.15fr_0.85fr]
+            lg:gap-20
+            xl:gap-28
+          "
+        >
+          {/* LEFT CONTENT */}
+          <div>
+            <p
+              className="
+                mb-6
+                text-[12px]
+                font-semibold
+                uppercase
+                tracking-[0.34em]
+                text-[#f26546]
+                sm:text-[13px]
+                lg:text-[14px]
+              "
+            >
+              JOIN US
+            </p>
+
+            <h2
+              className="
+                max-w-[900px]
+                text-[43px]
+                font-bold
+                leading-[0.97]
+                tracking-[-0.05em]
+                text-[#18202f]
+                sm:text-[52px]
+                md:text-[60px]
+                lg:text-[68px]
+                xl:text-[76px]
+              "
+            >
+              Your Time Can
+              <br />
+              Change a Life.
+            </h2>
+
+            <p
+              className="
+                mt-7
+                max-w-[760px]
+                text-[17px]
+                leading-[1.6]
+                text-[#6d7078]
+                sm:text-[18px]
+                md:text-[19px]
+                lg:text-[20px]
+              "
+            >
+              Whether you want to volunteer your skills, bring your
+              organization on board, or help expand access to meaningful
+              learning, there is a place for you at Vidhata.
+            </p>
+
+            <div
+              className="
+                mt-10
+                flex
+                flex-col
+                items-start
+                gap-4
+                sm:mt-12
+                sm:flex-row
+                sm:items-center
+              "
+            >
+              <Link
+                to="/join-us"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="
+                  group
+                  inline-flex
+                  min-h-[60px]
+                  items-center
+                  justify-center
+                  gap-3
+                  rounded-full
+                  bg-[#ff6948]
+                  px-9
+                  text-[16px]
+                  font-semibold
+                  text-white
+                  shadow-lg
+                  transition-all
+                  duration-300
+                  hover:-translate-y-1
+                  hover:bg-[#f25d3d]
+                  hover:shadow-xl
+                  sm:min-h-[64px]
+                  sm:px-10
+                  sm:text-[17px]
+                "
+              >
+                <span>Join Us</span>
+
+                <ArrowRight
+                  className="
+                    h-5
+                    w-5
+                    transition-transform
+                    duration-300
+                    group-hover:translate-x-1
+                  "
+                />
+              </Link>
+
+              <Link
+                to="/contact"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="
+                  group
+                  inline-flex
+                  min-h-[60px]
+                  items-center
+                  justify-center
+                  gap-3
+                  rounded-full
+                  border-2
+                  border-[#155657]
+                  px-8
+                  text-[16px]
+                  font-semibold
+                  text-[#155657]
+                  transition-all
+                  duration-300
+                  hover:bg-[#155657]
+                  hover:text-white
+                  sm:min-h-[64px]
+                  sm:px-9
+                  sm:text-[17px]
+                "
+              >
+                <span>Talk to Us</span>
+
+                <ArrowUpRight
+                  className="
+                    h-[19px]
+                    w-[19px]
+                    transition-transform
+                    duration-300
+                    group-hover:translate-x-0.5
+                    group-hover:-translate-y-0.5
+                  "
+                />
+              </Link>
+            </div>
+          </div>
+
+          {/* RIGHT — PARTICIPATION CARDS */}
+          <div
+            className="
+              grid
+              grid-cols-1
+              gap-4
+              sm:grid-cols-2
+              lg:grid-cols-1
+            "
+          >
+            <Link
+              to="/volunteer"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="
+                group
+                rounded-[22px]
+                bg-[#0b3536]
+                p-7
+                text-white
+                shadow-[0_18px_45px_rgba(11,53,54,0.12)]
+                transition-all
+                duration-300
+                hover:-translate-y-1
+                hover:shadow-[0_24px_55px_rgba(11,53,54,0.18)]
+                sm:p-8
+              "
+            >
+              <div className="flex items-start justify-between gap-5">
+                <div>
+                  <p
+                    className="
+                      text-[11px]
+                      font-semibold
+                      uppercase
+                      tracking-[0.28em]
+                      text-[#ff7658]
+                    "
+                  >
+                    VOLUNTEER
+                  </p>
+
+                  <h3
+                    className="
+                      mt-4
+                      text-[26px]
+                      font-bold
+                      leading-[1.05]
+                      tracking-[-0.035em]
+                      sm:text-[29px]
+                    "
+                  >
+                    Give Your Time
+                  </h3>
+                </div>
+
+                <div
+                  className="
+                    flex
+                    h-11
+                    w-11
+                    shrink-0
+                    items-center
+                    justify-center
+                    rounded-full
+                    bg-[#ff6948]
+                    transition-transform
+                    duration-300
+                    group-hover:scale-110
+                  "
+                >
+                  <ArrowUpRight className="h-5 w-5" />
+                </div>
+              </div>
+
+              <p
+                className="
+                  mt-5
+                  text-[15px]
+                  leading-[1.55]
+                  text-white/65
+                  sm:text-[16px]
+                "
+              >
+                Share your knowledge, skills, and energy with students across
+                Nepal.
+              </p>
+            </Link>
+
+            <Link
+              to="/partners"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="
+                group
+                rounded-[22px]
+                border
+                border-[#d9d8d3]
+                bg-white
+                p-7
+                shadow-[0_14px_40px_rgba(24,32,47,0.05)]
+                transition-all
+                duration-300
+                hover:-translate-y-1
+                hover:shadow-[0_20px_45px_rgba(24,32,47,0.09)]
+                sm:p-8
+              "
+            >
+              <div className="flex items-start justify-between gap-5">
+                <div>
+                  <p
+                    className="
+                      text-[11px]
+                      font-semibold
+                      uppercase
+                      tracking-[0.28em]
+                      text-[#f26546]
+                    "
+                  >
+                    PARTNER
+                  </p>
+
+                  <h3
+                    className="
+                      mt-4
+                      text-[26px]
+                      font-bold
+                      leading-[1.05]
+                      tracking-[-0.035em]
+                      text-[#18202f]
+                      sm:text-[29px]
+                    "
+                  >
+                    Grow the Impact
+                  </h3>
+                </div>
+
+                <div
+                  className="
+                    flex
+                    h-11
+                    w-11
+                    shrink-0
+                    items-center
+                    justify-center
+                    rounded-full
+                    bg-[#15595a]
+                    text-white
+                    transition-transform
+                    duration-300
+                    group-hover:scale-110
+                  "
+                >
+                  <ArrowUpRight className="h-5 w-5" />
+                </div>
+              </div>
+
+              <p
+                className="
+                  mt-5
+                  text-[15px]
+                  leading-[1.55]
+                  text-[#6d7078]
+                  sm:text-[16px]
+                "
+              >
+                Partner with us to create larger and more sustainable
+                educational opportunities.
+              </p>
+            </Link>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* =========================================================
    GET INVOLVED SECTION
    ========================================================= */
 
@@ -1149,8 +1541,8 @@ function GetInvolvedSection() {
           "
         >
           <Link
-            to="/volunteer"
-            target="_blank"
+            to="/join-us"
+           
             rel="noopener noreferrer"
             className="
               group
@@ -1234,19 +1626,13 @@ function GetInvolvedSection() {
 export default function HomePage() {
   return (
     <>
-      {/* =====================================================
-          HERO
-          ===================================================== */}
+      {/* HERO */}
       <Hero />
 
-      {/* =====================================================
-          IMPACT METRICS
-          ===================================================== */}
+      {/* IMPACT METRICS */}
       <ImpactMetrics />
 
-      {/* =====================================================
-          ABOUT VIDHATA
-          ===================================================== */}
+      {/* ABOUT VIDHATA */}
       <section
         id="about-preview"
         className="relative overflow-hidden bg-[#faf9f6]"
@@ -1486,9 +1872,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* =====================================================
-          VALUES
-          ===================================================== */}
+      {/* VALUES */}
       <section className="relative w-full overflow-hidden bg-white">
         <div
           className="
@@ -1554,9 +1938,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* =========================================================
-          PROGRAMS — COMPREHENSIVE LEARNING EXPERIENCES
-          ========================================================= */}
+      {/* PROGRAMS */}
       <section
         id="programs-preview"
         className="
@@ -1577,9 +1959,6 @@ export default function HomePage() {
             xl:px-16
           "
         >
-          {/* =====================================================
-              HEADING
-              ===================================================== */}
           <div
             className="
               mx-auto
@@ -1640,9 +2019,6 @@ export default function HomePage() {
             </p>
           </div>
 
-          {/* =====================================================
-              DESKTOP BENTO GRID
-              ===================================================== */}
           <div
             className="
               hidden
@@ -1676,9 +2052,6 @@ export default function HomePage() {
             </div>
           </div>
 
-          {/* =====================================================
-              TABLET / MOBILE GRID
-              ===================================================== */}
           <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:hidden">
             {programs.map((program) => (
               <div
@@ -1690,9 +2063,6 @@ export default function HomePage() {
             ))}
           </div>
 
-          {/* =====================================================
-              EXPLORE PROGRAMS
-              ===================================================== */}
           <div className="mt-10 flex justify-center sm:mt-12 lg:mt-14">
             <Link
               to="/programs"
@@ -1744,29 +2114,22 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* =========================================================
-          PARTNERS
-          ========================================================= */}
+      {/* PARTNERS */}
       <PartnersSection />
 
-      {/* =========================================================
-          RECOGNITION
-          ========================================================= */}
+      {/* RECOGNITION */}
       <RecognitionSection />
 
-      {/* =========================================================
-          VOLUNTEER TRAJECTORY
-          ========================================================= */}
+      {/* VOLUNTEER TRAJECTORY */}
       <VolunteerTrajectorySection />
 
-      {/* =========================================================
-          GET INVOLVED
-          ========================================================= */}
+      {/* JOIN US */}
+      {/* <JoinUsSection /> */}
+
+      {/* GET INVOLVED */}
       <GetInvolvedSection />
 
-      {/* =========================================================
-          MARQUEE CSS
-          ========================================================= */}
+      {/* MARQUEE CSS */}
       <style>{`
         @keyframes vidhataTextMarquee {
           from {
