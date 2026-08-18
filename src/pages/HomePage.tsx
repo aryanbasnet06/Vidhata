@@ -645,7 +645,7 @@ function PartnersSection() {
       <div className="flex justify-center pb-20 sm:pb-24 lg:pb-28">
         <Link
           to="/partners"
-          target="_blank"
+     
           rel="noopener noreferrer"
           className="
             group
