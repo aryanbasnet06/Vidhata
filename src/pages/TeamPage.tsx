@@ -1,21 +1,47 @@
-import { PageHero } from "../components/shared/PageHero";
 import { Team } from "../components/Team";
 
 export default function TeamPage() {
   return (
     <>
       {/* =========================================================
-          PAGE HERO
+          TEAM PAGE HERO
+
+          Desktop target:
+          Full width × 483px
+
+          Background image:
+          /images/volunteer_training.jpg
+
+          Text is intentionally positioned on the LEFT,
+          matching the About Us hero style.
       ========================================================= */}
 
-      <PageHero
-        eyebrow="Our Team"
-        title="Meet the People Behind Vidhata"
-        description="Our dedicated leadership team brings together expertise in education, operations, technology, and curriculum development."
-        image="/images/volunteer_training.jpg"
-        imageAlt="Vidhata team and volunteers"
-      />
+      <section className="team-page-hero">
+        {/* Background image */}
+        <div className="team-page-hero-image" />
 
+        {/* Green/teal overlay */}
+        <div className="team-page-hero-overlay" />
+
+        {/* Hero content */}
+        <div className="team-page-hero-content">
+          {/* Eyebrow */}
+          <p className="team-page-hero-eyebrow">
+            OUR TEAM
+          </p>
+
+          {/* Main heading */}
+          <h1 className="team-page-hero-title">
+            Meet the People Behind Vidhata
+          </h1>
+
+          {/* Description */}
+          <p className="team-page-hero-description">
+            Our dedicated leadership team brings together expertise in
+            education, operations, technology, and curriculum development.
+          </p>
+        </div>
+      </section>
 
       {/* =========================================================
           TEAM SECTION
@@ -23,13 +49,11 @@ export default function TeamPage() {
 
       <Team hideHeader />
 
-
       {/* =========================================================
           JOIN THE TEAM CTA
       ========================================================= */}
 
       <section className="team-cta">
-
         <div className="team-cta-inner">
 
           {/* Eyebrow */}
@@ -37,19 +61,16 @@ export default function TeamPage() {
             JOIN THE TEAM
           </p>
 
-
           {/* Main heading */}
           <h2 className="team-cta-title">
             Want to Lead Change With Us?
           </h2>
-
 
           {/* Description */}
           <p className="team-cta-description">
             Our volunteers are the heartbeat of Vidhata. Bring your skills,
             energy, and passion — we'll help you turn them into impact.
           </p>
-
 
           {/* Buttons */}
           <div className="team-cta-buttons">
@@ -68,7 +89,6 @@ export default function TeamPage() {
               </span>
             </a>
 
-
             {/* Secondary button */}
             <a
               href="/contact"
@@ -78,17 +98,11 @@ export default function TeamPage() {
             </a>
 
           </div>
-
         </div>
-
       </section>
-
 
       {/* =========================================================
           WHITE SPACE BETWEEN CTA AND FOOTER
-          
-          This visually separates the Join the Team section
-          from the global footer.
       ========================================================= */}
 
       <div
@@ -96,12 +110,228 @@ export default function TeamPage() {
         aria-hidden="true"
       />
 
-
       {/* =========================================================
           PAGE-SPECIFIC STYLES
       ========================================================= */}
 
       <style>{`
+
+        /* =======================================================
+           TEAM HERO
+           
+           Desktop target:
+           483px high
+           100% viewport width
+        ======================================================= */
+
+        .team-page-hero {
+          position: relative;
+
+          width: 100%;
+
+          height: 483px;
+
+          min-height: 483px;
+
+          max-height: 483px;
+
+          overflow: hidden;
+
+          background: #1f3839;
+
+          isolation: isolate;
+        }
+
+
+        /* =======================================================
+           HERO BACKGROUND IMAGE
+        ======================================================= */
+
+        .team-page-hero-image {
+          position: absolute;
+
+          inset: 0;
+
+          width: 100%;
+
+          height: 100%;
+
+          background-image:
+            url("/images/volunteer_training.jpg");
+
+          background-size: cover;
+
+          background-position: center center;
+
+          background-repeat: no-repeat;
+
+          filter:
+            brightness(0.78)
+            saturate(0.68)
+            contrast(0.94);
+
+          z-index: 0;
+        }
+
+
+        /* =======================================================
+           GREEN / TEAL OVERLAY
+        ======================================================= */
+
+        .team-page-hero-overlay {
+          position: absolute;
+
+          inset: 0;
+
+          width: 100%;
+
+          height: 100%;
+
+          background:
+            rgba(
+              31,
+              67,
+              68,
+              0.68
+            );
+
+          mix-blend-mode: multiply;
+
+          pointer-events: none;
+
+          z-index: 1;
+        }
+
+
+        /* =======================================================
+           SECOND SOFT TEAL LAYER
+        ======================================================= */
+
+        .team-page-hero::after {
+          content: "";
+
+          position: absolute;
+
+          inset: 0;
+
+          background:
+            rgba(
+              42,
+              78,
+              79,
+              0.30
+            );
+
+          pointer-events: none;
+
+          z-index: 2;
+        }
+
+
+        /* =======================================================
+           HERO CONTENT
+           
+           TEXT HAS BEEN MOVED SLIGHTLY DOWN.
+           
+           Previous:
+           padding-top: 68px;
+           
+           New:
+           padding-top: 105px;
+        ======================================================= */
+
+        .team-page-hero-content {
+          position: relative;
+
+          z-index: 5;
+
+          width: calc(100% - 370px);
+
+          max-width: 1400px;
+
+          margin-left: 185px;
+
+          margin-right: auto;
+
+          padding-top: 105px;
+
+          text-align: left;
+        }
+
+
+        /* =======================================================
+           EYEBROW
+        ======================================================= */
+
+        .team-page-hero-eyebrow {
+          margin: 0 0 24px;
+
+          color: #ff795c;
+
+          font-size: 16px;
+
+          line-height: 1;
+
+          font-weight: 700;
+
+          letter-spacing: 5px;
+
+          text-transform: uppercase;
+        }
+
+
+        /* =======================================================
+           MAIN HERO TITLE
+        ======================================================= */
+
+        .team-page-hero-title {
+          margin: 0;
+
+          max-width: 1250px;
+
+          color: #ffffff;
+
+          font-size: clamp(
+            52px,
+            4.1vw,
+            78px
+          );
+
+          line-height: 1.03;
+
+          font-weight: 800;
+
+          letter-spacing: -3.5px;
+
+          text-align: left;
+        }
+
+
+        /* =======================================================
+           HERO DESCRIPTION
+        ======================================================= */
+
+        .team-page-hero-description {
+          max-width: 1100px;
+
+          margin: 30px 0 0;
+
+          color: rgba(
+            255,
+            255,
+            255,
+            0.80
+          );
+
+          font-size: 24px;
+
+          line-height: 1.55;
+
+          font-weight: 400;
+
+          text-align: left;
+        }
+
 
         /* =======================================================
            CTA SECTION
@@ -150,7 +380,7 @@ export default function TeamPage() {
 
 
         /* =======================================================
-           EYEBROW
+           CTA EYEBROW
         ======================================================= */
 
         .team-cta-eyebrow {
@@ -171,7 +401,7 @@ export default function TeamPage() {
 
 
         /* =======================================================
-           MAIN HEADING
+           CTA MAIN HEADING
         ======================================================= */
 
         .team-cta-title {
@@ -194,7 +424,7 @@ export default function TeamPage() {
 
 
         /* =======================================================
-           DESCRIPTION
+           CTA DESCRIPTION
         ======================================================= */
 
         .team-cta-description {
@@ -218,7 +448,7 @@ export default function TeamPage() {
 
 
         /* =======================================================
-           BUTTON CONTAINER
+           CTA BUTTON CONTAINER
         ======================================================= */
 
         .team-cta-buttons {
@@ -376,8 +606,38 @@ export default function TeamPage() {
 
         @media (min-width: 1600px) {
 
+          .team-page-hero-content {
+            margin-left: 185px;
+
+            width: calc(100% - 370px);
+
+            max-width: 1400px;
+
+            padding-top: 105px;
+          }
+
+
           .team-footer-spacer {
             height: 105px;
+          }
+
+        }
+
+
+        /* =======================================================
+           DESKTOP / LAPTOP
+        ======================================================= */
+
+        @media (max-width: 1599px) {
+
+          .team-page-hero-content {
+            margin-left: 120px;
+
+            width: calc(100% - 240px);
+
+            max-width: 1200px;
+
+            padding-top: 100px;
           }
 
         }
@@ -387,7 +647,41 @@ export default function TeamPage() {
            TABLET
         ======================================================= */
 
-        @media (max-width: 900px) {
+        @media (max-width: 1200px) {
+
+          .team-page-hero {
+            height: 483px;
+
+            min-height: 483px;
+
+            max-height: 483px;
+          }
+
+
+          .team-page-hero-content {
+            width: calc(100% - 160px);
+
+            margin-left: 80px;
+
+            padding-top: 95px;
+
+            max-width: 850px;
+          }
+
+
+          .team-page-hero-title {
+            font-size: 58px;
+
+            letter-spacing: -2.5px;
+          }
+
+
+          .team-page-hero-description {
+            max-width: 760px;
+
+            font-size: 21px;
+          }
+
 
           .team-cta {
             min-height: 590px;
@@ -449,6 +743,70 @@ export default function TeamPage() {
         ======================================================= */
 
         @media (max-width: 768px) {
+
+          .team-page-hero {
+            height: 560px;
+
+            min-height: 560px;
+
+            max-height: 560px;
+          }
+
+
+          .team-page-hero-image {
+            background-position: center center;
+          }
+
+
+          .team-page-hero-content {
+            width: calc(100% - 44px);
+
+            max-width: 500px;
+
+            margin-left: 22px;
+
+            margin-right: 22px;
+
+            padding-top: 90px;
+
+            text-align: left;
+          }
+
+
+          .team-page-hero-eyebrow {
+            margin-bottom: 22px;
+
+            font-size: 12px;
+
+            letter-spacing: 4px;
+          }
+
+
+          .team-page-hero-title {
+            max-width: 500px;
+
+            font-size: 46px;
+
+            line-height: 1.05;
+
+            letter-spacing: -2px;
+
+            text-align: left;
+          }
+
+
+          .team-page-hero-description {
+            max-width: 500px;
+
+            margin-top: 25px;
+
+            font-size: 18px;
+
+            line-height: 1.55;
+
+            text-align: left;
+          }
+
 
           .team-cta {
             min-height: auto;
@@ -531,6 +889,44 @@ export default function TeamPage() {
         ======================================================= */
 
         @media (max-width: 480px) {
+
+          .team-page-hero {
+            height: 560px;
+
+            min-height: 560px;
+
+            max-height: 560px;
+          }
+
+
+          .team-page-hero-content {
+            width: calc(100% - 40px);
+
+            margin-left: 20px;
+
+            margin-right: 20px;
+
+            padding-top: 82px;
+          }
+
+
+          .team-page-hero-title {
+            font-size: 40px;
+
+            line-height: 1.06;
+
+            letter-spacing: -1.5px;
+          }
+
+
+          .team-page-hero-description {
+            margin-top: 23px;
+
+            font-size: 16px;
+
+            line-height: 1.55;
+          }
+
 
           .team-cta {
             padding:
