@@ -10,18 +10,30 @@ export default function AboutPage() {
         <div className="about-hero-overlay" />
 
         <div className="about-hero-content">
-          <span className="about-eyebrow">ABOUT US</span>
+          <span className="about-eyebrow hero-reveal hero-delay-1">
+            ABOUT US
+          </span>
 
-          <h1>
-            Transforming Education in
-            <span>Nepal</span>
+          <h1 className="hero-title">
+            <span className="hero-line hero-delay-2">
+              Empowering Students
+            </span>
+
+            <span className="hero-line hero-highlight hero-delay-3">
+              Through Holistic Learning
+            </span>
           </h1>
 
-          <p>
-            Vidhata is dedicated to providing structured non-academic
-            learning opportunities that foster holistic development among
-            underserved students across Nepal.
+          <p className="hero-description hero-delay-4">
+            We provide structured non-academic and skill-based learning to
+            foster holistic development among underserved students through a
+            streamlined volunteering gateway across Nepal.
           </p>
+        </div>
+
+        <div className="hero-scroll-indicator">
+          <span>SCROLL TO EXPLORE</span>
+          <div className="scroll-line" />
         </div>
       </section>
 
@@ -29,9 +41,7 @@ export default function AboutPage() {
           OUR STORY
       ========================================================= */}
       <section className="about-story">
-        {/* =======================================================
-            01 — OUR MISSION
-        ======================================================= */}
+        {/* 01 — OUR MISSION */}
         <div className="story-block story-block-left">
           <div className="story-number">01</div>
 
@@ -44,7 +54,9 @@ export default function AboutPage() {
           </div>
 
           <div className="story-content">
-            <h2>Our Mission</h2>
+            <span className="story-label">OUR MISSION</span>
+
+            <h2>Bridging the Education Gap</h2>
 
             <p>
               To bridge the gap in educational opportunities by providing
@@ -56,14 +68,14 @@ export default function AboutPage() {
           </div>
         </div>
 
-        {/* =======================================================
-            02 — OUR APPROACH
-        ======================================================= */}
+        {/* 02 — OUR APPROACH */}
         <div className="story-block story-block-right">
           <div className="story-number">02</div>
 
           <div className="story-content">
-            <h2>Our Approach</h2>
+            <span className="story-label">OUR APPROACH</span>
+
+            <h2>Learning Beyond Textbooks</h2>
 
             <p>
               Through our streamlined volunteering gateway, we connect
@@ -83,9 +95,7 @@ export default function AboutPage() {
           </div>
         </div>
 
-        {/* =======================================================
-            03 — OUR COMMUNITIES
-        ======================================================= */}
+        {/* 03 — OUR COMMUNITIES */}
         <div className="story-block story-block-left">
           <div className="story-number">03</div>
 
@@ -98,7 +108,9 @@ export default function AboutPage() {
           </div>
 
           <div className="story-content">
-            <h2>Our Communities</h2>
+            <span className="story-label">OUR COMMUNITIES</span>
+
+            <h2>Reaching Those Who Need It Most</h2>
 
             <p>
               We reach students who need it most. From schools to care homes
@@ -111,7 +123,7 @@ export default function AboutPage() {
       </section>
 
       {/* =========================================================
-          FOUR PILLARS OF HOLISTIC GROWTH
+          FOUR PILLARS
       ========================================================= */}
       <section className="pillars-section">
         <div className="section-heading">
@@ -120,13 +132,12 @@ export default function AboutPage() {
           <h2>Four Pillars of Holistic Growth</h2>
 
           <p>
-            Every Vidhata program is built on the values that shape
-            confident, creative, and compassionate young people.
+            Every Vidhata program is built on the values that shape confident,
+            creative, and compassionate young people.
           </p>
         </div>
 
         <div className="pillars-grid">
-          {/* Pillar 1 */}
           <div className="pillar-card">
             <div className="pillar-image-wrapper">
               <img
@@ -145,7 +156,6 @@ export default function AboutPage() {
             </div>
           </div>
 
-          {/* Pillar 2 */}
           <div className="pillar-card">
             <div className="pillar-image-wrapper">
               <img
@@ -164,7 +174,6 @@ export default function AboutPage() {
             </div>
           </div>
 
-          {/* Pillar 3 */}
           <div className="pillar-card">
             <div className="pillar-image-wrapper">
               <img
@@ -177,13 +186,12 @@ export default function AboutPage() {
               <h3>Streamlined Volunteering</h3>
 
               <p>
-                Connecting passionate volunteers with meaningful
-                opportunities to make a difference.
+                Connecting passionate volunteers with meaningful opportunities
+                to make a difference.
               </p>
             </div>
           </div>
 
-          {/* Pillar 4 */}
           <div className="pillar-card">
             <div className="pillar-image-wrapper">
               <img
@@ -220,51 +228,39 @@ export default function AboutPage() {
         </div>
 
         <div className="impact-grid">
-          {/* Students */}
           <div className="impact-item">
             <div className="impact-icon">⌂</div>
-
             <strong>5600+</strong>
-
             <span>STUDENTS REACHED</span>
           </div>
 
-          {/* Organizations */}
           <div className="impact-item">
             <div className="impact-icon">♧</div>
-
             <strong>18</strong>
-
             <span>PARTNER ORGANIZATIONS</span>
           </div>
 
-          {/* Volunteers */}
           <div className="impact-item">
             <div className="impact-icon">♧</div>
-
             <strong>128</strong>
-
             <span>VOLUNTEERS ENGAGED</span>
           </div>
 
-          {/* Hours */}
           <div className="impact-item">
             <div className="impact-icon">◷</div>
-
             <strong>450+</strong>
-
             <span>LEARNING HOURS</span>
           </div>
         </div>
       </section>
 
       {/* =========================================================
-          WHITE VERTICAL GAP
+          WHITE GAP
       ========================================================= */}
       <div className="cta-gap" />
 
       {/* =========================================================
-          JOIN THE MISSION / CTA
+          CTA
       ========================================================= */}
       <section className="about-cta">
         <div className="cta-content">
@@ -273,8 +269,8 @@ export default function AboutPage() {
           <h2>Help Us Reach Every Student</h2>
 
           <p>
-            Whether you volunteer, partner, or simply spread the word —
-            you can help bridge the education gap in Nepal.
+            Whether you volunteer, partner, or simply spread the word — you
+            can help bridge the education gap in Nepal.
           </p>
 
           <div className="cta-buttons">
@@ -288,16 +284,31 @@ export default function AboutPage() {
             </a>
           </div>
         </div>
+
+        <div className="cta-footer">
+          <div className="footer-brand">
+            <div className="footer-logo-circle">V</div>
+            <span>Vidhata</span>
+          </div>
+
+          <div className="footer-column">
+            <span>EDUCATION</span>
+          </div>
+
+          <div className="footer-column">
+            <span>EMPOWERMENT</span>
+          </div>
+
+          <div className="footer-column">
+            <span>IMPACT</span>
+          </div>
+        </div>
       </section>
 
       {/* =========================================================
           PAGE CSS
       ========================================================= */}
       <style>{`
-        /* =====================================================
-           VARIABLES
-        ===================================================== */
-
         .about-page {
           --green: #1F3839;
           --green-dark: #1F3839;
@@ -316,18 +327,10 @@ export default function AboutPage() {
           --radius: 22px;
 
           width: 100%;
-
           background: var(--white);
-
           color: var(--text);
-
           overflow: hidden;
         }
-
-
-        /* =====================================================
-           GLOBAL
-        ===================================================== */
 
         .about-page *,
         .about-page *::before,
@@ -344,15 +347,13 @@ export default function AboutPage() {
           text-decoration: none;
         }
 
-
         /* =====================================================
            HERO
         ===================================================== */
 
         .about-hero {
           position: relative;
-
-          min-height: 590px;
+          min-height: 680px;
 
           display: flex;
           align-items: center;
@@ -361,23 +362,23 @@ export default function AboutPage() {
             url("/images/holistic_development.jpg");
 
           background-size: cover;
-
           background-position: center;
-
           isolation: isolate;
+
+          overflow: hidden;
         }
 
         .about-hero-overlay {
           position: absolute;
-
           inset: 0;
 
           background:
             linear-gradient(
               90deg,
-              rgba(31, 56, 57, 0.94) 0%,
-              rgba(31, 56, 57, 0.84) 45%,
-              rgba(31, 56, 57, 0.55) 100%
+              rgba(31, 56, 57, 0.96) 0%,
+              rgba(31, 56, 57, 0.88) 42%,
+              rgba(31, 56, 57, 0.62) 72%,
+              rgba(31, 56, 57, 0.40) 100%
             );
 
           z-index: -1;
@@ -385,74 +386,170 @@ export default function AboutPage() {
 
         .about-hero-content {
           width: min(100%, 1440px);
-
           margin: 0 auto;
-
-          padding: 100px 8%;
-
+          padding: 110px 8%;
           color: var(--white);
+        }
+
+        /* =====================================================
+           HERO REVEAL ANIMATION
+        ===================================================== */
+
+        .hero-reveal,
+        .hero-line,
+        .hero-description {
+          opacity: 0;
+          transform: translateY(42px);
+          animation:
+            heroReveal 1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        }
+
+        .hero-delay-1 {
+          animation-delay: 0.12s;
+        }
+
+        .hero-delay-2 {
+          animation-delay: 0.28s;
+        }
+
+        .hero-delay-3 {
+          animation-delay: 0.43s;
+        }
+
+        .hero-delay-4 {
+          animation-delay: 0.64s;
+        }
+
+        @keyframes heroReveal {
+          0% {
+            opacity: 0;
+            transform: translateY(42px);
+          }
+
+          100% {
+            opacity: 1;
+            transform: translateY(0);
+          }
         }
 
         .about-eyebrow {
           display: block;
-
           margin-bottom: 24px;
 
           color: var(--orange);
 
           font-size: 14px;
-
           font-weight: 700;
-
           letter-spacing: 5px;
-
           text-transform: uppercase;
         }
 
-        .about-hero h1 {
-          max-width: 900px;
-
+        .hero-title {
+          max-width: 1050px;
           margin: 0;
 
-          font-size: clamp(52px, 5.2vw, 82px);
-
+          font-size: clamp(50px, 6vw, 88px);
           line-height: 0.98;
-
           font-weight: 800;
-
-          letter-spacing: -3px;
+          letter-spacing: -4px;
         }
 
-        .about-hero h1 span {
+        .hero-line {
           display: block;
+          width: fit-content;
+          overflow: hidden;
+        }
 
+        .hero-highlight {
           color: var(--orange);
         }
 
-        .about-hero p {
+        .hero-description {
           max-width: 800px;
+          margin: 34px 0 0;
 
-          margin: 32px 0 0;
-
-          color: rgba(255, 255, 255, 0.78);
+          color: rgba(255, 255, 255, 0.82);
 
           font-size: 21px;
-
           line-height: 1.7;
         }
 
+        /* =====================================================
+           HERO SCROLL INDICATOR
+        ===================================================== */
+
+        .hero-scroll-indicator {
+          position: absolute;
+          right: 7%;
+          bottom: 45px;
+
+          display: flex;
+          align-items: center;
+          gap: 15px;
+
+          color: rgba(255, 255, 255, 0.7);
+
+          font-size: 10px;
+          font-weight: 700;
+          letter-spacing: 3px;
+
+          opacity: 0;
+          animation:
+            heroFade 1s ease 1s forwards;
+        }
+
+        @keyframes heroFade {
+          from {
+            opacity: 0;
+          }
+
+          to {
+            opacity: 1;
+          }
+        }
+
+        .scroll-line {
+          width: 70px;
+          height: 1px;
+          background: rgba(255, 255, 255, 0.5);
+          position: relative;
+          overflow: hidden;
+        }
+
+        .scroll-line::after {
+          content: "";
+          position: absolute;
+          left: 0;
+          top: 0;
+          width: 25px;
+          height: 100%;
+          background: var(--orange);
+
+          animation: scrollLine 2s ease-in-out infinite;
+        }
+
+        @keyframes scrollLine {
+          0% {
+            transform: translateX(-30px);
+          }
+
+          50% {
+            transform: translateX(75px);
+          }
+
+          100% {
+            transform: translateX(-30px);
+          }
+        }
 
         /* =====================================================
-           OUR STORY
+           STORY
         ===================================================== */
 
         .about-story {
           width: min(100%, 1440px);
-
           margin: 0 auto;
-
           padding: 120px 8% 80px;
-
           background: var(--cream);
         }
 
@@ -460,17 +557,14 @@ export default function AboutPage() {
           position: relative;
 
           display: grid;
-
           grid-template-columns:
             minmax(0, 1fr)
             minmax(0, 1fr);
 
           align-items: center;
-
           gap: 90px;
 
           min-height: 600px;
-
           margin-bottom: 120px;
         }
 
@@ -506,37 +600,37 @@ export default function AboutPage() {
 
         .story-image-wrapper {
           position: relative;
-
           width: 100%;
         }
 
         .story-image {
           width: 100%;
-
           height: 520px;
 
           object-fit: cover;
-
           border-radius: var(--radius);
+
+          transition:
+            transform 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+            box-shadow 0.6s ease;
+        }
+
+        .story-image-wrapper:hover .story-image {
+          transform: scale(1.025);
+          box-shadow: 0 25px 60px rgba(31, 56, 57, 0.16);
         }
 
         .story-number {
           position: absolute;
-
           top: -55px;
-
           left: -30px;
-
           z-index: 3;
 
           color: var(--orange);
 
           font-size: 112px;
-
           line-height: 1;
-
           font-weight: 800;
-
           letter-spacing: -7px;
 
           pointer-events: none;
@@ -544,7 +638,6 @@ export default function AboutPage() {
 
         .story-block-right .story-number {
           left: auto;
-
           right: calc(50% - 35px);
         }
 
@@ -552,46 +645,49 @@ export default function AboutPage() {
           padding: 20px 0;
         }
 
+        .story-label {
+          display: block;
+          margin-bottom: 18px;
+
+          color: var(--orange);
+
+          font-size: 12px;
+          font-weight: 800;
+          letter-spacing: 4px;
+          text-transform: uppercase;
+        }
+
         .story-content h2 {
           margin: 0 0 28px;
 
           font-size: clamp(42px, 4vw, 64px);
-
           line-height: 1.05;
-
           font-weight: 800;
-
           letter-spacing: -2.5px;
         }
 
         .story-content p {
           max-width: 650px;
-
           margin: 0;
 
           color: var(--text-light);
 
           font-size: 20px;
-
           line-height: 1.7;
         }
 
-
         /* =====================================================
-           FOUR PILLARS
+           PILLARS
         ===================================================== */
 
         .pillars-section {
           padding: 130px 6%;
-
           background: var(--white);
         }
 
         .section-heading {
           max-width: 1000px;
-
           margin: 0 auto 70px;
-
           text-align: center;
         }
 
@@ -603,23 +699,18 @@ export default function AboutPage() {
           margin: 0;
 
           font-size: clamp(44px, 4.3vw, 66px);
-
           line-height: 1.05;
-
           font-weight: 800;
-
           letter-spacing: -3px;
         }
 
         .section-heading p {
           max-width: 850px;
-
           margin: 26px auto 0;
 
           color: var(--text-light);
 
           font-size: 20px;
-
           line-height: 1.65;
         }
 
@@ -627,9 +718,7 @@ export default function AboutPage() {
           width: min(100%, 1400px);
 
           display: grid;
-
           grid-template-columns: repeat(4, 1fr);
-
           gap: 28px;
 
           margin: 0 auto;
@@ -639,45 +728,40 @@ export default function AboutPage() {
           overflow: hidden;
 
           background: var(--cream);
-
           border: 1px solid var(--border);
-
           border-radius: var(--radius);
 
           box-shadow:
             0 8px 30px rgba(28, 36, 51, 0.05);
 
           transition:
-            transform 0.3s ease,
-            box-shadow 0.3s ease;
+            transform 0.35s ease,
+            box-shadow 0.35s ease;
         }
 
         .pillar-card:hover {
-          transform: translateY(-7px);
+          transform: translateY(-8px);
 
           box-shadow:
-            0 18px 45px rgba(28, 36, 51, 0.1);
+            0 20px 50px rgba(28, 36, 51, 0.12);
         }
 
         .pillar-image-wrapper {
           height: 250px;
-
           overflow: hidden;
         }
 
         .pillar-image-wrapper img {
           width: 100%;
-
           height: 100%;
-
           object-fit: cover;
 
           transition:
-            transform 0.5s ease;
+            transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
         }
 
         .pillar-card:hover .pillar-image-wrapper img {
-          transform: scale(1.04);
+          transform: scale(1.06);
         }
 
         .pillar-content {
@@ -688,9 +772,7 @@ export default function AboutPage() {
           margin: 0 0 18px;
 
           font-size: 22px;
-
           line-height: 1.25;
-
           font-weight: 800;
         }
 
@@ -700,10 +782,8 @@ export default function AboutPage() {
           color: var(--text-light);
 
           font-size: 17px;
-
           line-height: 1.7;
         }
-
 
         /* =====================================================
            IMPACT
@@ -711,7 +791,6 @@ export default function AboutPage() {
 
         .impact-section {
           padding: 120px 6% 130px;
-
           background: var(--cream);
         }
 
@@ -723,17 +802,13 @@ export default function AboutPage() {
           width: min(100%, 1400px);
 
           display: grid;
-
           grid-template-columns: repeat(4, 1fr);
 
           margin: 0 auto;
 
           background: var(--white);
-
           border-radius: 28px;
-
           border: 1px solid var(--border);
-
           overflow: hidden;
         }
 
@@ -741,13 +816,10 @@ export default function AboutPage() {
           position: relative;
 
           display: flex;
-
           flex-direction: column;
-
           align-items: center;
 
           padding: 60px 30px;
-
           text-align: center;
         }
 
@@ -757,21 +829,16 @@ export default function AboutPage() {
 
         .impact-icon {
           width: 62px;
-
           height: 62px;
 
           display: flex;
-
           align-items: center;
-
           justify-content: center;
 
           margin-bottom: 25px;
 
           border-radius: 50%;
-
           background: #1F3839;
-
           color: var(--white);
 
           font-size: 27px;
@@ -783,41 +850,31 @@ export default function AboutPage() {
           color: var(--green);
 
           font-size: clamp(44px, 4vw, 62px);
-
           line-height: 1;
-
           font-weight: 800;
-
           letter-spacing: -2px;
         }
 
         .impact-item span {
           display: block;
-
           margin-top: 17px;
 
           color: #777D87;
 
           font-size: 14px;
-
           font-weight: 700;
-
           letter-spacing: 3px;
         }
 
-
         /* =====================================================
-           WHITE GAP BETWEEN IMPACT & CTA
+           GAP
         ===================================================== */
 
         .cta-gap {
           width: 100%;
-
           height: 80px;
-
           background: #FFFFFF;
         }
-
 
         /* =====================================================
            CTA
@@ -827,26 +884,18 @@ export default function AboutPage() {
           position: relative;
 
           min-height: 700px;
-
           padding: 120px 7% 0;
 
           background: #1F3839;
-
           color: var(--white);
 
           overflow: hidden;
-
-          /*
-            WHITE GAP BETWEEN CTA AND FOOTER
-          */
           margin-bottom: 80px;
         }
 
         .cta-content {
           max-width: 900px;
-
           margin: 0 auto;
-
           text-align: center;
         }
 
@@ -858,35 +907,27 @@ export default function AboutPage() {
           margin: 0;
 
           font-size: clamp(48px, 5vw, 72px);
-
           line-height: 1.05;
-
           font-weight: 800;
-
           letter-spacing: -3px;
         }
 
         .cta-content p {
           max-width: 820px;
-
           margin: 28px auto 0;
 
           color: rgba(255, 255, 255, 0.78);
 
           font-size: 20px;
-
           line-height: 1.65;
         }
 
         .cta-buttons {
           display: flex;
-
           justify-content: center;
-
           align-items: center;
 
           gap: 20px;
-
           margin-top: 42px;
         }
 
@@ -895,9 +936,7 @@ export default function AboutPage() {
           min-width: 220px;
 
           display: inline-flex;
-
           align-items: center;
-
           justify-content: center;
 
           gap: 15px;
@@ -907,7 +946,6 @@ export default function AboutPage() {
           border-radius: 60px;
 
           font-size: 18px;
-
           font-weight: 700;
 
           transition:
@@ -917,13 +955,11 @@ export default function AboutPage() {
 
         .cta-primary {
           background: var(--orange);
-
           color: var(--white);
         }
 
         .cta-secondary {
           background: var(--white);
-
           color: #1F3839;
         }
 
@@ -937,10 +973,8 @@ export default function AboutPage() {
 
         .cta-primary span {
           font-size: 24px;
-
           line-height: 1;
         }
-
 
         /* =====================================================
            CTA FOOTER
@@ -950,7 +984,6 @@ export default function AboutPage() {
           width: min(100%, 1500px);
 
           display: grid;
-
           grid-template-columns:
             1.5fr
             1fr
@@ -960,7 +993,6 @@ export default function AboutPage() {
           align-items: center;
 
           margin: 180px auto 0;
-
           padding: 38px 0 50px;
 
           border-top:
@@ -969,31 +1001,24 @@ export default function AboutPage() {
 
         .footer-brand {
           display: flex;
-
           align-items: center;
-
           gap: 14px;
 
           font-size: 26px;
-
           font-weight: 800;
         }
 
         .footer-logo-circle {
           width: 48px;
-
           height: 48px;
 
           display: flex;
-
           align-items: center;
-
           justify-content: center;
 
           border-radius: 50%;
 
           background: var(--white);
-
           color: #1F3839;
 
           font-weight: 800;
@@ -1007,12 +1032,9 @@ export default function AboutPage() {
           color: var(--orange);
 
           font-size: 13px;
-
           font-weight: 700;
-
           letter-spacing: 4px;
         }
-
 
         /* =====================================================
            TABLET
@@ -1021,8 +1043,11 @@ export default function AboutPage() {
         @media (max-width: 1100px) {
           .about-hero-content {
             padding-left: 7%;
-
             padding-right: 7%;
+          }
+
+          .hero-title {
+            font-size: clamp(50px, 7vw, 76px);
           }
 
           .story-block {
@@ -1039,17 +1064,13 @@ export default function AboutPage() {
 
           .impact-item:nth-child(3) {
             border-left: none;
-
-            border-top:
-              1px solid var(--border);
+            border-top: 1px solid var(--border);
           }
 
           .impact-item:nth-child(4) {
-            border-top:
-              1px solid var(--border);
+            border-top: 1px solid var(--border);
           }
         }
-
 
         /* =====================================================
            MOBILE
@@ -1057,35 +1078,34 @@ export default function AboutPage() {
 
         @media (max-width: 768px) {
           .about-hero {
-            min-height: 620px;
-
+            min-height: 650px;
             background-position: center;
           }
 
           .about-hero-content {
-            padding: 80px 25px;
+            padding: 90px 25px;
           }
 
           .about-eyebrow {
             font-size: 11px;
-
             letter-spacing: 3px;
           }
 
-          .about-hero h1 {
-            font-size: clamp(45px, 13vw, 65px);
-
-            letter-spacing: -2px;
+          .hero-title {
+            font-size: clamp(44px, 12vw, 64px);
+            letter-spacing: -2.5px;
+            line-height: 1;
           }
 
-          .about-hero p {
-            margin-top: 25px;
-
+          .hero-description {
+            margin-top: 26px;
             font-size: 17px;
-
-            line-height: 1.6;
+            line-height: 1.65;
           }
 
+          .hero-scroll-indicator {
+            display: none;
+          }
 
           /* STORY */
 
@@ -1097,13 +1117,10 @@ export default function AboutPage() {
           .story-block-left,
           .story-block-right {
             display: flex;
-
             flex-direction: column;
-
             gap: 45px;
 
             min-height: auto;
-
             margin-bottom: 120px;
           }
 
@@ -1122,30 +1139,23 @@ export default function AboutPage() {
           .story-number,
           .story-block-right .story-number {
             top: -40px;
-
             left: -5px;
-
             right: auto;
 
             font-size: 85px;
-
             letter-spacing: -5px;
           }
 
           .story-content h2 {
             font-size: 43px;
-
             letter-spacing: -1.5px;
-
             margin-bottom: 20px;
           }
 
           .story-content p {
             font-size: 17px;
-
             line-height: 1.7;
           }
-
 
           /* PILLARS */
 
@@ -1159,7 +1169,6 @@ export default function AboutPage() {
 
           .section-heading h2 {
             font-size: 43px;
-
             letter-spacing: -1.5px;
           }
 
@@ -1169,14 +1178,12 @@ export default function AboutPage() {
 
           .pillars-grid {
             grid-template-columns: 1fr;
-
             gap: 22px;
           }
 
           .pillar-image-wrapper {
             height: 250px;
           }
-
 
           /* IMPACT */
 
@@ -1192,9 +1199,7 @@ export default function AboutPage() {
           .impact-item:nth-child(3),
           .impact-item:nth-child(4) {
             border-left: none;
-
-            border-top:
-              1px solid var(--border);
+            border-top: 1px solid var(--border);
           }
 
           .impact-item:first-child {
@@ -1205,32 +1210,22 @@ export default function AboutPage() {
             padding: 50px 25px;
           }
 
-
-          /* WHITE GAP */
+          /* GAP */
 
           .cta-gap {
             height: 60px;
           }
 
-
           /* CTA */
 
           .about-cta {
             min-height: auto;
-
             padding: 90px 25px 0;
-
-            background: #1F3839;
-
-            /*
-              WHITE GAP BETWEEN CTA AND FOOTER
-            */
             margin-bottom: 60px;
           }
 
           .cta-content h2 {
             font-size: 46px;
-
             letter-spacing: -2px;
           }
 
@@ -1240,7 +1235,6 @@ export default function AboutPage() {
 
           .cta-buttons {
             flex-direction: column;
-
             width: 100%;
           }
 
@@ -1251,15 +1245,12 @@ export default function AboutPage() {
 
           .cta-footer {
             grid-template-columns: 1fr 1fr;
-
             gap: 35px;
-
             margin-top: 100px;
           }
 
           .footer-brand {
             grid-column: 1 / -1;
-
             justify-content: center;
           }
 
@@ -1268,22 +1259,25 @@ export default function AboutPage() {
           }
         }
 
-
         /* =====================================================
            SMALL MOBILE
         ===================================================== */
 
         @media (max-width: 480px) {
           .about-hero {
-            min-height: 580px;
+            min-height: 600px;
           }
 
           .about-hero-content {
-            padding: 70px 22px;
+            padding: 75px 22px;
           }
 
-          .about-hero h1 {
-            font-size: 46px;
+          .hero-title {
+            font-size: 45px;
+          }
+
+          .hero-description {
+            font-size: 16px;
           }
 
           .story-image {
@@ -1316,25 +1310,35 @@ export default function AboutPage() {
             grid-column: auto;
           }
 
-          /*
-            WHITE GAP BETWEEN CTA AND FOOTER
-          */
           .about-cta {
             margin-bottom: 45px;
           }
         }
-
 
         /* =====================================================
            REDUCED MOTION
         ===================================================== */
 
         @media (prefers-reduced-motion: reduce) {
+          .hero-reveal,
+          .hero-line,
+          .hero-description,
+          .hero-scroll-indicator {
+            animation: none;
+            opacity: 1;
+            transform: none;
+          }
+
           .pillar-card,
           .pillar-image-wrapper img,
+          .story-image,
           .cta-primary,
           .cta-secondary {
             transition: none;
+          }
+
+          .scroll-line::after {
+            animation: none;
           }
         }
       `}</style>

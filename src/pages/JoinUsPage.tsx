@@ -1,4 +1,3 @@
-
 import {
   ArrowUpRight,
   Building2,
@@ -7,10 +6,22 @@ import {
   HandHeart,
   Megaphone,
 } from "lucide-react";
+import { useEffect, useState } from "react";
 
 export default function JoinUsPage() {
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    // Trigger the hero text reveal after the page mounts
+    const timer = requestAnimationFrame(() => {
+      setIsVisible(true);
+    });
+
+    return () => cancelAnimationFrame(timer);
+  }, []);
+
   return (
-    <main className="bg-[#FCFAF7] text-[#1F2533]">
+    <main className="join-us-page bg-[#FCFAF7] text-[#1F2533]">
       {/* =========================
           HERO
       ========================== */}
@@ -25,17 +36,24 @@ export default function JoinUsPage() {
         <div className="absolute inset-0 bg-[#123B3C]/85" />
 
         <div className="relative z-10 mx-auto flex min-h-[614px] max-w-7xl items-center px-6 sm:px-8 lg:px-12">
-          <div className="max-w-[1000px] pb-2">
-            <p className="mb-7 text-[14px] font-semibold uppercase tracking-[0.28em] text-[#FF7657]">
+          <div
+            className={`join-hero-content max-w-[1000px] pb-2 ${
+              isVisible ? "join-hero-visible" : ""
+            }`}
+          >
+            {/* Eyebrow */}
+            <p className="join-hero-eyebrow mb-7 text-[14px] font-semibold uppercase tracking-[0.28em] text-[#FF7657]">
               Join Us
             </p>
 
-            <h1 className="max-w-[1000px] text-[58px] font-bold leading-[1.03] tracking-[-0.045em] text-white sm:text-[68px] lg:text-[78px]">
+            {/* Main heading */}
+            <h1 className="join-hero-title max-w-[1000px] text-[58px] font-bold leading-[1.03] tracking-[-0.045em] text-white sm:text-[68px] lg:text-[78px]">
               Your Journey to Making an{" "}
               <span className="text-[#FF7657]">Impact</span>
             </h1>
 
-            <p className="mt-8 max-w-[950px] text-[21px] font-normal leading-[1.8] text-white/75 sm:text-[23px]">
+            {/* Description */}
+            <p className="join-hero-description mt-8 max-w-[950px] text-[21px] font-normal leading-[1.8] text-white/75 sm:text-[23px]">
               Join our community of dedicated volunteers in just three simple
               steps. We make it easy for you to start transforming lives.
             </p>
@@ -265,8 +283,6 @@ export default function JoinUsPage() {
 
               <a
                 href="#share"
-                target="_blank"
-                rel="noopener noreferrer"
                 className="mt-auto flex items-center gap-3 pt-8 text-[17px] font-semibold text-[#FF6346] transition-colors hover:text-[#E95135]"
               >
                 Share Our Mission
@@ -276,7 +292,140 @@ export default function JoinUsPage() {
           </div>
         </div>
       </section>
+
+      {/* =========================================================
+          HERO ANIMATION
+      ========================================================= */}
+
+      <style>{`
+        /* =========================================================
+           HERO CONTENT INITIAL STATE
+        ========================================================= */
+
+        .join-hero-content {
+          opacity: 0;
+          transform: translateY(35px);
+        }
+
+
+        /* =========================================================
+           HERO CONTENT REVEAL
+        ========================================================= */
+
+        .join-hero-visible {
+          animation:
+            joinHeroReveal
+            1s
+            cubic-bezier(0.22, 1, 0.36, 1)
+            forwards;
+        }
+
+
+        @keyframes joinHeroReveal {
+          0% {
+            opacity: 0;
+            transform: translateY(35px);
+          }
+
+          100% {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+
+        /* =========================================================
+           EYEBROW INITIAL STATE
+        ========================================================= */
+
+        .join-hero-eyebrow {
+          opacity: 0;
+          transform: translateY(25px);
+        }
+
+
+        .join-hero-visible .join-hero-eyebrow {
+          animation:
+            joinTextReveal
+            0.75s
+            cubic-bezier(0.22, 1, 0.36, 1)
+            0.05s
+            forwards;
+        }
+
+
+        /* =========================================================
+           HERO TITLE INITIAL STATE
+        ========================================================= */
+
+        .join-hero-title {
+          opacity: 0;
+          transform: translateY(35px);
+        }
+
+
+        .join-hero-visible .join-hero-title {
+          animation:
+            joinTextReveal
+            0.9s
+            cubic-bezier(0.22, 1, 0.36, 1)
+            0.15s
+            forwards;
+        }
+
+
+        /* =========================================================
+           HERO DESCRIPTION INITIAL STATE
+        ========================================================= */
+
+        .join-hero-description {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+
+
+        .join-hero-visible .join-hero-description {
+          animation:
+            joinTextReveal
+            0.9s
+            cubic-bezier(0.22, 1, 0.36, 1)
+            0.30s
+            forwards;
+        }
+
+
+        /* =========================================================
+           TEXT REVEAL
+        ========================================================= */
+
+        @keyframes joinTextReveal {
+          0% {
+            opacity: 0;
+            transform: translateY(30px);
+          }
+
+          100% {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+
+        /* =========================================================
+           REDUCED MOTION
+        ========================================================= */
+
+        @media (prefers-reduced-motion: reduce) {
+          .join-hero-content,
+          .join-hero-eyebrow,
+          .join-hero-title,
+          .join-hero-description {
+            opacity: 1;
+            transform: none;
+            animation: none !important;
+          }
+        }
+      `}</style>
     </main>
   );
 }
-

@@ -1,30 +1,59 @@
+import React, { useEffect, useRef } from "react";
 import { Team } from "../components/Team";
 
 export default function TeamPage() {
+  const ctaRef = useRef(null);
+
+  /* =========================================================
+     SCROLL REVEAL
+     ========================================================= */
+
+  useEffect(() => {
+    const ctaElement = ctaRef.current;
+
+    if (!ctaElement) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("team-cta-visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        threshold: 0.18,
+      }
+    );
+
+    observer.observe(ctaElement);
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
+
   return (
     <>
       {/* =========================================================
           TEAM PAGE HERO
-
-          Desktop target:
-          Full width × 483px
-
-          Background image:
-          /images/volunteer_training.jpg
-
-          Text is intentionally positioned on the LEFT,
-          matching the About Us hero style.
       ========================================================= */}
 
       <section className="team-page-hero">
-        {/* Background image */}
-        <div className="team-page-hero-image" />
 
-        {/* Green/teal overlay */}
+        {/* Background image */}
+        <div className="team-page-hero-background" />
+
+        {/* Main teal color wash */}
         <div className="team-page-hero-overlay" />
+
+        {/* Subtle dark overlay */}
+        <div className="team-page-hero-dark-overlay" />
 
         {/* Hero content */}
         <div className="team-page-hero-content">
+
           {/* Eyebrow */}
           <p className="team-page-hero-eyebrow">
             OUR TEAM
@@ -32,7 +61,8 @@ export default function TeamPage() {
 
           {/* Main heading */}
           <h1 className="team-page-hero-title">
-            Meet the People Behind Vidhata
+            Meet the People Behind{" "}
+            <span>Vidhata</span>
           </h1>
 
           {/* Description */}
@@ -40,8 +70,10 @@ export default function TeamPage() {
             Our dedicated leadership team brings together expertise in
             education, operations, technology, and curriculum development.
           </p>
+
         </div>
       </section>
+
 
       {/* =========================================================
           TEAM SECTION
@@ -49,11 +81,33 @@ export default function TeamPage() {
 
       <Team hideHeader />
 
+
       {/* =========================================================
           JOIN THE TEAM CTA
       ========================================================= */}
 
-      <section className="team-cta">
+      <section
+        ref={ctaRef}
+        className="team-cta"
+      >
+
+        {/* Decorative glow */}
+        <div
+          className="team-cta-glow team-cta-glow-left"
+          aria-hidden="true"
+        />
+
+        <div
+          className="team-cta-glow team-cta-glow-right"
+          aria-hidden="true"
+        />
+
+        {/* Subtle decorative ring */}
+        <div
+          className="team-cta-ring"
+          aria-hidden="true"
+        />
+
         <div className="team-cta-inner">
 
           {/* Eyebrow */}
@@ -98,11 +152,13 @@ export default function TeamPage() {
             </a>
 
           </div>
+
         </div>
       </section>
 
+
       {/* =========================================================
-          WHITE SPACE BETWEEN CTA AND FOOTER
+          WHITE SPACE BEFORE FOOTER
       ========================================================= */}
 
       <div
@@ -110,32 +166,32 @@ export default function TeamPage() {
         aria-hidden="true"
       />
 
+
       {/* =========================================================
-          PAGE-SPECIFIC STYLES
+          PAGE CSS
       ========================================================= */}
 
       <style>{`
 
-        /* =======================================================
-           TEAM HERO
-           
-           Desktop target:
-           483px high
-           100% viewport width
-        ======================================================= */
+        /* =========================================================
+           PAGE
+        ========================================================= */
 
         .team-page-hero {
+          --team-green: #1f3839;
+          --team-orange: #ff795c;
+
           position: relative;
 
           width: 100%;
 
-          height: 483px;
-
-          min-height: 483px;
-
-          max-height: 483px;
+          height: 570px;
 
           overflow: hidden;
+
+          display: flex;
+
+          align-items: center;
 
           background: #1f3839;
 
@@ -143,18 +199,28 @@ export default function TeamPage() {
         }
 
 
-        /* =======================================================
-           HERO BACKGROUND IMAGE
-        ======================================================= */
+        .team-page-hero *,
+        .team-page-hero *::before,
+        .team-page-hero *::after,
+        .team-cta *,
+        .team-cta *::before,
+        .team-cta *::after {
+          box-sizing: border-box;
+        }
 
-        .team-page-hero-image {
+
+        /* =========================================================
+           HERO BACKGROUND
+        ========================================================= */
+
+        .team-page-hero-background {
           position: absolute;
 
-          inset: 0;
+          inset: -2%;
 
-          width: 100%;
+          width: 104%;
 
-          height: 100%;
+          height: 104%;
 
           background-image:
             url("/images/volunteer_training.jpg");
@@ -165,18 +231,41 @@ export default function TeamPage() {
 
           background-repeat: no-repeat;
 
-          filter:
-            brightness(0.78)
-            saturate(0.68)
-            contrast(0.94);
+          transform: scale(1.04);
 
           z-index: 0;
+
+          animation:
+            teamHeroImageZoom 14s
+            ease-out
+            forwards;
         }
 
 
-        /* =======================================================
-           GREEN / TEAL OVERLAY
-        ======================================================= */
+        /* =========================================================
+           HERO IMAGE ANIMATION
+        ========================================================= */
+
+        @keyframes teamHeroImageZoom {
+
+          0% {
+            transform:
+              scale(1.10)
+              translate3d(0, 0, 0);
+          }
+
+          100% {
+            transform:
+              scale(1.04)
+              translate3d(-0.4%, -0.2%, 0);
+          }
+
+        }
+
+
+        /* =========================================================
+           MAIN TEAL COLOR WASH
+        ========================================================= */
 
         .team-page-hero-overlay {
           position: absolute;
@@ -184,91 +273,88 @@ export default function TeamPage() {
           inset: 0;
 
           width: 100%;
-
           height: 100%;
 
-          background:
-            rgba(
-              31,
-              67,
-              68,
-              0.68
-            );
-
-          mix-blend-mode: multiply;
+          z-index: 1;
 
           pointer-events: none;
 
-          z-index: 1;
+          background:
+            linear-gradient(
+              90deg,
+              rgba(31, 56, 57, 0.92) 0%,
+              rgba(31, 56, 57, 0.86) 30%,
+              rgba(31, 56, 57, 0.74) 60%,
+              rgba(31, 56, 57, 0.65) 100%
+            );
         }
 
 
-        /* =======================================================
-           SECOND SOFT TEAL LAYER
-        ======================================================= */
+        /* =========================================================
+           SUBTLE DARK OVERLAY
+        ========================================================= */
 
-        .team-page-hero::after {
-          content: "";
-
+        .team-page-hero-dark-overlay {
           position: absolute;
 
           inset: 0;
 
-          background:
-            rgba(
-              42,
-              78,
-              79,
-              0.30
-            );
+          width: 100%;
+          height: 100%;
+
+          z-index: 2;
 
           pointer-events: none;
 
-          z-index: 2;
+          background:
+            linear-gradient(
+              180deg,
+              rgba(8, 24, 25, 0.08) 0%,
+              rgba(8, 24, 25, 0.12) 55%,
+              rgba(8, 24, 25, 0.25) 100%
+            );
         }
 
 
-        /* =======================================================
+        /* =========================================================
            HERO CONTENT
-           
-           TEXT HAS BEEN MOVED SLIGHTLY DOWN.
-           
-           Previous:
-           padding-top: 68px;
-           
-           New:
-           padding-top: 105px;
-        ======================================================= */
+        ========================================================= */
 
         .team-page-hero-content {
           position: relative;
 
-          z-index: 5;
+          z-index: 3;
 
-          width: calc(100% - 370px);
+          width: calc(100% - 80px);
 
-          max-width: 1400px;
+          max-width: 1690px;
 
-          margin-left: 185px;
+          height: 100%;
 
-          margin-right: auto;
+          margin: 0 auto;
 
-          padding-top: 105px;
+          display: flex;
 
-          text-align: left;
+          flex-direction: column;
+
+          justify-content: center;
+
+          align-items: flex-start;
+
+          padding-top: 15px;
         }
 
 
-        /* =======================================================
-           EYEBROW
-        ======================================================= */
+        /* =========================================================
+           HERO EYEBROW ANIMATION
+        ========================================================= */
 
         .team-page-hero-eyebrow {
-          margin: 0 0 24px;
+          margin: 0 0 30px;
 
           color: #ff795c;
 
-          font-size: 16px;
+          font-size: 15px;
 
           line-height: 1;
 
@@ -277,51 +363,108 @@ export default function TeamPage() {
           letter-spacing: 5px;
 
           text-transform: uppercase;
+
+          opacity: 0;
+
+          transform: translateY(24px);
+
+          animation:
+            teamHeroReveal 0.8s
+            cubic-bezier(0.22, 1, 0.36, 1)
+            0.15s
+            forwards;
         }
 
 
-        /* =======================================================
-           MAIN HERO TITLE
-        ======================================================= */
+        /* =========================================================
+           HERO TITLE
+        ========================================================= */
 
         .team-page-hero-title {
-          margin: 0;
-
           max-width: 1250px;
+
+          margin: 0;
 
           color: #ffffff;
 
-          font-size: clamp(
-            52px,
-            4.1vw,
-            78px
-          );
+          font-size:
+            clamp(
+              55px,
+              5vw,
+              82px
+            );
 
-          line-height: 1.03;
+          line-height: 0.99;
 
           font-weight: 800;
 
-          letter-spacing: -3.5px;
+          letter-spacing: -4px;
 
           text-align: left;
+
+          opacity: 0;
+
+          transform: translateY(35px);
+
+          animation:
+            teamHeroReveal 1s
+            cubic-bezier(0.22, 1, 0.36, 1)
+            0.28s
+            forwards;
         }
 
 
-        /* =======================================================
+        .team-page-hero-title span {
+          color: #ff795c;
+
+          display: inline-block;
+
+          animation:
+            teamVidhataGlow 4s
+            ease-in-out
+            1.3s
+            infinite;
+        }
+
+
+        /* =========================================================
+           TITLE GLOW
+        ========================================================= */
+
+        @keyframes teamVidhataGlow {
+
+          0%,
+          100% {
+            text-shadow:
+              0 0 0
+              rgba(255, 121, 92, 0);
+          }
+
+          50% {
+            text-shadow:
+              0 0 24px
+              rgba(255, 121, 92, 0.18);
+          }
+
+        }
+
+
+        /* =========================================================
            HERO DESCRIPTION
-        ======================================================= */
+        ========================================================= */
 
         .team-page-hero-description {
-          max-width: 1100px;
+          max-width: 940px;
 
-          margin: 30px 0 0;
+          margin: 36px 0 0;
 
-          color: rgba(
-            255,
-            255,
-            255,
-            0.80
-          );
+          color:
+            rgba(
+              255,
+              255,
+              255,
+              0.78
+            );
 
           font-size: 24px;
 
@@ -330,23 +473,54 @@ export default function TeamPage() {
           font-weight: 400;
 
           text-align: left;
+
+          opacity: 0;
+
+          transform: translateY(30px);
+
+          animation:
+            teamHeroReveal 0.9s
+            cubic-bezier(0.22, 1, 0.36, 1)
+            0.48s
+            forwards;
         }
 
 
-        /* =======================================================
-           CTA SECTION
-        ======================================================= */
+        /* =========================================================
+           GENERIC HERO REVEAL
+        ========================================================= */
+
+        @keyframes teamHeroReveal {
+
+          0% {
+            opacity: 0;
+
+            transform:
+              translateY(35px);
+          }
+
+          100% {
+            opacity: 1;
+
+            transform:
+              translateY(0);
+          }
+
+        }
+
+
+        /* =========================================================
+           CTA
+        ========================================================= */
 
         .team-cta {
           position: relative;
 
           width: 100%;
 
-          min-height: 659px;
+          min-height: 630px;
 
-          margin: 0;
-
-          padding: 100px 30px;
+          overflow: hidden;
 
           display: flex;
 
@@ -354,24 +528,52 @@ export default function TeamPage() {
 
           justify-content: center;
 
-          overflow: hidden;
+          padding:
+            110px
+            30px;
 
-          background: #1F3839;
+          background:
+            radial-gradient(
+              circle at 0% 100%,
+              rgba(
+                255,
+                255,
+                255,
+                0.055
+              ),
+              transparent 28%
+            ),
+            radial-gradient(
+              circle at 100% 0%,
+              rgba(
+                242,
+                100,
+                65,
+                0.025
+              ),
+              transparent 25%
+            ),
+            #1f3839;
 
           color: #ffffff;
         }
 
 
-        /* =======================================================
+        /* =========================================================
            CTA CONTENT
-        ======================================================= */
+           
+           Initially hidden.
+           Becomes visible when section enters viewport.
+        ========================================================= */
 
         .team-cta-inner {
           position: relative;
 
+          z-index: 2;
+
           width: 100%;
 
-          max-width: 1100px;
+          max-width: 1200px;
 
           margin: 0 auto;
 
@@ -379,12 +581,68 @@ export default function TeamPage() {
         }
 
 
-        /* =======================================================
+        .team-cta-eyebrow,
+        .team-cta-title,
+        .team-cta-description,
+        .team-cta-buttons {
+          opacity: 0;
+
+          transform: translateY(35px);
+
+          transition:
+            opacity 0.9s
+            cubic-bezier(0.22, 1, 0.36, 1),
+            transform 0.9s
+            cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+
+        /* =========================================================
+           CTA REVEAL DELAYS
+        ========================================================= */
+
+        .team-cta-visible .team-cta-eyebrow {
+          opacity: 1;
+
+          transform: translateY(0);
+
+          transition-delay: 0.05s;
+        }
+
+
+        .team-cta-visible .team-cta-title {
+          opacity: 1;
+
+          transform: translateY(0);
+
+          transition-delay: 0.16s;
+        }
+
+
+        .team-cta-visible .team-cta-description {
+          opacity: 1;
+
+          transform: translateY(0);
+
+          transition-delay: 0.28s;
+        }
+
+
+        .team-cta-visible .team-cta-buttons {
+          opacity: 1;
+
+          transform: translateY(0);
+
+          transition-delay: 0.40s;
+        }
+
+
+        /* =========================================================
            CTA EYEBROW
-        ======================================================= */
+        ========================================================= */
 
         .team-cta-eyebrow {
-          margin: 0 0 28px;
+          margin: 0;
 
           color: #ff795c;
 
@@ -400,22 +658,26 @@ export default function TeamPage() {
         }
 
 
-        /* =======================================================
-           CTA MAIN HEADING
-        ======================================================= */
+        /* =========================================================
+           CTA TITLE
+        ========================================================= */
 
         .team-cta-title {
-          margin: 0;
+          margin:
+            27px
+            0
+            27px;
 
           color: #ffffff;
 
-          font-size: clamp(
-            48px,
-            4.4vw,
-            66px
-          );
+          font-size:
+            clamp(
+              48px,
+              4.6vw,
+              68px
+            );
 
-          line-height: 1.05;
+          line-height: 1.03;
 
           font-weight: 800;
 
@@ -423,35 +685,38 @@ export default function TeamPage() {
         }
 
 
-        /* =======================================================
+        /* =========================================================
            CTA DESCRIPTION
-        ======================================================= */
+        ========================================================= */
 
         .team-cta-description {
-          max-width: 900px;
+          max-width: 950px;
 
-          margin: 27px auto 0;
+          margin: 0 auto;
 
-          color: rgba(
-            255,
-            255,
-            255,
-            0.78
-          );
+          color:
+            rgba(
+              255,
+              255,
+              255,
+              0.70
+            );
 
-          font-size: 24px;
+          font-size: 22px;
 
-          line-height: 1.55;
+          line-height: 1.6;
 
           font-weight: 400;
         }
 
 
-        /* =======================================================
-           CTA BUTTON CONTAINER
-        ======================================================= */
+        /* =========================================================
+           CTA BUTTONS
+        ========================================================= */
 
         .team-cta-buttons {
+          margin-top: 52px;
+
           display: flex;
 
           align-items: center;
@@ -459,100 +724,93 @@ export default function TeamPage() {
           justify-content: center;
 
           gap: 22px;
-
-          margin-top: 53px;
         }
 
 
-        /* =======================================================
-           SHARED BUTTON STYLES
-        ======================================================= */
-
         .team-cta-primary,
         .team-cta-secondary {
-          min-height: 78px;
+          min-height: 79px;
 
-          border-radius: 28px;
+          padding:
+            0
+            45px;
+
+          border-radius: 50px;
 
           display: inline-flex;
 
           align-items: center;
 
           justify-content: center;
+
+          text-decoration: none;
 
           font-size: 20px;
 
           font-weight: 700;
 
-          text-decoration: none;
-
           transition:
-            transform 0.25s ease,
-            box-shadow 0.25s ease;
+            transform 0.3s
+            cubic-bezier(0.22, 1, 0.36, 1),
+            box-shadow 0.3s ease,
+            background 0.3s ease;
         }
 
 
-        /* =======================================================
+        /* =========================================================
            PRIMARY BUTTON
-        ======================================================= */
+        ========================================================= */
 
         .team-cta-primary {
-          min-width: 324px;
+          min-width: 315px;
 
-          padding: 0 35px;
+          gap: 18px;
 
-          gap: 16px;
-
-          background: #f27d63;
+          background: #f26441;
 
           color: #ffffff;
 
           box-shadow:
-            0 10px 20px
+            0 10px 30px
             rgba(
-              0,
-              0,
-              0,
-              0.08
+              242,
+              100,
+              65,
+              0.12
             );
         }
 
 
-        /* =======================================================
+        /* =========================================================
            PRIMARY BUTTON ARROW
-        ======================================================= */
+        ========================================================= */
 
         .team-cta-arrow {
-          display: inline-flex;
+          display: inline-block;
 
-          align-items: center;
-
-          justify-content: center;
-
-          font-size: 28px;
+          font-size: 29px;
 
           line-height: 1;
 
           transition:
-            transform 0.25s ease;
+            transform 0.3s
+            cubic-bezier(0.22, 1, 0.36, 1);
         }
 
 
-        /* =======================================================
+        /* =========================================================
            SECONDARY BUTTON
-        ======================================================= */
+        ========================================================= */
 
         .team-cta-secondary {
-          min-width: 253px;
-
-          padding: 0 35px;
+          min-width: 240px;
 
           background: #ffffff;
 
-          color: #1F3839;
+          color: #1f3839;
 
           box-shadow:
-            0 10px 20px
+            0 10px 30px
             rgba(
               0,
               0,
@@ -562,34 +820,197 @@ export default function TeamPage() {
         }
 
 
-        /* =======================================================
+        /* =========================================================
            BUTTON HOVER
-        ======================================================= */
+        ========================================================= */
 
         .team-cta-primary:hover,
         .team-cta-secondary:hover {
-          transform: translateY(-3px);
+          transform:
+            translateY(-5px);
 
           box-shadow:
-            0 14px 28px
+            0 18px 38px
             rgba(
               0,
               0,
               0,
-              0.14
+              0.18
             );
+        }
+
+
+        .team-cta-primary:hover {
+          background: #f87556;
         }
 
 
         .team-cta-primary:hover
         .team-cta-arrow {
-          transform: translateX(5px);
+          transform:
+            translateX(6px);
         }
 
 
-        /* =======================================================
-           WHITE SPACE BEFORE FOOTER
-        ======================================================= */
+        /* =========================================================
+           CTA GLOW
+        ========================================================= */
+
+        .team-cta-glow {
+          position: absolute;
+
+          width: 500px;
+
+          height: 500px;
+
+          border-radius: 50%;
+
+          pointer-events: none;
+
+          filter: blur(100px);
+
+          z-index: 1;
+
+          opacity: 0.8;
+        }
+
+
+        .team-cta-glow-left {
+          left: -260px;
+
+          bottom: -250px;
+
+          background:
+            rgba(
+              242,
+              100,
+              65,
+              0.045
+            );
+
+          animation:
+            teamGlowLeft 9s
+            ease-in-out
+            infinite;
+        }
+
+
+        .team-cta-glow-right {
+          right: -220px;
+
+          top: -250px;
+
+          background:
+            rgba(
+              255,
+              255,
+              255,
+              0.035
+            );
+
+          animation:
+            teamGlowRight 11s
+            ease-in-out
+            infinite;
+        }
+
+
+        /* =========================================================
+           GLOW ANIMATIONS
+        ========================================================= */
+
+        @keyframes teamGlowLeft {
+
+          0%,
+          100% {
+            transform:
+              translate3d(0, 0, 0)
+              scale(1);
+          }
+
+          50% {
+            transform:
+              translate3d(50px, -30px, 0)
+              scale(1.08);
+          }
+
+        }
+
+
+        @keyframes teamGlowRight {
+
+          0%,
+          100% {
+            transform:
+              translate3d(0, 0, 0)
+              scale(1);
+          }
+
+          50% {
+            transform:
+              translate3d(-45px, 35px, 0)
+              scale(1.1);
+          }
+
+        }
+
+
+        /* =========================================================
+           DECORATIVE RING
+        ========================================================= */
+
+        .team-cta-ring {
+          position: absolute;
+
+          width: 650px;
+
+          height: 650px;
+
+          right: -420px;
+
+          bottom: -470px;
+
+          border:
+            1px solid
+            rgba(
+              255,
+              255,
+              255,
+              0.055
+            );
+
+          border-radius: 50%;
+
+          z-index: 1;
+
+          pointer-events: none;
+
+          animation:
+            teamRingFloat 12s
+            ease-in-out
+            infinite;
+        }
+
+
+        @keyframes teamRingFloat {
+
+          0%,
+          100% {
+            transform:
+              translate3d(0, 0, 0);
+          }
+
+          50% {
+            transform:
+              translate3d(-25px, -25px, 0);
+          }
+
+        }
+
+
+        /* =========================================================
+           FOOTER SPACER
+        ========================================================= */
 
         .team-footer-spacer {
           width: 100%;
@@ -600,20 +1021,16 @@ export default function TeamPage() {
         }
 
 
-        /* =======================================================
+        /* =========================================================
            LARGE DESKTOP
-        ======================================================= */
+        ========================================================= */
 
         @media (min-width: 1600px) {
 
           .team-page-hero-content {
-            margin-left: 185px;
+            padding-left: 8.7%;
 
-            width: calc(100% - 370px);
-
-            max-width: 1400px;
-
-            padding-top: 105px;
+            padding-right: 8.7%;
           }
 
 
@@ -624,67 +1041,102 @@ export default function TeamPage() {
         }
 
 
-        /* =======================================================
-           DESKTOP / LAPTOP
-        ======================================================= */
-
-        @media (max-width: 1599px) {
-
-          .team-page-hero-content {
-            margin-left: 120px;
-
-            width: calc(100% - 240px);
-
-            max-width: 1200px;
-
-            padding-top: 100px;
-          }
-
-        }
-
-
-        /* =======================================================
-           TABLET
-        ======================================================= */
+        /* =========================================================
+           SMALL DESKTOP
+        ========================================================= */
 
         @media (max-width: 1200px) {
 
           .team-page-hero {
-            height: 483px;
-
-            min-height: 483px;
-
-            max-height: 483px;
+            height: 560px;
           }
 
 
           .team-page-hero-content {
-            width: calc(100% - 160px);
+            width:
+              calc(
+                100% - 70px
+              );
 
-            margin-left: 80px;
-
-            padding-top: 95px;
-
-            max-width: 850px;
+            padding-top: 10px;
           }
 
 
           .team-page-hero-title {
-            font-size: 58px;
+            font-size: 65px;
 
-            letter-spacing: -2.5px;
+            letter-spacing: -3px;
           }
 
 
           .team-page-hero-description {
             max-width: 760px;
 
-            font-size: 21px;
+            font-size: 20px;
           }
 
 
           .team-cta {
-            min-height: 590px;
+            min-height: 570px;
+          }
+
+
+          .team-cta-title {
+            font-size: 55px;
+          }
+
+
+          .team-cta-description {
+            font-size: 19px;
+          }
+
+
+          .team-footer-spacer {
+            height: 90px;
+          }
+
+        }
+
+
+        /* =========================================================
+           TABLET
+        ========================================================= */
+
+        @media (max-width: 900px) {
+
+          .team-page-hero {
+            height: 520px;
+          }
+
+
+          .team-page-hero-content {
+            width:
+              calc(
+                100% - 60px
+              );
+
+            padding-top: 10px;
+          }
+
+
+          .team-page-hero-title {
+            font-size: 58px;
+
+            line-height: 1.02;
+
+            letter-spacing: -2.8px;
+          }
+
+
+          .team-page-hero-description {
+            font-size: 19px;
+
+            line-height: 1.55;
+          }
+
+
+          .team-cta {
+            min-height: 540px;
 
             padding:
               90px
@@ -693,21 +1145,14 @@ export default function TeamPage() {
 
 
           .team-cta-title {
-            font-size: 50px;
+            font-size: 48px;
 
             letter-spacing: -2px;
           }
 
 
           .team-cta-description {
-            max-width: 750px;
-
-            font-size: 20px;
-          }
-
-
-          .team-cta-buttons {
-            margin-top: 45px;
+            font-size: 19px;
           }
 
 
@@ -716,114 +1161,119 @@ export default function TeamPage() {
             min-height: 70px;
 
             font-size: 18px;
-
-            border-radius: 25px;
-          }
-
-
-          .team-cta-primary {
-            min-width: 290px;
-          }
-
-
-          .team-cta-secondary {
-            min-width: 220px;
           }
 
 
           .team-footer-spacer {
-            height: 85px;
+            height: 80px;
           }
 
         }
 
 
-        /* =======================================================
+        /* =========================================================
            MOBILE
-        ======================================================= */
+        ========================================================= */
 
         @media (max-width: 768px) {
 
           .team-page-hero {
-            height: 560px;
+            min-height: 600px;
 
-            min-height: 560px;
+            height: auto;
 
-            max-height: 560px;
+            align-items: flex-end;
           }
 
 
-          .team-page-hero-image {
-            background-position: center center;
+          /* =====================================================
+             MOBILE OVERLAY
+          ===================================================== */
+
+          .team-page-hero-overlay {
+            background:
+              linear-gradient(
+                180deg,
+                rgba(
+                  31,
+                  56,
+                  57,
+                  0.48
+                ) 0%,
+
+                rgba(
+                  31,
+                  56,
+                  57,
+                  0.64
+                ) 35%,
+
+                rgba(
+                  31,
+                  56,
+                  57,
+                  0.84
+                ) 65%,
+
+                rgba(
+                  31,
+                  56,
+                  57,
+                  0.97
+                ) 100%
+              );
+          }
+
+
+          .team-page-hero-dark-overlay {
+            background:
+              linear-gradient(
+                180deg,
+                rgba(
+                  8,
+                  24,
+                  25,
+                  0.05
+                ) 0%,
+
+                rgba(
+                  8,
+                  24,
+                  25,
+                  0.18
+                ) 100%
+              );
+          }
+
+
+          .team-page-hero-background {
+            background-position:
+              center center;
           }
 
 
           .team-page-hero-content {
-            width: calc(100% - 44px);
+            width:
+              calc(
+                100% - 40px
+              );
 
-            max-width: 500px;
+            height: auto;
 
-            margin-left: 22px;
+            margin:
+              0 20px;
 
-            margin-right: 22px;
+            padding:
+              170px
+              0
+              55px;
 
-            padding-top: 90px;
-
-            text-align: left;
+            justify-content:
+              flex-end;
           }
 
 
           .team-page-hero-eyebrow {
-            margin-bottom: 22px;
-
-            font-size: 12px;
-
-            letter-spacing: 4px;
-          }
-
-
-          .team-page-hero-title {
-            max-width: 500px;
-
-            font-size: 46px;
-
-            line-height: 1.05;
-
-            letter-spacing: -2px;
-
-            text-align: left;
-          }
-
-
-          .team-page-hero-description {
-            max-width: 500px;
-
-            margin-top: 25px;
-
-            font-size: 18px;
-
-            line-height: 1.55;
-
-            text-align: left;
-          }
-
-
-          .team-cta {
-            min-height: auto;
-
-            padding:
-              85px
-              22px
-              90px;
-          }
-
-
-          .team-cta-inner {
-            max-width: 500px;
-          }
-
-
-          .team-cta-eyebrow {
             margin-bottom: 23px;
 
             font-size: 11px;
@@ -832,18 +1282,54 @@ export default function TeamPage() {
           }
 
 
+          .team-page-hero-title {
+            max-width: 100%;
+
+            font-size: 45px;
+
+            line-height: 1;
+
+            letter-spacing: -2.2px;
+          }
+
+
+          .team-page-hero-description {
+            margin-top: 25px;
+
+            font-size: 17px;
+
+            line-height: 1.55;
+          }
+
+
+          /* =====================================================
+             CTA
+          ===================================================== */
+
+          .team-cta {
+            min-height: 580px;
+
+            padding:
+              85px
+              22px;
+          }
+
+
           .team-cta-title {
+            margin:
+              22px
+              0
+              24px;
+
             font-size: 40px;
 
             line-height: 1.06;
 
-            letter-spacing: -1.7px;
+            letter-spacing: -1.5px;
           }
 
 
           .team-cta-description {
-            margin-top: 23px;
-
             font-size: 17px;
 
             line-height: 1.55;
@@ -853,11 +1339,11 @@ export default function TeamPage() {
           .team-cta-buttons {
             width: 100%;
 
-            margin-top: 38px;
-
             flex-direction: column;
 
             gap: 14px;
+
+            margin-top: 40px;
           }
 
 
@@ -869,11 +1355,24 @@ export default function TeamPage() {
 
             min-width: 0;
 
-            min-height: 67px;
+            min-height: 68px;
 
-            border-radius: 23px;
+            padding:
+              0
+              30px;
 
             font-size: 17px;
+          }
+
+
+          .team-cta-ring {
+            width: 450px;
+
+            height: 450px;
+
+            right: -320px;
+
+            bottom: -340px;
           }
 
 
@@ -884,62 +1383,57 @@ export default function TeamPage() {
         }
 
 
-        /* =======================================================
+        /* =========================================================
            SMALL MOBILE
-        ======================================================= */
+        ========================================================= */
 
         @media (max-width: 480px) {
 
           .team-page-hero {
-            height: 560px;
-
             min-height: 560px;
-
-            max-height: 560px;
           }
 
 
           .team-page-hero-content {
-            width: calc(100% - 40px);
+            width:
+              calc(
+                100% - 44px
+              );
 
-            margin-left: 20px;
+            margin-left: 22px;
 
-            margin-right: 20px;
+            margin-right: 22px;
 
-            padding-top: 82px;
+            padding:
+              150px
+              0
+              50px;
           }
 
 
           .team-page-hero-title {
-            font-size: 40px;
+            font-size: 39px;
 
-            line-height: 1.06;
-
-            letter-spacing: -1.5px;
+            letter-spacing: -1.7px;
           }
 
 
           .team-page-hero-description {
-            margin-top: 23px;
-
             font-size: 16px;
-
-            line-height: 1.55;
           }
 
 
           .team-cta {
+            min-height: 550px;
+
             padding:
               75px
-              20px
-              80px;
+              20px;
           }
 
 
           .team-cta-title {
             font-size: 35px;
-
-            letter-spacing: -1.4px;
           }
 
 
@@ -952,14 +1446,9 @@ export default function TeamPage() {
           .team-cta-secondary {
             max-width: 320px;
 
-            min-height: 63px;
+            min-height: 64px;
 
             font-size: 16px;
-          }
-
-
-          .team-cta-arrow {
-            font-size: 24px;
           }
 
 
@@ -970,11 +1459,43 @@ export default function TeamPage() {
         }
 
 
-        /* =======================================================
-           ACCESSIBILITY
-        ======================================================= */
+        /* =========================================================
+           REDUCED MOTION
+        ========================================================= */
 
         @media (prefers-reduced-motion: reduce) {
+
+          .team-page-hero-background,
+          .team-page-hero-title span,
+          .team-cta-glow-left,
+          .team-cta-glow-right,
+          .team-cta-ring {
+            animation: none;
+          }
+
+
+          .team-page-hero-eyebrow,
+          .team-page-hero-title,
+          .team-page-hero-description {
+            opacity: 1;
+
+            transform: none;
+
+            animation: none;
+          }
+
+
+          .team-cta-eyebrow,
+          .team-cta-title,
+          .team-cta-description,
+          .team-cta-buttons {
+            opacity: 1;
+
+            transform: none;
+
+            transition: none;
+          }
+
 
           .team-cta-primary,
           .team-cta-secondary,

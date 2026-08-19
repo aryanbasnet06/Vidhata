@@ -1,7 +1,19 @@
 import { Partners } from "../components/Partners";
 import { PARTNER_FORM } from "../data/constants";
+import { useEffect, useState } from "react";
 
 export default function PartnersPage() {
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    // Trigger the hero text reveal after the page mounts
+    const timer = requestAnimationFrame(() => {
+      setIsVisible(true);
+    });
+
+    return () => cancelAnimationFrame(timer);
+  }, []);
+
   return (
     <main className="partners-page">
 
@@ -21,17 +33,24 @@ export default function PartnersPage() {
         <div className="partners-hero-dark-overlay" />
 
         {/* Hero content */}
-        <div className="partners-hero-inner">
+        <div
+          className={`partners-hero-inner ${
+            isVisible ? "partners-hero-visible" : ""
+          }`}
+        >
 
-          <p className="partners-eyebrow">
+          {/* Eyebrow */}
+          <p className="partners-eyebrow partners-hero-eyebrow">
             PARTNERS
           </p>
 
-          <h1>
+          {/* Main heading */}
+          <h1 className="partners-hero-title">
             Trusted by Leading{" "}
             <span>Organizations</span>
           </h1>
 
+          {/* Description */}
           <p className="partners-hero-description">
             We collaborate with 18 partner organizations across Nepal —
             schools, care homes, and community groups — to maximize our impact.
@@ -121,7 +140,7 @@ export default function PartnersPage() {
           <div className="partners-cta-buttons">
 
             <a
-              href="https://forms.gle/vQBP7QE4ak5LaUG39"
+              href={PARTNER_FORM || "https://forms.gle/vQBP7QE4ak5LaUG39"}
               target="_blank"
               rel="noopener noreferrer"
               className="partners-cta-primary"
@@ -279,8 +298,6 @@ export default function PartnersPage() {
 
         /* =========================================================
            DARK TEAL COLOR WASH
-
-           Uses #1F3839 as the main brand background.
         ========================================================= */
 
         .partners-hero-overlay {
@@ -349,17 +366,71 @@ export default function PartnersPage() {
           justify-content: center;
 
           padding-top: 5px;
+
+          /*
+            Initial state for the reveal animation.
+            Everything begins slightly lower and invisible.
+          */
+          opacity: 0;
+
+          transform: translateY(35px);
         }
 
 
         /* =========================================================
-           HERO EYEBROW
+           HERO REVEAL
+           
+           This is the important effect.
+           It activates when the page loads after clicking
+           the Partners navigation item.
         ========================================================= */
 
-        .partners-hero-inner .partners-eyebrow {
-          margin-bottom: 30px;
+        .partners-hero-visible {
+          animation:
+            partnersHeroReveal
+            1s
+            cubic-bezier(0.22, 1, 0.36, 1)
+            forwards;
+        }
 
-          color: var(--orange-light);
+
+        @keyframes partnersHeroReveal {
+
+          0% {
+            opacity: 0;
+
+            transform:
+              translateY(35px);
+          }
+
+          100% {
+            opacity: 1;
+
+            transform:
+              translateY(0);
+          }
+
+        }
+
+
+        /* =========================================================
+           HERO EYEBROW ANIMATION
+        ========================================================= */
+
+        .partners-hero-eyebrow {
+          opacity: 0;
+
+          transform: translateY(25px);
+        }
+
+
+        .partners-hero-visible .partners-hero-eyebrow {
+          animation:
+            partnersTextReveal
+            0.75s
+            cubic-bezier(0.22, 1, 0.36, 1)
+            0.05s
+            forwards;
         }
 
 
@@ -370,7 +441,7 @@ export default function PartnersPage() {
         .partners-hero h1 {
           max-width: 1200px;
 
-          margin: 0;
+          margin: 30px 0 0;
 
           color: #ffffff;
 
@@ -386,6 +457,20 @@ export default function PartnersPage() {
           font-weight: 800;
 
           letter-spacing: -4px;
+
+          opacity: 0;
+
+          transform: translateY(35px);
+        }
+
+
+        .partners-hero-visible h1 {
+          animation:
+            partnersTextReveal
+            0.9s
+            cubic-bezier(0.22, 1, 0.36, 1)
+            0.15s
+            forwards;
         }
 
 
@@ -418,6 +503,43 @@ export default function PartnersPage() {
           font-weight: 400;
 
           letter-spacing: 0;
+
+          opacity: 0;
+
+          transform: translateY(30px);
+        }
+
+
+        .partners-hero-visible .partners-hero-description {
+          animation:
+            partnersTextReveal
+            0.9s
+            cubic-bezier(0.22, 1, 0.36, 1)
+            0.30s
+            forwards;
+        }
+
+
+        /* =========================================================
+           TEXT REVEAL KEYFRAME
+        ========================================================= */
+
+        @keyframes partnersTextReveal {
+
+          0% {
+            opacity: 0;
+
+            transform:
+              translateY(30px);
+          }
+
+          100% {
+            opacity: 1;
+
+            transform:
+              translateY(0);
+          }
+
         }
 
 
@@ -537,8 +659,6 @@ export default function PartnersPage() {
 
         /* =========================================================
            CTA SECTION
-
-           ALL GREEN BACKGROUND REPLACED WITH #1F3839
         ========================================================= */
 
         .partners-cta {
@@ -1388,6 +1508,17 @@ export default function PartnersPage() {
         ========================================================= */
 
         @media (prefers-reduced-motion: reduce) {
+
+          .partners-hero-inner,
+          .partners-hero-eyebrow,
+          .partners-hero h1,
+          .partners-hero-description {
+            opacity: 1;
+
+            transform: none;
+
+            animation: none !important;
+          }
 
           .partners-cta-primary,
           .partners-cta-secondary,

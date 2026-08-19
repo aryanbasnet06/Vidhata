@@ -1,4 +1,4 @@
-import { FormEvent, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import {
   Mail,
   MapPin,
@@ -6,15 +6,33 @@ import {
   Send,
   Check,
   Sparkles,
+  ArrowRight,
 } from "lucide-react";
 
 export default function ContactPage() {
   const [submitted, setSubmitted] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
+
+  /* =========================================================
+     HERO REVEAL
+  ========================================================= */
+
+  useEffect(() => {
+    // Trigger the hero text reveal after the page mounts
+    const timer = requestAnimationFrame(() => {
+      setIsVisible(true);
+    });
+
+    return () => cancelAnimationFrame(timer);
+  }, []);
+
+  /* =========================================================
+     FORM SUBMIT
+  ========================================================= */
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    // Show beautiful success state
     setSubmitted(true);
   };
 
@@ -22,46 +40,102 @@ export default function ContactPage() {
     setSubmitted(false);
   };
 
+  /* =========================================================
+     ESCAPE KEY
+  ========================================================= */
+
+  useEffect(() => {
+    if (!submitted) return;
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setSubmitted(false);
+      }
+    };
+
+    document.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [submitted]);
+
+  /* =========================================================
+     PREVENT BACKGROUND SCROLL WHEN MODAL IS OPEN
+  ========================================================= */
+
+  useEffect(() => {
+    if (!submitted) return;
+
+    const originalOverflow = document.body.style.overflow;
+
+    document.body.style.overflow = "hidden";
+
+    return () => {
+      document.body.style.overflow = originalOverflow;
+    };
+  }, [submitted]);
+
   return (
     <>
-      <main className="min-h-screen bg-[#fbfaf8]">
+      <main className="contact-page min-h-screen bg-[#fbfaf8]">
 
         {/* =========================================================
             CONTACT HERO
         ========================================================= */}
 
-        <section
-          className="relative w-full overflow-hidden bg-[#1F3839]"
-          style={{ minHeight: "372px" }}
-        >
-          <div className="mx-auto flex min-h-[372px] max-w-[1500px] items-center px-6 py-16 sm:px-10 lg:px-20 xl:px-28">
-            <div className="w-full max-w-[1100px]">
+        <section className="contact-hero">
 
-              {/* Eyebrow */}
-              <div className="mb-7">
-                <span className="text-[15px] font-bold uppercase tracking-[0.28em] text-[#ff795b]">
-                  Contact
-                </span>
-              </div>
+          {/* Background image */}
+          <div className="contact-hero-background" />
 
+          {/* Main teal wash */}
+          <div className="contact-hero-overlay" />
 
-              {/* Heading */}
-              <h1 className="mb-7 text-[54px] font-extrabold leading-[1.02] tracking-[-0.045em] sm:text-[64px] lg:text-[72px]">
-                <span className="text-white">Get in </span>
+          {/* Dark overlay */}
+          <div className="contact-hero-dark-overlay" />
 
-                <span className="text-[#ff8064]">
-                  Touch
-                </span>
-              </h1>
+          {/* =====================================================
+              HERO CONTENT
+          ===================================================== */}
 
+          <div
+            className={`contact-hero-content ${
+              isVisible ? "contact-hero-visible" : ""
+            }`}
+          >
 
-              {/* Description */}
-              <p className="max-w-[900px] text-[21px] leading-[1.6] text-white/80 sm:text-[23px]">
-                Have questions or want to get involved? We'd love to hear from you.
-              </p>
+            {/* EYEBROW */}
 
+            <div className="contact-hero-eyebrow">
+              CONTACT
             </div>
+
+
+            {/* TITLE */}
+
+            <h1 className="contact-hero-title">
+
+              <span className="contact-title-normal">
+                Get in{" "}
+              </span>
+
+              <span className="contact-title-highlight">
+                Touch
+              </span>
+
+            </h1>
+
+
+            {/* DESCRIPTION */}
+
+            <p className="contact-hero-description">
+              Have questions or want to get involved? We'd love to hear from
+              you.
+            </p>
+
           </div>
+
         </section>
 
 
@@ -70,6 +144,7 @@ export default function ContactPage() {
         ========================================================= */}
 
         <section className="w-full bg-[#fbfaf8] px-6 py-16 sm:px-10 md:py-20 lg:px-20 xl:px-28">
+
           <div className="mx-auto grid max-w-[1500px] grid-cols-1 gap-14 lg:grid-cols-[0.95fr_1.05fr] lg:gap-20">
 
             {/* =====================================================
@@ -78,13 +153,10 @@ export default function ContactPage() {
 
             <div className="pt-1 lg:pt-0">
 
-              {/* Main heading */}
               <h2 className="mb-5 text-[38px] font-extrabold leading-[1.12] tracking-[-0.04em] text-[#172033] sm:text-[43px] lg:text-[45px]">
                 Let's Start a Conversation
               </h2>
 
-
-              {/* Description */}
               <p className="max-w-[650px] text-[20px] leading-[1.7] text-[#707581]">
                 Whether you're a school, a potential volunteer, or an
                 organization looking to partner — our team is ready to help
@@ -92,18 +164,24 @@ export default function ContactPage() {
               </p>
 
 
-              {/* Contact information */}
+              {/* ===================================================
+                  CONTACT INFORMATION
+              =================================================== */}
+
               <div className="mt-12 space-y-7">
 
                 {/* EMAIL */}
+
                 <div className="flex items-center gap-5">
 
                   <div className="flex h-[60px] w-[60px] shrink-0 items-center justify-center rounded-full bg-[#e8edeb]">
+
                     <Mail
                       size={24}
                       strokeWidth={2}
                       className="text-[#1F3839]"
                     />
+
                   </div>
 
                   <div>
@@ -122,14 +200,17 @@ export default function ContactPage() {
 
 
                 {/* LOCATION */}
+
                 <div className="flex items-center gap-5">
 
                   <div className="flex h-[60px] w-[60px] shrink-0 items-center justify-center rounded-full bg-[#e8edeb]">
+
                     <MapPin
                       size={24}
                       strokeWidth={2}
                       className="text-[#1F3839]"
                     />
+
                   </div>
 
                   <div>
@@ -148,14 +229,17 @@ export default function ContactPage() {
 
 
                 {/* INSTAGRAM */}
+
                 <div className="flex items-center gap-5">
 
                   <div className="flex h-[60px] w-[60px] shrink-0 items-center justify-center rounded-full bg-[#e8edeb]">
+
                     <Instagram
                       size={24}
                       strokeWidth={2}
                       className="text-[#1F3839]"
                     />
+
                   </div>
 
                   <div>
@@ -173,20 +257,19 @@ export default function ContactPage() {
                 </div>
 
               </div>
+
             </div>
 
 
             {/* =====================================================
-                RIGHT SIDE - MESSAGE CARD
+                RIGHT SIDE — MESSAGE CARD
             ===================================================== */}
 
             <div className="rounded-[24px] border border-[#e8e8e8] bg-white p-8 shadow-[0_2px_8px_rgba(0,0,0,0.035)] sm:p-10 lg:p-12">
 
-              {/* Card heading */}
               <h3 className="mb-9 text-[30px] font-extrabold leading-[1.2] tracking-[-0.035em] text-[#172033]">
                 Send Us a Message
               </h3>
-
 
               <form
                 onSubmit={handleSubmit}
@@ -194,6 +277,7 @@ export default function ContactPage() {
               >
 
                 {/* NAME */}
+
                 <div>
 
                   <label
@@ -216,6 +300,7 @@ export default function ContactPage() {
 
 
                 {/* EMAIL */}
+
                 <div>
 
                   <label
@@ -238,6 +323,7 @@ export default function ContactPage() {
 
 
                 {/* MESSAGE */}
+
                 <div>
 
                   <label
@@ -260,6 +346,7 @@ export default function ContactPage() {
 
 
                 {/* SEND BUTTON */}
+
                 <button
                   type="submit"
                   className="group flex h-[61px] w-full items-center justify-center gap-3 rounded-full bg-[#f76543] text-[17px] font-semibold text-white shadow-[0_3px_7px_rgba(247,101,67,0.18)] transition-all duration-200 hover:bg-[#ed5b3a] hover:shadow-[0_5px_12px_rgba(247,101,67,0.22)] active:scale-[0.99]"
@@ -282,6 +369,7 @@ export default function ContactPage() {
             </div>
 
           </div>
+
         </section>
 
       </main>
@@ -292,113 +380,144 @@ export default function ContactPage() {
       ========================================================= */}
 
       {submitted && (
+
         <div
-          className="success-overlay fixed inset-0 z-[9999] flex items-center justify-center px-5"
+          className="success-overlay"
           role="dialog"
           aria-modal="true"
           aria-labelledby="success-title"
+          onMouseDown={(event) => {
+            if (event.target === event.currentTarget) {
+              handleDone();
+            }
+          }}
         >
 
-          {/* Background */}
-          <div className="absolute inset-0 bg-[#172033]/60 backdrop-blur-md" />
+          {/* BACKDROP */}
+
+          <div className="success-backdrop" />
 
 
-          {/* Decorative particles */}
-          <div className="success-particle particle-one" />
-          <div className="success-particle particle-two" />
-          <div className="success-particle particle-three" />
-          <div className="success-particle particle-four" />
-          <div className="success-particle particle-five" />
+          {/* PARTICLE FIELD */}
+
+          <div className="success-particles" aria-hidden="true">
+
+            <span className="particle particle-1" />
+            <span className="particle particle-2" />
+            <span className="particle particle-3" />
+            <span className="particle particle-4" />
+            <span className="particle particle-5" />
+            <span className="particle particle-6" />
+            <span className="particle particle-7" />
+            <span className="particle particle-8" />
+
+          </div>
 
 
-          {/* Success Card */}
-          <div className="success-card relative z-10 w-full max-w-[500px] overflow-hidden rounded-[30px] bg-white px-7 py-10 text-center shadow-[0_30px_100px_rgba(0,0,0,0.25)] sm:px-12 sm:py-12">
+          {/* SUCCESS CARD */}
 
-            {/* Decorative top glow */}
-            <div className="success-glow absolute left-1/2 top-0 h-[180px] w-[300px] -translate-x-1/2 rounded-full bg-[#1F3839]/10 blur-[60px]" />
+          <div className="success-card">
 
-
-            {/* Icon */}
-            <div className="relative mx-auto mb-7 flex h-[105px] w-[105px] items-center justify-center">
-
-              {/* Outer rings */}
-              <div className="success-ring absolute inset-0 rounded-full border-[2px] border-[#1F3839]/20" />
-
-              <div className="success-ring-two absolute inset-[7px] rounded-full border-[2px] border-[#1F3839]/10" />
+            <div className="success-card-glow" />
 
 
-              {/* Main circle */}
-              <div className="success-icon relative flex h-[78px] w-[78px] items-center justify-center rounded-full bg-[#1F3839] shadow-[0_12px_30px_rgba(31,56,57,0.30)]">
+            {/* SUCCESS ICON */}
+
+            <div className="success-icon-wrapper">
+
+              <div className="success-ring success-ring-1" />
+
+              <div className="success-ring success-ring-2" />
+
+              <div className="success-ring success-ring-3" />
+
+
+              <div className="success-icon-circle">
 
                 <Check
-                  size={43}
+                  size={44}
                   strokeWidth={3}
-                  className="check-animation text-white"
+                  className="success-check"
                 />
 
               </div>
 
-            </div>
-
-
-            {/* Sparkle */}
-            <div className="sparkle-animation absolute right-[25%] top-[85px]">
 
               <Sparkles
-                size={24}
-                className="text-[#ff8064]"
-                fill="#ff8064"
+                size={25}
+                strokeWidth={2}
+                className="success-sparkle success-sparkle-1"
+                fill="#ff795c"
+              />
+
+              <Sparkles
+                size={16}
+                strokeWidth={2}
+                className="success-sparkle success-sparkle-2"
+                fill="#1f3839"
               />
 
             </div>
 
 
-            {/* Heading */}
-            <h2
-              id="success-title"
-              className="success-title relative mb-4 text-[31px] font-extrabold tracking-[-0.04em] text-[#172033] sm:text-[35px]"
-            >
-              Message Sent!
-            </h2>
+            {/* SUCCESS TEXT */}
+
+            <div className="success-content">
+
+              <div className="success-small-label">
+                SUCCESS
+              </div>
+
+              <h2
+                id="success-title"
+                className="success-title"
+              >
+                Message Sent!
+              </h2>
+
+              <p className="success-description">
+                Thank you for reaching out to Vidhata. Your message has been
+                received successfully. We'll get back to you soon.
+              </p>
 
 
-            {/* Description */}
-            <p className="relative mx-auto mb-8 max-w-[390px] text-[17px] leading-[1.7] text-[#707581]">
-              Thank you for reaching out to Vidhata. Your message has been
-              received successfully. We'll get back to you soon.
-            </p>
+              {/* STATUS */}
+
+              <div className="success-status">
+
+                <span className="success-status-dot" />
+
+                <span>
+                  Message received successfully
+                </span>
+
+              </div>
 
 
-            {/* Success indicator */}
-            <div className="mx-auto mb-8 flex w-fit items-center gap-2 rounded-full bg-[#1F3839]/10 px-4 py-2">
+              {/* DONE */}
 
-              <span className="h-2 w-2 animate-pulse rounded-full bg-[#1F3839]" />
+              <button
+                type="button"
+                onClick={handleDone}
+                className="success-done-button group"
+              >
 
-              <span className="text-[13px] font-semibold text-[#1F3839]">
-                Message received successfully
-              </span>
+                <span>
+                  Done
+                </span>
+
+                <span className="success-button-icon">
+
+                  <ArrowRight
+                    size={18}
+                    strokeWidth={2.5}
+                  />
+
+                </span>
+
+              </button>
 
             </div>
-
-
-            {/* Done button */}
-            <button
-              type="button"
-              onClick={handleDone}
-              className="group mx-auto flex h-[56px] w-full max-w-[280px] items-center justify-center gap-2 rounded-full bg-[#f76543] text-[16px] font-semibold text-white shadow-[0_8px_20px_rgba(247,101,67,0.20)] transition-all duration-300 hover:-translate-y-1 hover:bg-[#ed5b3a] hover:shadow-[0_12px_28px_rgba(247,101,67,0.28)] active:translate-y-0"
-            >
-
-              <span>
-                Done
-              </span>
-
-              <Check
-                size={18}
-                strokeWidth={2.5}
-                className="transition-transform duration-300 group-hover:scale-110"
-              />
-
-            </button>
 
           </div>
 
@@ -412,247 +531,1227 @@ export default function ContactPage() {
 
       <style>{`
 
-        /* =====================================================
-           SUCCESS OVERLAY
-        ===================================================== */
+        /* =========================================================
+           CONTACT HERO
+        ========================================================= */
 
-        .success-overlay {
-          animation:
-            overlayFadeIn 0.35s ease-out forwards;
+        .contact-hero {
+          --contact-green: #1f3839;
+          --contact-orange: #ff795c;
+
+          position: relative;
+          width: 100%;
+          height: 570px;
+
+          overflow: hidden;
+
+          display: flex;
+          align-items: center;
+
+          background: #1f3839;
+
+          isolation: isolate;
         }
 
 
-        /* =====================================================
-           SUCCESS CARD
-        ===================================================== */
+        /* =========================================================
+           HERO BACKGROUND
+        ========================================================= */
 
-        .success-card {
+        .contact-hero-background {
+          position: absolute;
+          inset: 0;
+
+          width: 100%;
+          height: 100%;
+
+          background-image: url("/images/contact.jpg");
+
+          background-size: cover;
+          background-position: center center;
+          background-repeat: no-repeat;
+
+          transform: scale(1.01);
+
+          z-index: 0;
+        }
+
+
+        /* =========================================================
+           TEAL OVERLAY
+        ========================================================= */
+
+        .contact-hero-overlay {
+          position: absolute;
+          inset: 0;
+
+          z-index: 1;
+
+          pointer-events: none;
+
+          background:
+            linear-gradient(
+              90deg,
+              rgba(31, 56, 57, 0.92) 0%,
+              rgba(31, 56, 57, 0.86) 28%,
+              rgba(31, 56, 57, 0.76) 58%,
+              rgba(31, 56, 57, 0.68) 100%
+            );
+        }
+
+
+        /* =========================================================
+           DARK OVERLAY
+        ========================================================= */
+
+        .contact-hero-dark-overlay {
+          position: absolute;
+          inset: 0;
+
+          z-index: 2;
+
+          pointer-events: none;
+
+          background:
+            linear-gradient(
+              180deg,
+              rgba(8, 24, 25, 0.08) 0%,
+              rgba(8, 24, 25, 0.12) 55%,
+              rgba(8, 24, 25, 0.22) 100%
+            );
+        }
+
+
+        /* =========================================================
+           HERO CONTENT
+           
+           THIS IS THE SAME STRUCTURE/EFFECT AS JOIN US
+        ========================================================= */
+
+        .contact-hero-content {
+          position: relative;
+
+          z-index: 3;
+
+          width: calc(100% - 80px);
+          max-width: 1690px;
+
+          height: 100%;
+
+          margin: 0 auto;
+
+          display: flex;
+          flex-direction: column;
+
+          justify-content: center;
+          align-items: flex-start;
+
+          padding-top: 15px;
+
+          opacity: 0;
+
+          transform: translateY(35px);
+        }
+
+
+        /* =========================================================
+           HERO CONTENT REVEAL
+
+           SAME AS JOIN US
+        ========================================================= */
+
+        .contact-hero-visible {
           animation:
-            successCardIn
-            0.55s
+            contactHeroReveal
+            1s
             cubic-bezier(0.22, 1, 0.36, 1)
             forwards;
         }
 
 
-        /* =====================================================
-           ICON
-        ===================================================== */
+        /* =========================================================
+           EYEBROW INITIAL STATE
 
-        .success-icon {
+           SAME AS JOIN US
+        ========================================================= */
+
+        .contact-hero-eyebrow {
+          margin-bottom: 30px;
+
+          color: #ff795c;
+
+          font-size: 15px;
+          line-height: 1;
+
+          font-weight: 700;
+
+          letter-spacing: 5px;
+
+          text-transform: uppercase;
+
+          opacity: 0;
+
+          transform: translateY(25px);
+        }
+
+
+        /* =========================================================
+           EYEBROW REVEAL
+
+           SAME TIMING AS JOIN US
+        ========================================================= */
+
+        .contact-hero-visible .contact-hero-eyebrow {
           animation:
-            successIconPop
-            0.65s
-            cubic-bezier(0.34, 1.56, 0.64, 1)
-            0.12s
+            contactTextReveal
+            0.75s
+            cubic-bezier(0.22, 1, 0.36, 1)
+            0.05s
+            forwards;
+        }
+
+
+        /* =========================================================
+           HERO TITLE INITIAL STATE
+        ========================================================= */
+
+        .contact-hero-title {
+          max-width: 1250px;
+
+          margin: 0;
+
+          color: #ffffff;
+
+          font-size: clamp(55px, 5vw, 82px);
+
+          line-height: 0.99;
+
+          font-weight: 800;
+
+          letter-spacing: -4px;
+
+          text-align: left;
+
+          opacity: 0;
+
+          transform: translateY(35px);
+        }
+
+
+        /* =========================================================
+           TITLE REVEAL
+
+           SAME TIMING AS JOIN US
+        ========================================================= */
+
+        .contact-hero-visible .contact-hero-title {
+          animation:
+            contactTextReveal
+            0.9s
+            cubic-bezier(0.22, 1, 0.36, 1)
+            0.15s
+            forwards;
+        }
+
+
+        /* =========================================================
+           NORMAL TITLE TEXT
+        ========================================================= */
+
+        .contact-title-normal {
+          display: inline;
+        }
+
+
+        /* =========================================================
+           ORANGE HIGHLIGHT
+
+           No separate animation.
+
+           This makes the entire title reveal together,
+           exactly like the Join Us title.
+        ========================================================= */
+
+        .contact-title-highlight {
+          display: inline;
+
+          color: #ff795c;
+        }
+
+
+        /* =========================================================
+           HERO DESCRIPTION INITIAL STATE
+        ========================================================= */
+
+        .contact-hero-description {
+          max-width: 940px;
+
+          margin: 36px 0 0;
+
+          color: rgba(255, 255, 255, 0.78);
+
+          font-size: 24px;
+
+          line-height: 1.55;
+
+          font-weight: 400;
+
+          text-align: left;
+
+          opacity: 0;
+
+          transform: translateY(30px);
+        }
+
+
+        /* =========================================================
+           DESCRIPTION REVEAL
+
+           SAME TIMING AS JOIN US
+        ========================================================= */
+
+        .contact-hero-visible .contact-hero-description {
+          animation:
+            contactTextReveal
+            0.9s
+            cubic-bezier(0.22, 1, 0.36, 1)
+            0.30s
+            forwards;
+        }
+
+
+        /* =========================================================
+           JOIN US STYLE HERO KEYFRAMES
+        ========================================================= */
+
+        @keyframes contactHeroReveal {
+
+          0% {
+            opacity: 0;
+            transform: translateY(35px);
+          }
+
+          100% {
+            opacity: 1;
+            transform: translateY(0);
+          }
+
+        }
+
+
+        @keyframes contactTextReveal {
+
+          0% {
+            opacity: 0;
+            transform: translateY(30px);
+          }
+
+          100% {
+            opacity: 1;
+            transform: translateY(0);
+          }
+
+        }
+
+
+        /* =========================================================
+           LARGE DESKTOP
+        ========================================================= */
+
+        @media (min-width: 1600px) {
+
+          .contact-hero-content {
+            padding-left: 8.7%;
+            padding-right: 8.7%;
+          }
+
+        }
+
+
+        /* =========================================================
+           TABLET / SMALL DESKTOP
+        ========================================================= */
+
+        @media (max-width: 1200px) {
+
+          .contact-hero {
+            height: 560px;
+          }
+
+          .contact-hero-content {
+            width: calc(100% - 70px);
+
+            padding-top: 10px;
+          }
+
+          .contact-hero-title {
+            font-size: 65px;
+
+            letter-spacing: -3px;
+          }
+
+          .contact-hero-description {
+            max-width: 760px;
+
+            font-size: 20px;
+          }
+
+        }
+
+
+        /* =========================================================
+           TABLET
+        ========================================================= */
+
+        @media (max-width: 900px) {
+
+          .contact-hero {
+            height: 520px;
+          }
+
+          .contact-hero-content {
+            width: calc(100% - 60px);
+
+            padding-top: 10px;
+          }
+
+          .contact-hero-title {
+            font-size: 58px;
+
+            line-height: 1.02;
+
+            letter-spacing: -2.8px;
+          }
+
+          .contact-hero-description {
+            font-size: 19px;
+
+            line-height: 1.55;
+          }
+
+        }
+
+
+        /* =========================================================
+           MOBILE
+        ========================================================= */
+
+        @media (max-width: 768px) {
+
+          .contact-hero {
+            min-height: 600px;
+
+            height: auto;
+
+            align-items: flex-end;
+          }
+
+
+          .contact-hero-overlay {
+            background:
+              linear-gradient(
+                180deg,
+                rgba(31, 56, 57, 0.48) 0%,
+                rgba(31, 56, 57, 0.64) 35%,
+                rgba(31, 56, 57, 0.84) 65%,
+                rgba(31, 56, 57, 0.97) 100%
+              );
+          }
+
+
+          .contact-hero-dark-overlay {
+            background:
+              linear-gradient(
+                180deg,
+                rgba(8, 24, 25, 0.05) 0%,
+                rgba(8, 24, 25, 0.18) 100%
+              );
+          }
+
+
+          .contact-hero-content {
+            width: calc(100% - 40px);
+
+            height: auto;
+
+            margin: 0 20px;
+
+            padding:
+              170px
+              0
+              55px;
+
+            justify-content: flex-end;
+          }
+
+
+          .contact-hero-eyebrow {
+            margin-bottom: 23px;
+
+            font-size: 11px;
+
+            letter-spacing: 4px;
+          }
+
+
+          .contact-hero-title {
+            max-width: 100%;
+
+            font-size: 45px;
+
+            line-height: 1;
+
+            letter-spacing: -2.2px;
+          }
+
+
+          .contact-hero-description {
+            margin-top: 25px;
+
+            font-size: 17px;
+
+            line-height: 1.55;
+          }
+
+        }
+
+
+        /* =========================================================
+           SMALL MOBILE
+        ========================================================= */
+
+        @media (max-width: 480px) {
+
+          .contact-hero {
+            min-height: 560px;
+          }
+
+          .contact-hero-content {
+            width: calc(100% - 44px);
+
+            margin-left: 22px;
+            margin-right: 22px;
+
+            padding:
+              150px
+              0
+              50px;
+          }
+
+
+          .contact-hero-title {
+            font-size: 39px;
+
+            letter-spacing: -1.7px;
+          }
+
+
+          .contact-hero-description {
+            font-size: 16px;
+          }
+
+        }
+
+
+        /* =========================================================
+           SUCCESS MODAL
+        ========================================================= */
+
+        .success-overlay {
+          position: fixed;
+          inset: 0;
+
+          z-index: 99999;
+
+          display: flex;
+          align-items: center;
+          justify-content: center;
+
+          padding: 24px;
+
+          overflow: hidden;
+
+          isolation: isolate;
+
+          animation:
+            successOverlayIn
+            0.45s
+            ease-out
             both;
         }
 
 
-        .check-animation {
+        .success-backdrop {
+          position: absolute;
+          inset: 0;
+
+          background:
+            radial-gradient(
+              circle at center,
+              rgba(31, 56, 57, 0.15),
+              transparent 50%
+            ),
+            rgba(13, 25, 30, 0.72);
+
+          backdrop-filter: blur(10px);
+          -webkit-backdrop-filter: blur(10px);
+
+          z-index: -1;
+        }
+
+
+        .success-particles {
+          position: absolute;
+          inset: 0;
+
+          pointer-events: none;
+
+          z-index: 1;
+        }
+
+
+        .particle {
+          position: absolute;
+
+          display: block;
+
+          width: 8px;
+          height: 8px;
+
+          border-radius: 999px;
+
+          opacity: 0;
+
+          animation:
+            particleFloat
+            2.2s
+            cubic-bezier(0.22, 1, 0.36, 1)
+            forwards;
+        }
+
+
+        .particle-1 {
+          left: 24%;
+          top: 36%;
+
+          width: 9px;
+          height: 9px;
+
+          background: #f76543;
+
+          --x: -100px;
+          --y: -110px;
+
+          animation-delay: 0.15s;
+        }
+
+
+        .particle-2 {
+          left: 72%;
+          top: 32%;
+
+          width: 7px;
+          height: 7px;
+
+          background: #ff795c;
+
+          --x: 100px;
+          --y: -90px;
+
+          animation-delay: 0.25s;
+        }
+
+
+        .particle-3 {
+          left: 27%;
+          top: 66%;
+
+          width: 6px;
+          height: 6px;
+
+          background: #1f3839;
+
+          --x: -110px;
+          --y: 90px;
+
+          animation-delay: 0.35s;
+        }
+
+
+        .particle-4 {
+          left: 75%;
+          top: 67%;
+
+          width: 9px;
+          height: 9px;
+
+          background: #f76543;
+
+          --x: 110px;
+          --y: 90px;
+
+          animation-delay: 0.2s;
+        }
+
+
+        .particle-5 {
+          left: 58%;
+          top: 21%;
+
+          width: 5px;
+          height: 5px;
+
+          background: #ff795c;
+
+          --x: 45px;
+          --y: -120px;
+
+          animation-delay: 0.45s;
+        }
+
+
+        .particle-6 {
+          left: 40%;
+          top: 74%;
+
+          width: 6px;
+          height: 6px;
+
+          background: #1f3839;
+
+          --x: -40px;
+          --y: 100px;
+
+          animation-delay: 0.3s;
+        }
+
+
+        .particle-7 {
+          left: 19%;
+          top: 52%;
+
+          width: 5px;
+          height: 5px;
+
+          background: #ff795c;
+
+          --x: -120px;
+          --y: 10px;
+
+          animation-delay: 0.5s;
+        }
+
+
+        .particle-8 {
+          left: 82%;
+          top: 52%;
+
+          width: 6px;
+          height: 6px;
+
+          background: #f76543;
+
+          --x: 120px;
+          --y: 10px;
+
+          animation-delay: 0.4s;
+        }
+
+
+        .success-card {
+          position: relative;
+
+          z-index: 10;
+
+          width: 100%;
+
+          max-width: 510px;
+
+          overflow: hidden;
+
+          border-radius: 30px;
+
+          padding:
+            48px
+            40px
+            42px;
+
+          text-align: center;
+
+          background:
+            linear-gradient(
+              145deg,
+              #ffffff 0%,
+              #ffffff 70%,
+              #f7faf9 100%
+            );
+
+          box-shadow:
+            0 35px 100px rgba(0, 0, 0, 0.30),
+            0 10px 35px rgba(31, 56, 57, 0.15);
+
+          transform-origin: center center;
+
+          animation:
+            successCardIn
+            0.72s
+            cubic-bezier(0.16, 1, 0.3, 1)
+            both;
+        }
+
+
+        .success-card-glow {
+          position: absolute;
+
+          top: -80px;
+          left: 50%;
+
+          width: 340px;
+          height: 220px;
+
+          transform: translateX(-50%);
+
+          border-radius: 999px;
+
+          background:
+            radial-gradient(
+              circle,
+              rgba(31, 56, 57, 0.13) 0%,
+              rgba(31, 56, 57, 0.05) 40%,
+              transparent 72%
+            );
+
+          filter: blur(25px);
+
+          pointer-events: none;
+
+          animation:
+            successGlow
+            3s
+            ease-in-out
+            infinite;
+        }
+
+
+        .success-icon-wrapper {
+          position: relative;
+
+          width: 125px;
+          height: 125px;
+
+          margin:
+            0
+            auto
+            28px;
+
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+
+
+        .success-icon-circle {
+          position: relative;
+
+          z-index: 5;
+
+          width: 82px;
+          height: 82px;
+
+          display: flex;
+          align-items: center;
+          justify-content: center;
+
+          border-radius: 50%;
+
+          background:
+            linear-gradient(
+              145deg,
+              #264b4c 0%,
+              #1f3839 100%
+            );
+
+          box-shadow:
+            0 15px 35px rgba(31, 56, 57, 0.28),
+            inset 0 1px 1px rgba(255, 255, 255, 0.18);
+
+          animation:
+            successCirclePop
+            0.75s
+            cubic-bezier(0.34, 1.56, 0.64, 1)
+            0.1s
+            both;
+        }
+
+
+        .success-check {
+          color: white;
+
           stroke-dasharray: 100;
 
           stroke-dashoffset: 100;
 
           animation:
-            drawCheck
-            0.65s
-            ease-out
+            successCheckDraw
+            0.7s
+            cubic-bezier(0.65, 0, 0.35, 1)
             0.55s
             forwards;
         }
 
 
-        /* =====================================================
-           RINGS
-        ===================================================== */
-
         .success-ring {
+          position: absolute;
+
+          left: 50%;
+          top: 50%;
+
+          width: 82px;
+          height: 82px;
+
+          border-radius: 50%;
+
+          transform:
+            translate(-50%, -50%)
+            scale(0.55);
+
+          pointer-events: none;
+        }
+
+
+        .success-ring-1 {
+          border: 2px solid rgba(31, 56, 57, 0.30);
+
           animation:
-            ringExpand
-            1.2s
-            ease-out
+            successRingOne
+            1.5s
+            cubic-bezier(0.2, 0.8, 0.2, 1)
+            0.2s
+            both;
+        }
+
+
+        .success-ring-2 {
+          border: 2px solid rgba(31, 56, 57, 0.18);
+
+          animation:
+            successRingTwo
+            1.7s
+            cubic-bezier(0.2, 0.8, 0.2, 1)
             0.35s
             both;
         }
 
 
-        .success-ring-two {
+        .success-ring-3 {
+          border: 1px solid rgba(247, 101, 67, 0.18);
+
           animation:
-            ringExpandTwo
-            1.2s
-            ease-out
-            0.45s
-            both;
-        }
-
-
-        /* =====================================================
-           TEXT
-        ===================================================== */
-
-        .success-title {
-          animation:
-            successTextIn
+            successRingThree
+            1.9s
+            cubic-bezier(0.2, 0.8, 0.2, 1)
             0.5s
-            ease-out
-            0.35s
             both;
         }
 
 
-        /* =====================================================
-           SPARKLE
-        ===================================================== */
+        .success-sparkle {
+          position: absolute;
 
-        .sparkle-animation {
+          z-index: 8;
+
+          pointer-events: none;
+
+          opacity: 0;
+        }
+
+
+        .success-sparkle-1 {
+          top: 8px;
+          right: 4px;
+
+          color: #ff795c;
+
           animation:
-            sparkleIn
+            sparkleAppear
             0.7s
-            ease-out
-            0.75s
-            both,
+            cubic-bezier(0.34, 1.56, 0.64, 1)
+            0.7s
+            forwards,
             sparkleFloat
             2.5s
+            ease-in-out
+            1.4s
+            infinite;
+        }
+
+
+        .success-sparkle-2 {
+          bottom: 9px;
+          left: 5px;
+
+          color: #1f3839;
+
+          animation:
+            sparkleAppear
+            0.7s
+            cubic-bezier(0.34, 1.56, 0.64, 1)
+            0.9s
+            forwards,
+            sparkleFloatReverse
+            2.8s
             ease-in-out
             1.5s
             infinite;
         }
 
 
-        /* =====================================================
-           GLOW
-        ===================================================== */
+        .success-content {
+          position: relative;
 
-        .success-glow {
+          z-index: 3;
+        }
+
+
+        .success-small-label {
+          margin-bottom: 9px;
+
+          color: #ff795c;
+
+          font-size: 11px;
+
+          line-height: 1;
+
+          font-weight: 800;
+
+          letter-spacing: 4px;
+
+          opacity: 0;
+
           animation:
-            glowPulse
-            2.5s
-            ease-in-out
+            successTextUp
+            0.5s
+            ease-out
+            0.7s
+            forwards;
+        }
+
+
+        .success-title {
+          margin: 0 0 14px;
+
+          color: #172033;
+
+          font-size: 36px;
+
+          line-height: 1.05;
+
+          font-weight: 800;
+
+          letter-spacing: -1.8px;
+
+          opacity: 0;
+
+          animation:
+            successTextUp
+            0.6s
+            cubic-bezier(0.22, 1, 0.36, 1)
+            0.78s
+            forwards;
+        }
+
+
+        .success-description {
+          max-width: 390px;
+
+          margin:
+            0
+            auto
+            25px;
+
+          color: #707581;
+
+          font-size: 17px;
+
+          line-height: 1.65;
+
+          opacity: 0;
+
+          animation:
+            successTextUp
+            0.6s
+            cubic-bezier(0.22, 1, 0.36, 1)
+            0.9s
+            forwards;
+        }
+
+
+        .success-status {
+          width: fit-content;
+
+          margin:
+            0
+            auto
+            28px;
+
+          display: flex;
+          align-items: center;
+          gap: 9px;
+
+          padding:
+            9px
+            15px;
+
+          border-radius: 999px;
+
+          background: rgba(31, 56, 57, 0.08);
+
+          color: #1f3839;
+
+          font-size: 13px;
+
+          font-weight: 700;
+
+          opacity: 0;
+
+          animation:
+            successStatusIn
+            0.6s
+            cubic-bezier(0.22, 1, 0.36, 1)
+            1.05s
+            forwards;
+        }
+
+
+        .success-status-dot {
+          position: relative;
+
+          width: 8px;
+          height: 8px;
+
+          border-radius: 50%;
+
+          background: #1f3839;
+        }
+
+
+        .success-status-dot::after {
+          content: "";
+
+          position: absolute;
+
+          inset: -4px;
+
+          border-radius: 50%;
+
+          background: rgba(31, 56, 57, 0.18);
+
+          animation:
+            statusPulse
+            1.7s
+            ease-out
             infinite;
         }
 
 
-        /* =====================================================
-           PARTICLES
-        ===================================================== */
+        .success-done-button {
+          position: relative;
 
-        .success-particle {
-          position: absolute;
+          width: 100%;
 
-          z-index: 5;
+          max-width: 280px;
 
-          width: 9px;
+          height: 57px;
 
-          height: 9px;
+          margin: 0 auto;
 
-          border-radius: 9999px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+
+          gap: 10px;
+
+          border: none;
+
+          border-radius: 999px;
+
+          background:
+            linear-gradient(
+              135deg,
+              #f76543 0%,
+              #ed5b3a 100%
+            );
+
+          color: white;
+
+          font-size: 16px;
+
+          font-weight: 700;
+
+          cursor: pointer;
+
+          box-shadow:
+            0 10px 25px rgba(247, 101, 67, 0.22);
 
           opacity: 0;
-        }
-
-
-        .particle-one {
-          left: 28%;
-
-          top: 35%;
-
-          background: #f76543;
 
           animation:
-            particleOne
-            1.8s
-            ease-out
-            0.2s
+            successButtonIn
+            0.65s
+            cubic-bezier(0.22, 1, 0.36, 1)
+            1.15s
             forwards;
+
+          transition:
+            transform 0.25s ease,
+            box-shadow 0.25s ease,
+            background 0.25s ease;
         }
 
 
-        .particle-two {
-          left: 68%;
+        .success-done-button:hover {
+          transform: translateY(-3px);
 
-          top: 30%;
-
-          width: 7px;
-
-          height: 7px;
-
-          background: #1F3839;
-
-          animation:
-            particleTwo
-            1.8s
-            ease-out
-            0.35s
-            forwards;
+          box-shadow:
+            0 15px 32px rgba(247, 101, 67, 0.30);
         }
 
 
-        .particle-three {
-          left: 25%;
-
-          top: 65%;
-
-          width: 6px;
-
-          height: 6px;
-
-          background: #ff8064;
-
-          animation:
-            particleThree
-            1.8s
-            ease-out
-            0.45s
-            forwards;
+        .success-done-button:active {
+          transform: translateY(0);
         }
 
 
-        .particle-four {
-          left: 73%;
+        .success-button-icon {
+          width: 27px;
+          height: 27px;
 
-          top: 66%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
 
-          width: 8px;
+          border-radius: 50%;
 
-          height: 8px;
+          background: rgba(255, 255, 255, 0.18);
 
-          background: #1F3839;
-
-          animation:
-            particleFour
-            1.8s
-            ease-out
-            0.3s
-            forwards;
+          transition:
+            transform 0.3s ease,
+            background 0.3s ease;
         }
 
 
-        .particle-five {
-          left: 57%;
+        .success-done-button:hover .success-button-icon {
+          transform: translateX(4px);
 
-          top: 22%;
-
-          width: 5px;
-
-          height: 5px;
-
-          background: #f76543;
-
-          animation:
-            particleFive
-            1.8s
-            ease-out
-            0.5s
-            forwards;
+          background: rgba(255, 255, 255, 0.25);
         }
 
 
-        /* =====================================================
-           KEYFRAMES
-        ===================================================== */
+        /* =========================================================
+           SUCCESS KEYFRAMES
+        ========================================================= */
 
-        @keyframes overlayFadeIn {
+        @keyframes successOverlayIn {
 
           from {
             opacity: 0;
@@ -671,16 +1770,24 @@ export default function ContactPage() {
             opacity: 0;
 
             transform:
-              translateY(30px)
-              scale(0.92);
+              translateY(45px)
+              scale(0.82)
+              rotateX(8deg);
           }
 
-          60% {
+          55% {
             opacity: 1;
 
             transform:
-              translateY(-4px)
-              scale(1.015);
+              translateY(-8px)
+              scale(1.025)
+              rotateX(0deg);
+          }
+
+          75% {
+            transform:
+              translateY(3px)
+              scale(0.995);
           }
 
           100% {
@@ -688,28 +1795,35 @@ export default function ContactPage() {
 
             transform:
               translateY(0)
-              scale(1);
+              scale(1)
+              rotateX(0deg);
           }
 
         }
 
 
-        @keyframes successIconPop {
+        @keyframes successCirclePop {
 
           0% {
             opacity: 0;
 
             transform:
-              scale(0.2)
-              rotate(-20deg);
+              scale(0.15)
+              rotate(-25deg);
           }
 
-          65% {
+          55% {
             opacity: 1;
 
             transform:
-              scale(1.12)
-              rotate(3deg);
+              scale(1.13)
+              rotate(5deg);
+          }
+
+          75% {
+            transform:
+              scale(0.96)
+              rotate(-2deg);
           }
 
           100% {
@@ -723,81 +1837,97 @@ export default function ContactPage() {
         }
 
 
-        @keyframes drawCheck {
+        @keyframes successCheckDraw {
 
-          from {
+          0% {
             stroke-dashoffset: 100;
           }
 
-          to {
+          100% {
             stroke-dashoffset: 0;
           }
 
         }
 
 
-        @keyframes ringExpand {
+        @keyframes successRingOne {
 
           0% {
             opacity: 0;
 
-            transform: scale(0.65);
+            transform:
+              translate(-50%, -50%)
+              scale(0.55);
           }
 
-          50% {
-            opacity: 1;
+          25% {
+            opacity: 0.8;
           }
 
           100% {
             opacity: 0;
 
-            transform: scale(1.35);
+            transform:
+              translate(-50%, -50%)
+              scale(1.55);
           }
 
         }
 
 
-        @keyframes ringExpandTwo {
+        @keyframes successRingTwo {
 
           0% {
             opacity: 0;
 
-            transform: scale(0.7);
+            transform:
+              translate(-50%, -50%)
+              scale(0.55);
           }
 
-          50% {
-            opacity: 0.7;
+          25% {
+            opacity: 0.65;
           }
 
           100% {
             opacity: 0;
 
-            transform: scale(1.55);
+            transform:
+              translate(-50%, -50%)
+              scale(1.85);
           }
 
         }
 
 
-        @keyframes successTextIn {
+        @keyframes successRingThree {
 
-          from {
+          0% {
             opacity: 0;
 
-            transform: translateY(12px);
+            transform:
+              translate(-50%, -50%)
+              scale(0.55);
           }
 
-          to {
-            opacity: 1;
+          25% {
+            opacity: 0.5;
+          }
 
-            transform: translateY(0);
+          100% {
+            opacity: 0;
+
+            transform:
+              translate(-50%, -50%)
+              scale(2.15);
           }
 
         }
 
 
-        @keyframes sparkleIn {
+        @keyframes sparkleAppear {
 
-          from {
+          0% {
             opacity: 0;
 
             transform:
@@ -805,7 +1935,15 @@ export default function ContactPage() {
               rotate(-45deg);
           }
 
-          to {
+          65% {
+            opacity: 1;
+
+            transform:
+              scale(1.15)
+              rotate(10deg);
+          }
+
+          100% {
             opacity: 1;
 
             transform:
@@ -834,7 +1972,25 @@ export default function ContactPage() {
         }
 
 
-        @keyframes glowPulse {
+        @keyframes sparkleFloatReverse {
+
+          0%,
+          100% {
+            transform:
+              translateY(0)
+              rotate(0deg);
+          }
+
+          50% {
+            transform:
+              translateY(6px)
+              rotate(-8deg);
+          }
+
+        }
+
+
+        @keyframes successGlow {
 
           0%,
           100% {
@@ -850,13 +2006,92 @@ export default function ContactPage() {
 
             transform:
               translateX(-50%)
-              scale(1.1);
+              scale(1.12);
           }
 
         }
 
 
-        @keyframes particleOne {
+        @keyframes successTextUp {
+
+          from {
+            opacity: 0;
+
+            transform:
+              translateY(18px);
+          }
+
+          to {
+            opacity: 1;
+
+            transform:
+              translateY(0);
+          }
+
+        }
+
+
+        @keyframes successStatusIn {
+
+          from {
+            opacity: 0;
+
+            transform:
+              translateY(12px)
+              scale(0.92);
+          }
+
+          to {
+            opacity: 1;
+
+            transform:
+              translateY(0)
+              scale(1);
+          }
+
+        }
+
+
+        @keyframes successButtonIn {
+
+          from {
+            opacity: 0;
+
+            transform:
+              translateY(15px)
+              scale(0.94);
+          }
+
+          to {
+            opacity: 1;
+
+            transform:
+              translateY(0)
+              scale(1);
+          }
+
+        }
+
+
+        @keyframes statusPulse {
+
+          0% {
+            opacity: 0.8;
+
+            transform: scale(0.7);
+          }
+
+          70%,
+          100% {
+            opacity: 0;
+
+            transform: scale(1.8);
+          }
+
+        }
+
+
+        @keyframes particleFloat {
 
           0% {
             opacity: 0;
@@ -866,160 +2101,168 @@ export default function ContactPage() {
               scale(0);
           }
 
-          25% {
+          20% {
             opacity: 1;
+
+            transform:
+              translate(
+                calc(var(--x) * 0.15),
+                calc(var(--y) * 0.15)
+              )
+              scale(1);
           }
 
           100% {
             opacity: 0;
 
             transform:
-              translate(-80px, -100px)
-              scale(1);
+              translate(var(--x), var(--y))
+              scale(0.8);
           }
 
         }
 
 
-        @keyframes particleTwo {
-
-          0% {
-            opacity: 0;
-
-            transform:
-              translate(0, 30px)
-              scale(0);
-          }
-
-          25% {
-            opacity: 1;
-          }
-
-          100% {
-            opacity: 0;
-
-            transform:
-              translate(90px, -80px)
-              scale(1);
-          }
-
-        }
-
-
-        @keyframes particleThree {
-
-          0% {
-            opacity: 0;
-
-            transform:
-              translate(0, -10px)
-              scale(0);
-          }
-
-          25% {
-            opacity: 1;
-          }
-
-          100% {
-            opacity: 0;
-
-            transform:
-              translate(-100px, 80px)
-              scale(1);
-          }
-
-        }
-
-
-        @keyframes particleFour {
-
-          0% {
-            opacity: 0;
-
-            transform:
-              translate(0, -10px)
-              scale(0);
-          }
-
-          25% {
-            opacity: 1;
-          }
-
-          100% {
-            opacity: 0;
-
-            transform:
-              translate(100px, 80px)
-              scale(1);
-          }
-
-        }
-
-
-        @keyframes particleFive {
-
-          0% {
-            opacity: 0;
-
-            transform:
-              translate(0, 20px)
-              scale(0);
-          }
-
-          25% {
-            opacity: 1;
-          }
-
-          100% {
-            opacity: 0;
-
-            transform:
-              translate(40px, -110px)
-              scale(1);
-          }
-
-        }
-
-
-        /* =====================================================
-           MOBILE
-        ===================================================== */
+        /* =========================================================
+           MOBILE SUCCESS CARD
+        ========================================================= */
 
         @media (max-width: 640px) {
 
+          .success-overlay {
+            padding: 18px;
+          }
+
+
           .success-card {
-            border-radius: 24px;
+            max-width: 100%;
 
-            padding-top: 36px;
+            border-radius: 25px;
 
-            padding-bottom: 36px;
+            padding:
+              38px
+              24px
+              32px;
+          }
+
+
+          .success-icon-wrapper {
+            width: 110px;
+            height: 110px;
+
+            margin-bottom: 23px;
+          }
+
+
+          .success-icon-circle {
+            width: 75px;
+            height: 75px;
+          }
+
+
+          .success-title {
+            font-size: 32px;
+
+            letter-spacing: -1.4px;
+          }
+
+
+          .success-description {
+            font-size: 16px;
+          }
+
+
+          .success-status {
+            font-size: 12px;
+
+            padding:
+              8px
+              12px;
           }
 
         }
 
 
-        /* =====================================================
+        /* =========================================================
+           VERY SMALL MOBILE
+        ========================================================= */
+
+        @media (max-width: 380px) {
+
+          .success-card {
+            padding:
+              32px
+              18px
+              28px;
+          }
+
+
+          .success-title {
+            font-size: 29px;
+          }
+
+
+          .success-description {
+            font-size: 15px;
+          }
+
+
+          .success-status {
+            font-size: 11px;
+          }
+
+        }
+
+
+        /* =========================================================
            REDUCED MOTION
-        ===================================================== */
+        ========================================================= */
 
         @media (prefers-reduced-motion: reduce) {
 
+          .contact-hero-content,
+          .contact-hero-eyebrow,
+          .contact-hero-title,
+          .contact-hero-description,
           .success-overlay,
           .success-card,
-          .success-icon,
-          .check-animation,
+          .success-icon-circle,
+          .success-check,
           .success-ring,
-          .success-ring-two,
+          .success-sparkle,
+          .success-card-glow,
+          .success-small-label,
           .success-title,
-          .sparkle-animation,
-          .success-glow,
-          .success-particle {
+          .success-description,
+          .success-status,
+          .success-done-button,
+          .particle {
             animation: none !important;
           }
 
 
-          .check-animation {
-            stroke-dashoffset: 0;
+          .contact-hero-content,
+          .contact-hero-eyebrow,
+          .contact-hero-title,
+          .contact-hero-description,
+          .success-overlay,
+          .success-card,
+          .success-icon-circle,
+          .success-small-label,
+          .success-title,
+          .success-description,
+          .success-status,
+          .success-done-button {
+            opacity: 1 !important;
+
+            filter: none !important;
+
+            transform: none !important;
+          }
+
+
+          .success-check {
+            stroke-dashoffset: 0 !important;
           }
 
         }

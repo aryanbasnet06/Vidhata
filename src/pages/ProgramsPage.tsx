@@ -85,44 +85,75 @@ export default function ProgramsPage() {
     <main className="programs-page">
 
       {/* =========================================================
-          HERO SECTION
+          HERO
       ========================================================= */}
 
       <section className="program-hero">
         <div className="hero-overlay" />
 
         <div className="program-hero-content">
-          <p className="section-eyebrow">
-            OUR PROGRAMS
-          </p>
 
-          <h1>
-            Learning Beyond <span>Textbooks</span>
+          {/* EYEBROW */}
+          <div className="hero-eyebrow-mask">
+            <p className="section-eyebrow hero-eyebrow">
+              OUR PROGRAMS
+            </p>
+          </div>
+
+
+          {/* =====================================================
+              TITLE — ACTUAL TEXT REVEAL
+          ===================================================== */}
+
+          <h1 className="program-hero-title">
+
+            <span className="hero-title-mask">
+              <span className="hero-title-line hero-title-line-1">
+                Learning Beyond
+              </span>
+            </span>
+
+            <span className="hero-title-mask">
+              <span className="hero-title-line hero-title-line-2">
+                Textbooks
+              </span>
+            </span>
+
           </h1>
 
-          <p className="hero-description">
-            Our diverse programs are designed to nurture every aspect of
-            student development, from creativity and innovation to emotional
-            intelligence and social responsibility.
-          </p>
+
+          {/* DESCRIPTION */}
+
+          <div className="hero-description-mask">
+            <p className="hero-description">
+              Our diverse programs are designed to nurture every aspect of
+              student development, from creativity and innovation to emotional
+              intelligence and social responsibility.
+            </p>
+          </div>
+
         </div>
+
+
+        {/* SCROLL INDICATOR */}
+
+        <div className="hero-scroll-indicator">
+          <span>SCROLL TO EXPLORE</span>
+          <div className="scroll-line" />
+        </div>
+
       </section>
 
 
       {/* =========================================================
-          PROGRAMS SECTION
+          PROGRAMS
       ========================================================= */}
 
       <section className="programs-section">
+
         <div className="programs-layout">
 
-          {/* =====================================================
-              TOP ROW
-          ===================================================== */}
-
           <div className="programs-top">
-
-            {/* LARGE FEATURED CARD */}
 
             {featuredProgram && (
               <ProgramCard
@@ -131,9 +162,8 @@ export default function ProgramsPage() {
               />
             )}
 
-            {/* RIGHT COLUMN */}
-
             <div className="programs-side">
+
               {sidePrograms.map((program) => (
                 <ProgramCard
                   key={program.title}
@@ -141,16 +171,14 @@ export default function ProgramsPage() {
                   className="program-card-side"
                 />
               ))}
+
             </div>
 
           </div>
 
 
-          {/* =====================================================
-              BOTTOM ROW
-          ===================================================== */}
-
           <div className="programs-bottom">
+
             {bottomPrograms.map((program) => (
               <ProgramCard
                 key={program.title}
@@ -158,14 +186,16 @@ export default function ProgramsPage() {
                 className="program-card-bottom"
               />
             ))}
+
           </div>
 
         </div>
+
       </section>
 
 
       {/* =========================================================
-          IMPACT SECTION
+          IMPACT
       ========================================================= */}
 
       <section className="impact-section">
@@ -188,38 +218,34 @@ export default function ProgramsPage() {
         </div>
 
 
-        {/* =====================================================
-            AUTOMATIC HORIZONTAL CAROUSEL
-        ===================================================== */}
-
         <div className="impact-slider-wrapper">
 
           <div className="impact-slider">
 
-            {/* FIRST SET */}
-
             <div className="impact-slider-group">
+
               {impactStories.map((story) => (
                 <ImpactCard
                   key={story.title}
                   story={story}
                 />
               ))}
+
             </div>
 
-
-            {/* DUPLICATE SET */}
 
             <div
               className="impact-slider-group"
               aria-hidden="true"
             >
+
               {impactStories.map((story) => (
                 <ImpactCard
                   key={`duplicate-${story.title}`}
                   story={story}
                 />
               ))}
+
             </div>
 
           </div>
@@ -230,7 +256,7 @@ export default function ProgramsPage() {
 
 
       {/* =========================================================
-          CTA SECTION
+          CTA
       ========================================================= */}
 
       <section className="program-cta">
@@ -279,10 +305,6 @@ export default function ProgramsPage() {
       </section>
 
 
-      {/* =========================================================
-          WHITE SPACE BETWEEN CTA AND FOOTER
-      ========================================================= */}
-
       <div
         className="cta-footer-spacer"
         aria-hidden="true"
@@ -290,7 +312,7 @@ export default function ProgramsPage() {
 
 
       {/* =========================================================
-          INLINE CSS
+          CSS
       ========================================================= */}
 
       <style>{`
@@ -302,10 +324,8 @@ export default function ProgramsPage() {
         .programs-page {
           width: 100%;
           overflow-x: hidden;
-
           background: #ffffff;
           color: #171d2b;
-
           font-family: inherit;
         }
 
@@ -317,16 +337,11 @@ export default function ProgramsPage() {
 
         .section-eyebrow {
           margin: 0;
-
           color: #ff6848;
-
           font-size: 14px;
           line-height: 1.2;
-
           font-weight: 700;
-
           letter-spacing: 5px;
-
           text-transform: uppercase;
         }
 
@@ -346,24 +361,25 @@ export default function ProgramsPage() {
           overflow: hidden;
 
           background-image: url("/images/lifeskills.jpg");
-
           background-size: cover;
-
           background-position: center;
+
+          isolation: isolate;
         }
 
         .hero-overlay {
           position: absolute;
-
           inset: 0;
 
           background:
             linear-gradient(
               90deg,
-              rgba(8, 38, 39, 0.90) 0%,
-              rgba(8, 38, 39, 0.76) 45%,
-              rgba(8, 38, 39, 0.70) 100%
+              rgba(8, 38, 39, 0.92) 0%,
+              rgba(8, 38, 39, 0.80) 45%,
+              rgba(8, 38, 39, 0.68) 100%
             );
+
+          z-index: -1;
         }
 
         .program-hero-content {
@@ -372,15 +388,58 @@ export default function ProgramsPage() {
           z-index: 2;
 
           width: 100%;
-
           max-width: 1650px;
 
           margin: 0 auto;
 
           padding: 115px 8%;
+
+          color: #ffffff;
         }
 
-        .program-hero h1 {
+
+        /* =====================================================
+           EYEBROW REVEAL
+        ===================================================== */
+
+        .hero-eyebrow-mask {
+          overflow: hidden;
+
+          width: fit-content;
+        }
+
+        .hero-eyebrow {
+          opacity: 0;
+
+          transform: translateY(100%);
+
+          animation:
+            eyebrowReveal
+            0.9s
+            cubic-bezier(0.22, 1, 0.36, 1)
+            0.05s
+            forwards;
+        }
+
+        @keyframes eyebrowReveal {
+          0% {
+            opacity: 0;
+            transform: translateY(100%);
+          }
+
+          100% {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+
+        /* =====================================================
+           HERO TITLE
+           THIS IS THE IMPORTANT PART
+        ===================================================== */
+
+        .program-hero-title {
           margin: 25px 0 22px;
 
           color: #ffffff;
@@ -394,8 +453,81 @@ export default function ProgramsPage() {
           letter-spacing: -3px;
         }
 
-        .program-hero h1 span {
+
+        /*
+          The mask clips the text.
+
+          The text starts completely underneath the mask
+          and moves upward into view.
+        */
+
+        .hero-title-mask {
+          display: block;
+
+          width: fit-content;
+
+          overflow: hidden;
+
+          padding-bottom: 5px;
+        }
+
+
+        .hero-title-line {
+          display: block;
+
+          transform: translateY(110%);
+
+          opacity: 0;
+
+          animation:
+            titleTextReveal
+            1.15s
+            cubic-bezier(0.16, 1, 0.3, 1)
+            forwards;
+        }
+
+
+        .hero-title-line-1 {
+          animation-delay: 0.25s;
+        }
+
+
+        .hero-title-line-2 {
           color: #ff6848;
+
+          animation-delay: 0.43s;
+        }
+
+
+        @keyframes titleTextReveal {
+
+          0% {
+            opacity: 0;
+            transform: translateY(110%);
+          }
+
+          60% {
+            opacity: 1;
+          }
+
+          100% {
+            opacity: 1;
+            transform: translateY(0);
+          }
+
+        }
+
+
+        /* =====================================================
+           DESCRIPTION REVEAL
+        ===================================================== */
+
+        .hero-description-mask {
+          max-width: 850px;
+
+          overflow: hidden;
+
+          padding-bottom: 4px;
         }
 
         .hero-description {
@@ -410,6 +542,127 @@ export default function ProgramsPage() {
           line-height: 1.6;
 
           font-weight: 400;
+
+          opacity: 0;
+
+          transform: translateY(35px);
+
+          animation:
+            descriptionReveal
+            1s
+            cubic-bezier(0.22, 1, 0.36, 1)
+            0.68s
+            forwards;
+        }
+
+        @keyframes descriptionReveal {
+
+          0% {
+            opacity: 0;
+            transform: translateY(35px);
+          }
+
+          100% {
+            opacity: 1;
+            transform: translateY(0);
+          }
+
+        }
+
+
+        /* =====================================================
+           SCROLL INDICATOR
+        ===================================================== */
+
+        .hero-scroll-indicator {
+          position: absolute;
+
+          right: 7%;
+          bottom: 42px;
+
+          z-index: 3;
+
+          display: flex;
+
+          align-items: center;
+
+          gap: 15px;
+
+          color: rgba(255, 255, 255, 0.70);
+
+          font-size: 10px;
+
+          font-weight: 700;
+
+          letter-spacing: 3px;
+
+          opacity: 0;
+
+          animation:
+            heroFadeIn
+            1s
+            ease
+            1.2s
+            forwards;
+        }
+
+        @keyframes heroFadeIn {
+
+          from {
+            opacity: 0;
+          }
+
+          to {
+            opacity: 1;
+          }
+
+        }
+
+        .scroll-line {
+          position: relative;
+
+          width: 70px;
+          height: 1px;
+
+          overflow: hidden;
+
+          background: rgba(255, 255, 255, 0.45);
+        }
+
+        .scroll-line::after {
+          content: "";
+
+          position: absolute;
+
+          left: 0;
+          top: 0;
+
+          width: 24px;
+          height: 100%;
+
+          background: #ff6848;
+
+          animation:
+            scrollLineAnimation
+            2s
+            ease-in-out
+            infinite;
+        }
+
+        @keyframes scrollLineAnimation {
+
+          0% {
+            transform: translateX(-30px);
+          }
+
+          50% {
+            transform: translateX(75px);
+          }
+
+          100% {
+            transform: translateX(-30px);
+          }
+
         }
 
 
@@ -419,24 +672,15 @@ export default function ProgramsPage() {
 
         .programs-section {
           width: 100%;
-
           background: #ffffff;
-
           padding: 90px 3% 150px;
         }
 
         .programs-layout {
           width: 100%;
-
           max-width: 1680px;
-
           margin: 0 auto;
         }
-
-
-        /* =====================================================
-           TOP ROW
-        ===================================================== */
 
         .programs-top {
           width: 100%;
@@ -458,11 +702,6 @@ export default function ProgramsPage() {
           gap: 30px;
         }
 
-
-        /* =====================================================
-           BOTTOM ROW
-        ===================================================== */
-
         .programs-bottom {
           width: 100%;
 
@@ -477,7 +716,7 @@ export default function ProgramsPage() {
 
 
         /* =====================================================
-           PROGRAM CARD
+           PROGRAM CARDS
         ===================================================== */
 
         .program-card {
@@ -487,9 +726,6 @@ export default function ProgramsPage() {
 
           border-radius: 18px;
 
-          /*
-            Updated green background to #1F3839
-          */
           background: #1F3839;
 
           isolation: isolate;
@@ -518,17 +754,13 @@ export default function ProgramsPage() {
           object-fit: cover;
 
           transition:
-            transform 0.6s cubic-bezier(0.2, 0.65, 0.3, 1);
+            transform 0.6s
+            cubic-bezier(0.2, 0.65, 0.3, 1);
         }
 
         .program-card:hover .program-card-image {
           transform: scale(1.045);
         }
-
-
-        /* =====================================================
-           CARD OVERLAY
-        ===================================================== */
 
         .program-card-overlay {
           position: absolute;
@@ -547,11 +779,6 @@ export default function ProgramsPage() {
               rgba(5, 40, 41, 0.02) 100%
             );
         }
-
-
-        /* =====================================================
-           CARD CONTENT
-        ===================================================== */
 
         .program-card-content {
           position: absolute;
@@ -589,14 +816,7 @@ export default function ProgramsPage() {
           font-size: 17px;
 
           line-height: 1.55;
-
-          font-weight: 400;
         }
-
-
-        /* =====================================================
-           FEATURED CARD TYPOGRAPHY
-        ===================================================== */
 
         .program-card-featured h2 {
           font-size: 45px;
@@ -614,12 +834,8 @@ export default function ProgramsPage() {
           line-height: 1.55;
         }
 
-
-        /* =====================================================
-           SIDE CARD TYPOGRAPHY
-        ===================================================== */
-
-        .program-card-side .program-card-content {
+        .program-card-side .program-card-content,
+        .program-card-bottom .program-card-content {
           left: 38px;
           right: 38px;
           bottom: 34px;
@@ -627,46 +843,24 @@ export default function ProgramsPage() {
 
         .program-card-side h2 {
           font-size: 30px;
-
-          line-height: 1.15;
-
-          letter-spacing: -1px;
         }
 
         .program-card-side p {
           font-size: 17px;
-
-          line-height: 1.5;
-
           max-width: 480px;
-        }
-
-
-        /* =====================================================
-           BOTTOM CARD TYPOGRAPHY
-        ===================================================== */
-
-        .program-card-bottom .program-card-content {
-          left: 38px;
-          right: 38px;
-          bottom: 34px;
         }
 
         .program-card-bottom h2 {
           font-size: 31px;
-
-          line-height: 1.15;
         }
 
         .program-card-bottom p {
           font-size: 17px;
-
-          line-height: 1.55;
         }
 
 
         /* =====================================================
-           PROGRAM ARROW
+           ARROW
         ===================================================== */
 
         .program-arrow {
@@ -693,8 +887,6 @@ export default function ProgramsPage() {
 
           font-size: 27px;
 
-          line-height: 1;
-
           cursor: pointer;
 
           transition:
@@ -706,13 +898,9 @@ export default function ProgramsPage() {
           transform: translateY(-4px);
         }
 
-        .program-arrow:hover {
-          background: #ff7659;
-        }
-
 
         /* =====================================================
-           IMPACT SECTION
+           IMPACT
         ===================================================== */
 
         .impact-section {
@@ -767,7 +955,7 @@ export default function ProgramsPage() {
 
 
         /* =====================================================
-           IMPACT CAROUSEL
+           IMPACT SLIDER
         ===================================================== */
 
         .impact-slider-wrapper {
@@ -786,7 +974,10 @@ export default function ProgramsPage() {
           width: max-content;
 
           animation:
-            impact-horizontal-scroll 38s linear infinite;
+            impact-horizontal-scroll
+            38s
+            linear
+            infinite;
 
           will-change: transform;
         }
@@ -805,11 +996,6 @@ export default function ProgramsPage() {
           padding-right: 38px;
         }
 
-
-        /* =====================================================
-           IMPACT CARD
-        ===================================================== */
-
         .impact-card {
           position: relative;
 
@@ -823,9 +1009,6 @@ export default function ProgramsPage() {
 
           border-radius: 18px;
 
-          /*
-            Updated green background to #1F3839
-          */
           background: #1F3839;
 
           isolation: isolate;
@@ -885,11 +1068,6 @@ export default function ProgramsPage() {
           font-weight: 600;
         }
 
-
-        /* =====================================================
-           HORIZONTAL ANIMATION
-        ===================================================== */
-
         @keyframes impact-horizontal-scroll {
 
           from {
@@ -904,7 +1082,7 @@ export default function ProgramsPage() {
 
 
         /* =====================================================
-           CTA SECTION
+           CTA
         ===================================================== */
 
         .program-cta {
@@ -920,9 +1098,6 @@ export default function ProgramsPage() {
 
           justify-content: center;
 
-          /*
-            UPDATED GREEN BACKGROUND
-          */
           background: #1F3839;
 
           padding: 100px 30px;
@@ -961,7 +1136,6 @@ export default function ProgramsPage() {
           z-index: 2;
 
           width: 100%;
-
           max-width: 1000px;
 
           text-align: center;
@@ -1047,8 +1221,6 @@ export default function ProgramsPage() {
 
         .cta-primary span {
           font-size: 27px;
-
-          line-height: 1;
         }
 
         .cta-secondary {
@@ -1067,7 +1239,7 @@ export default function ProgramsPage() {
 
 
         /* =====================================================
-           WHITE SPACE BETWEEN CTA AND FOOTER
+           SPACER
         ===================================================== */
 
         .cta-footer-spacer {
@@ -1080,7 +1252,7 @@ export default function ProgramsPage() {
 
 
         /* =====================================================
-           TABLET / SMALL DESKTOP
+           TABLET
         ===================================================== */
 
         @media (max-width: 1200px) {
@@ -1120,30 +1292,16 @@ export default function ProgramsPage() {
 
           .impact-card {
             flex-basis: 370px;
-
             width: 370px;
           }
 
-          .impact-section {
-            padding-top: 120px;
-            padding-bottom: 140px;
-          }
-
-          .cta-footer-spacer {
-            height: 80px;
-          }
         }
 
-
-        /* =====================================================
-           TABLET
-        ===================================================== */
 
         @media (max-width: 900px) {
 
           .programs-top {
             grid-template-columns: 1.6fr 1fr;
-
             gap: 20px;
           }
 
@@ -1153,7 +1311,6 @@ export default function ProgramsPage() {
 
           .programs-bottom {
             gap: 20px;
-
             margin-top: 20px;
           }
 
@@ -1173,60 +1330,16 @@ export default function ProgramsPage() {
             font-size: 34px;
           }
 
-          .program-card-featured p {
-            font-size: 17px;
-          }
-
           .program-card-side h2,
           .program-card-bottom h2 {
             font-size: 24px;
           }
 
-          .program-card-side p,
-          .program-card-bottom p {
-            font-size: 15px;
-          }
-
-          .program-arrow {
-            width: 50px;
-
-            height: 50px;
-
-            font-size: 23px;
-          }
-
-
-          /* IMPACT */
-
           .impact-section {
-            margin-top: 15px;
-
             padding-top: 110px;
-
             padding-bottom: 125px;
           }
 
-          .impact-slider-group {
-            gap: 25px;
-
-            padding-right: 25px;
-          }
-
-          .impact-card {
-            flex-basis: 340px;
-
-            width: 340px;
-
-            height: 320px;
-          }
-
-          .impact-slider {
-            animation-duration: 34s;
-          }
-
-          .cta-footer-spacer {
-            height: 70px;
-          }
         }
 
 
@@ -1244,7 +1357,7 @@ export default function ProgramsPage() {
             padding: 100px 25px 80px;
           }
 
-          .program-hero h1 {
+          .program-hero-title {
             margin-top: 20px;
 
             font-size: 48px;
@@ -1258,6 +1371,10 @@ export default function ProgramsPage() {
             font-size: 18px;
 
             line-height: 1.55;
+          }
+
+          .hero-scroll-indicator {
+            display: none;
           }
 
 
@@ -1303,54 +1420,33 @@ export default function ProgramsPage() {
           .program-card-side .program-card-content,
           .program-card-bottom .program-card-content {
             left: 25px;
-
             right: 25px;
-
             bottom: 25px;
           }
 
           .program-card-featured h2 {
             font-size: 30px;
-
-            line-height: 1.12;
           }
 
           .program-card h2,
           .program-card-side h2,
           .program-card-bottom h2 {
             font-size: 28px;
-
-            line-height: 1.15;
           }
 
           .program-card-featured p,
           .program-card p {
             font-size: 16px;
 
-            line-height: 1.5;
-
             max-width: calc(100% - 65px);
-          }
-
-          .program-arrow {
-            width: 48px;
-
-            height: 48px;
-
-            font-size: 22px;
           }
 
 
           /* IMPACT */
 
           .impact-section {
-            margin-top: 10px;
-
             padding-top: 95px;
-
             padding-bottom: 105px;
-
-            border-top: 1px solid #f3f4f4;
           }
 
           .impact-heading {
@@ -1359,8 +1455,6 @@ export default function ProgramsPage() {
 
           .impact-heading h2 {
             font-size: 42px;
-
-            letter-spacing: -1.5px;
           }
 
           .impact-heading > p:last-child {
@@ -1373,20 +1467,13 @@ export default function ProgramsPage() {
 
           .impact-slider-group {
             gap: 18px;
-
             padding-right: 18px;
           }
 
           .impact-card {
             flex-basis: 330px;
-
             width: 330px;
-
             height: 300px;
-          }
-
-          .impact-slider {
-            animation-duration: 30s;
           }
 
 
@@ -1396,11 +1483,6 @@ export default function ProgramsPage() {
             min-height: 600px;
 
             padding: 90px 25px;
-
-            /*
-              UPDATED GREEN BACKGROUND
-            */
-            background: #1F3839;
           }
 
           .cta-content h2 {
@@ -1432,12 +1514,6 @@ export default function ProgramsPage() {
             min-height: 68px;
           }
 
-
-          /* WHITE SPACE */
-
-          .cta-footer-spacer {
-            height: 60px;
-          }
         }
 
 
@@ -1449,7 +1525,6 @@ export default function ProgramsPage() {
 
           .section-eyebrow {
             font-size: 11px;
-
             letter-spacing: 4px;
           }
 
@@ -1457,16 +1532,19 @@ export default function ProgramsPage() {
             min-height: 500px;
           }
 
-          .program-hero h1 {
+          .program-hero-content {
+            padding: 85px 22px 70px;
+          }
+
+          .program-hero-title {
             font-size: 40px;
+
+            letter-spacing: -2px;
           }
 
           .hero-description {
             font-size: 16px;
           }
-
-
-          /* Programs */
 
           .program-card-featured,
           .program-card-side,
@@ -1486,12 +1564,8 @@ export default function ProgramsPage() {
             font-size: 15px;
           }
 
-
-          /* Impact */
-
           .impact-section {
             padding-top: 85px;
-
             padding-bottom: 95px;
           }
 
@@ -1503,12 +1577,6 @@ export default function ProgramsPage() {
             font-size: 16px;
           }
 
-          .impact-slider-group {
-            gap: 16px;
-
-            padding-right: 16px;
-          }
-
           .impact-card {
             flex-basis: 300px;
 
@@ -1516,13 +1584,6 @@ export default function ProgramsPage() {
 
             height: 280px;
           }
-
-          .impact-slider {
-            animation-duration: 27s;
-          }
-
-
-          /* CTA */
 
           .cta-content h2 {
             font-size: 38px;
@@ -1532,20 +1593,29 @@ export default function ProgramsPage() {
             font-size: 16px;
           }
 
-
-          /* WHITE SPACE */
-
           .cta-footer-spacer {
             height: 50px;
           }
+
         }
 
 
         /* =====================================================
-           REDUCED MOTION ACCESSIBILITY
+           REDUCED MOTION
         ===================================================== */
 
         @media (prefers-reduced-motion: reduce) {
+
+          .hero-eyebrow,
+          .hero-title-line,
+          .hero-description,
+          .hero-scroll-indicator {
+            animation: none;
+
+            opacity: 1;
+
+            transform: none;
+          }
 
           .impact-slider {
             animation: none;
@@ -1556,23 +1626,37 @@ export default function ProgramsPage() {
             transition: none;
           }
 
+          .scroll-line::after {
+            animation: none;
+          }
+
         }
 
       `}</style>
+
     </main>
   );
 }
 
 
 /* =============================================================
-   PROGRAM CARD COMPONENT
+   PROGRAM CARD
 ============================================================= */
 
-function ProgramCard({ program, className = "" }) {
+function ProgramCard({
+  program,
+  className = "",
+}: {
+  program: {
+    title: string;
+    description: string;
+    image: string;
+    type: string;
+  };
+  className?: string;
+}) {
   return (
-    <article
-      className={`program-card ${className}`}
-    >
+    <article className={`program-card ${className}`}>
 
       <img
         src={program.image}
@@ -1607,10 +1691,17 @@ function ProgramCard({ program, className = "" }) {
 
 
 /* =============================================================
-   IMPACT CARD COMPONENT
+   IMPACT CARD
 ============================================================= */
 
-function ImpactCard({ story }) {
+function ImpactCard({
+  story,
+}: {
+  story: {
+    title: string;
+    image: string;
+  };
+}) {
   return (
     <article className="impact-card">
 
