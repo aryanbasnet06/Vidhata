@@ -969,7 +969,7 @@ function RecognitionSection() {
           >
             <Link
               to="/recognitions"
-              target="_blank"
+            
               rel="noopener noreferrer"
               className="
                 group
@@ -1755,7 +1755,7 @@ export default function HomePage() {
               <div className="mt-9 sm:mt-11">
                 <Link
                   to="/about"
-                  target="_blank"
+                
                   rel="noopener noreferrer"
                   className="
                     group
