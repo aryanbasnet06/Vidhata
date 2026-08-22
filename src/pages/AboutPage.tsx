@@ -230,13 +230,13 @@ export default function AboutPage() {
         <div className="impact-grid">
           <div className="impact-item">
             <div className="impact-icon">⌂</div>
-            <strong>5600+</strong>
+            <strong>12000+</strong>
             <span>STUDENTS REACHED</span>
           </div>
 
           <div className="impact-item">
             <div className="impact-icon">♧</div>
-            <strong>18</strong>
+            <strong>30</strong>
             <span>PARTNER ORGANIZATIONS</span>
           </div>
 

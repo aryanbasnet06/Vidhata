@@ -410,7 +410,7 @@ function PartnersSection() {
               lg:text-[20px]
             "
           >
-            We collaborate with 18 partner organizations across Nepal to
+            We collaborate with 30 partner organizations across Nepal to
             maximize our impact.
           </p>
         </div>
