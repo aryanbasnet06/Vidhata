@@ -285,24 +285,7 @@ export default function AboutPage() {
           </div>
         </div>
 
-        <div className="cta-footer">
-          <div className="footer-brand">
-            <div className="footer-logo-circle">V</div>
-            <span>Vidhata</span>
-          </div>
-
-          <div className="footer-column">
-            <span>EDUCATION</span>
-          </div>
-
-          <div className="footer-column">
-            <span>EMPOWERMENT</span>
-          </div>
-
-          <div className="footer-column">
-            <span>IMPACT</span>
-          </div>
-        </div>
+     
       </section>
 
       {/* =========================================================
