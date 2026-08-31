@@ -12,7 +12,7 @@ export function Team({ hideHeader = false }: TeamProps) {
       position: "Founder & Chief Executive Officer",
       image: "/images/aryan-basnet-founder-vidhata-nepal.png",
       description:
-        "Aryan is an emerging engineer and entrepreneur with a strong commitment to social impact. With key expertise in social design, human-centric design, design thinking, and organizational leadership, Aryan spearheads change in the community through being an inventor. Using technology and design thinking as his foothold for innovation, he approaches every problem with a unique 360-degree view that keeps the user at the centre of solution building.",
+        "Aryan Basnet is a technologist, social entrepreneur, policy researcher, and AI engineer. As the Founder & CEO of Vidhata, he leads the organization’s vision, strategy, and growth, bringing together his interests in technology, education, and social development. His work spans artificial intelligence, entrepreneurship, research, and public policy, with a particular focus on using technology and innovation to address complex societal challenges. His areas of interest include AI, education, economics, and public policy, with a broader commitment to creating practical and sustainable solutions that expand opportunities for underserved communities.",
       instagram: "https://www.instagram.com/__aryanbasnet__/",
       email: "mailto:basnetaryan05@gmail.com",
     },
