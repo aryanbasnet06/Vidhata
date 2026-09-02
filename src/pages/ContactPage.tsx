@@ -1,4 +1,5 @@
 import { FormEvent, useEffect, useState } from "react";
+import emailjs from "@emailjs/browser";
 import {
   Mail,
   MapPin,
@@ -12,6 +13,8 @@ import {
 export default function ContactPage() {
   const [submitted, setSubmitted] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
+  const [isSending, setIsSending] = useState(false);
+  const [sendError, setSendError] = useState(false);
 
   /* =========================================================
      HERO REVEAL
@@ -30,10 +33,34 @@ export default function ContactPage() {
      FORM SUBMIT
   ========================================================= */
 
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    setSubmitted(true);
+    if (isSending) return;
+
+    setIsSending(true);
+    setSendError(false);
+
+    const form = event.currentTarget;
+
+    try {
+      await emailjs.sendForm(
+        "service_mp2zfsb",
+        "template_78djfzd",
+        form,
+        {
+          publicKey: "ZpGq0EY0TbFbHhGBX",
+        }
+      );
+
+      form.reset();
+      setSubmitted(true);
+    } catch (error) {
+      console.error("EmailJS error:", error);
+      setSendError(true);
+    } finally {
+      setIsSending(false);
+    }
   };
 
   const handleDone = () => {
@@ -345,21 +372,39 @@ export default function ContactPage() {
                 </div>
 
 
+                {/* SEND ERROR */}
+
+                {sendError && (
+                  <p
+                    className="rounded-[14px] bg-red-50 px-4 py-3 text-[14px] leading-[1.5] text-red-700"
+                    role="alert"
+                  >
+                    We couldn't send your message. Please try again, or email us
+                    directly at contact.vidhata@gmail.com.
+                  </p>
+                )}
+
                 {/* SEND BUTTON */}
 
                 <button
                   type="submit"
-                  className="group flex h-[61px] w-full items-center justify-center gap-3 rounded-full bg-[#f76543] text-[17px] font-semibold text-white shadow-[0_3px_7px_rgba(247,101,67,0.18)] transition-all duration-200 hover:bg-[#ed5b3a] hover:shadow-[0_5px_12px_rgba(247,101,67,0.22)] active:scale-[0.99]"
+                  disabled={isSending}
+                  aria-busy={isSending}
+                  className="group flex h-[61px] w-full items-center justify-center gap-3 rounded-full bg-[#f76543] text-[17px] font-semibold text-white shadow-[0_3px_7px_rgba(247,101,67,0.18)] transition-all duration-200 hover:bg-[#ed5b3a] hover:shadow-[0_5px_12px_rgba(247,101,67,0.22)] active:scale-[0.99] disabled:cursor-not-allowed disabled:opacity-70 disabled:hover:bg-[#f76543] disabled:hover:shadow-[0_3px_7px_rgba(247,101,67,0.18)]"
                 >
 
                   <Send
                     size={20}
                     strokeWidth={2}
-                    className="transition-transform duration-300 group-hover:translate-x-1"
+                    className={`transition-transform duration-300 ${
+                      isSending
+                        ? "animate-pulse"
+                        : "group-hover:translate-x-1"
+                    }`}
                   />
 
                   <span>
-                    Send Message
+                    {isSending ? "Sending..." : "Send Message"}
                   </span>
 
                 </button>
