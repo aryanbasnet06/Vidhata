@@ -44,9 +44,12 @@ export default function ContactPage() {
     const form = event.currentTarget;
 
     try {
+      // The form field named "email" is sent to EmailJS as {{email}}.
+      // In your EmailJS template, use {{email}} for the sender's email
+      // and set the template's Reply-To field to {{email}}.
       await emailjs.sendForm(
         "service_mp2zfsb",
-        "template_78djfzd",
+        "template_d4tiham",
         form,
         {
           publicKey: "ZpGq0EY0TbFbHhGBX",
