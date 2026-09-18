@@ -12,7 +12,7 @@ export function Team({ hideHeader = false }: TeamProps) {
       position: "Founder & Chief Executive Officer",
       image: "/images/aryan-basnet-founder-vidhata-nepal.png",
       description:
-        "Aryan Basnet is a technologist, social entrepreneur, policy researcher, and AI engineer. As the Founder & CEO of Vidhata, he leads the organization’s vision, strategy, and growth, bringing together his interests in technology, education, and social development. His work spans artificial intelligence, entrepreneurship, research, and public policy, with a particular focus on using technology and innovation to address complex societal challenges. His areas of interest include AI, education, economics, and public policy, with a broader commitment to creating practical and sustainable solutions that expand opportunities for underserved communities.",
+        "Aryan is a technologist, social entrepreneur, policy researcher, and AI engineer. As the Founder & CEO of Vidhata, he leads the organization’s vision, strategy, and growth, bringing together his interests in technology, education, and social development. His work spans artificial intelligence, entrepreneurship, research, and public policy, with a particular focus on using technology and innovation to address complex societal challenges. His areas of interest include AI, education, economics, and public policy, with a broader commitment to creating practical and sustainable solutions that expand opportunities for underserved communities.",
       instagram: "https://www.instagram.com/__aryanbasnet__/",
       email: "mailto:basnetaryan05@gmail.com",
     },
@@ -21,7 +21,7 @@ export function Team({ hideHeader = false }: TeamProps) {
       position: "Chief Technology Officer",
       image: "/images/akhilesh_regmi.png",
       description:
-        "Akhilesh Regmi is a multidisciplinary technologist and creative problem-solver with a strong commitment to innovation. As Chief Technology Officer, he blends technical expertise with design-oriented thinking to build intuitive, scalable digital solutions. His logical approach and creative perspective guide the organization’s technology strategy and its mission-driven impact.",
+        "Akhilesh is a multidisciplinary technologist and creative problem-solver with a strong commitment to innovation. As Chief Technology Officer, he blends technical expertise with design-oriented thinking to build intuitive, scalable digital solutions. His logical approach and creative perspective guide the organization’s technology strategy and its mission-driven impact.",
       instagram: "https://www.instagram.com/akhilesh_regmi/",
       email: "mailto:akhileshregmi@gmail.com",
     },
@@ -30,7 +30,7 @@ export function Team({ hideHeader = false }: TeamProps) {
       position: "Chief of Curriculum Development",
       image: "/images/swapnil_bhattarai.png",
       description:
-        "Swapnil Bhattarai is an aspiring educator, interdisciplinary thinker, and purpose-driven leader committed to shaping meaningful learning experiences for young students across Nepal. As the Chief of Curriculum Development, he blends pedagogical insight, storytelling, and design-driven thinking to create interactive modules that spark curiosity and build foundational life skills in learners. Swapnil brings a rare combination of empathy, clarity, and creativity into every classroom he steps into.",
+        "Swapnil is an aspiring educator, interdisciplinary thinker, and purpose-driven leader committed to shaping meaningful learning experiences for young students across Nepal. As the Chief of Curriculum Development, he blends pedagogical insight, storytelling, and design-driven thinking to create interactive modules that spark curiosity and build foundational life skills in learners. Swapnil brings a rare combination of empathy, clarity, and creativity into every classroom he steps into.",
       instagram: "https://www.instagram.com/swap.nilbhattarai/",
       email: "mailto:swapnilbhattarai2006@gmail.com",
     },
@@ -48,16 +48,16 @@ export function Team({ hideHeader = false }: TeamProps) {
       position: "Chief of Project Management",
       image: "/images/bigyashree_khatri.png",
       description:
-        "Bigyashree Khatri is a committed youth activist and a student of psychology and social work, serving as the Chief of Project Management. She has strong experience in planning and executing impact-driven projects in areas such as mental health, climate advocacy, and SRHR awareness. Through her leadership in events, volunteering initiatives, and Model United Nations, she effectively translates ideas into organized action. Her structured approach and community-focused mindset make her a vital force behind Vidhata’s programs and impact.",
+        "Bigyashree is a committed youth activist and a student of psychology and social work, serving as the Chief of Project Management. She has strong experience in planning and executing impact-driven projects in areas such as mental health, climate advocacy, and SRHR awareness. Through her leadership in events, volunteering initiatives, and Model United Nations, she effectively translates ideas into organized action. Her structured approach and community-focused mindset make her a vital force behind Vidhata’s programs and impact.",
       instagram: "https://www.instagram.com/bigyashre.e/",
       email: "mailto:bigyashreez@gmail.com",
     },
     {
       name: "Bharat Oli",
-      position: "Chief of Outreach and Media",
-      image: "/images/bharat_oli.png",
+      position: "Chief Community Officer",
+      image: "/images/bharatoli.png",
       description:
-        "Bharat Oli is a dynamic student leader serving as the Chief of Outreach and Media, with a strong focus on public engagement and strategic communication. He brings experience in outreach planning, media coordination, and content creation to amplify organizational impact. Through his work at Vidhata, he has supported programs for underserved students while driving campaigns and audience engagement across platforms. His clarity in messaging and partnership-building strengthens Vidhata’s visibility and outreach.",
+        "Bharat is a people-focused student leader serving as Vidhata’s Chief Community Officer, dedicated to building a strong, connected, and welcoming organizational community. He brings a thoughtful approach to volunteer engagement, team-building, and creating meaningful opportunities for members to connect beyond their regular responsibilities. Through his work at Vidhata, he contributes to fostering a positive and inclusive culture where volunteers feel valued, involved, and motivated to grow together. His leadership and initiative strengthen the sense of community that lies at the heart of Vidhata.",
       instagram: "https://www.instagram.com/_olibharat/",
       email: "mailto:olibharat947@gmail.com",
     },

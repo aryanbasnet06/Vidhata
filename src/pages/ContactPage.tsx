@@ -42,15 +42,28 @@ export default function ContactPage() {
     setSendError(false);
 
     const form = event.currentTarget;
+    const formData = new FormData(form);
+
+    const name = String(formData.get("name") ?? "").trim();
+    const email = String(formData.get("email") ?? "").trim();
+    const message = String(formData.get("message") ?? "").trim();
+
+    if (!name || !email || !message) {
+      setSendError(true);
+      setIsSending(false);
+      return;
+    }
 
     try {
-      // The form field named "email" is sent to EmailJS as {{email}}.
-      // In your EmailJS template, use {{email}} for the sender's email
-      // and set the template's Reply-To field to {{email}}.
-      await emailjs.sendForm(
+      await emailjs.send(
         "service_mp2zfsb",
         "template_d4tiham",
-        form,
+        {
+          name,
+          email,
+          message,
+          reply_to: email,
+        },
         {
           publicKey: "ZpGq0EY0TbFbHhGBX",
         }
