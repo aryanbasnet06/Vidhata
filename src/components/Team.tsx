@@ -66,7 +66,7 @@ export function Team({ hideHeader = false }: TeamProps) {
       image: "/images/bharat_oli.png",
       description:
         "Bharat is a people-focused student leader serving as Vidhata’s Chief Community Officer, dedicated to building a strong, connected, and welcoming organizational community. He brings a thoughtful approach to volunteer engagement, team-building, and creating meaningful opportunities for members to connect beyond their regular responsibilities. Through his work at Vidhata, he contributes to fostering a positive and inclusive culture where volunteers feel valued, involved, and motivated to grow together. His leadership and initiative strengthen the sense of community that lies at the heart of Vidhata.",
-      instagram: "https://www.instagram.com/_olibharat/",
+      instagram: "https://www.instagram.com/inochiren/",
       email: "mailto:olibharat947@gmail.com",
     },
     {
