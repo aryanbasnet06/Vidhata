@@ -26,11 +26,11 @@ export function Team({ hideHeader = false }: TeamProps) {
       email: "mailto:akhileshregmi@gmail.com",
     },
     {
-      name: "Swapnil Bhattarai",
+      name: "Irashu Karki",
       position: "Chief of Curriculum Development",
-      image: "/images/swapnil_bhattarai.png",
+      image: "/images/irashu_karki.png",
       description:
-        "Swapnil is an aspiring educator, interdisciplinary thinker, and purpose-driven leader committed to shaping meaningful learning experiences for young students across Nepal. As the Chief of Curriculum Development, he blends pedagogical insight, storytelling, and design-driven thinking to create interactive modules that spark curiosity and build foundational life skills in learners. Swapnil brings a rare combination of empathy, clarity, and creativity into every classroom he steps into.",
+        "Irashu is an aspiring educator, interdisciplinary thinker, and purpose-driven leader committed to shaping meaningful learning experiences for young students across Nepal. As the Chief of Curriculum Development, he blends pedagogical insight, storytelling, and design-driven thinking to create interactive modules that spark curiosity and build foundational life skills in learners. Irashu brings a rare combination of empathy, clarity, and creativity into every classroom he steps into.",
       instagram: "https://www.instagram.com/swap.nilbhattarai/",
       email: "mailto:swapnilbhattarai2006@gmail.com",
     },
