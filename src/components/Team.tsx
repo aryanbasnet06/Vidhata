@@ -30,7 +30,7 @@ export function Team({ hideHeader = false }: TeamProps) {
       position: "Chief of Curriculum Development",
       image: "/images/irashu_karki.png",
       description:
-        "Irashu is an aspiring educator, interdisciplinary thinker, and purpose-driven leader committed to shaping meaningful learning experiences for young students across Nepal. As the Chief of Curriculum Development, he blends pedagogical insight, storytelling, and design-driven thinking to create interactive modules that spark curiosity and build foundational life skills in learners. Irashu brings a rare combination of empathy, clarity, and creativity into every classroom he steps into.",
+        "Irashu is an aspiring educator, interdisciplinary thinker, and purpose-driven leader committed to shaping meaningful learning experiences for young students across Nepal. As the Chief of Curriculum Development, she blends pedagogical insight, storytelling, and design-driven thinking to create interactive modules that spark curiosity and build foundational life skills in learners. Irashu brings a rare combination of empathy, clarity, and creativity into every classroom she steps into.",
       instagram: "https://www.instagram.com/swap.nilbhattarai/",
       email: "mailto:swapnilbhattarai2006@gmail.com",
     },
