@@ -12,7 +12,7 @@ export function Team({ hideHeader = false }: TeamProps) {
       position: "Founder & Chief Executive Officer",
       image: "/images/aryan_basnet_founder_vidhata.png",
       description:
-        "Aryan is a technologist, social entrepreneur, policy researcher, and AI engineer. As the Founder & CEO, he leads the organization’s vision, strategy, and growth, bringing together his interests in technology, education, and social development. His work spans artificial intelligence, entrepreneurship, research, and public policy, with a particular focus on using technology and innovation to address complex societal challenges. His areas of interest include AI, education, economics, and public policy, with a broader commitment to creating practical and sustainable solutions that expand opportunities for underserved communities.",
+        "Aryan is a technologist, social entrepreneur, policy researcher, and AI engineer working across technology, education, and social development. As Founder & CEO, he leads its overall direction and works closely with the team to shape its programs, partnerships, and growth. His work brings together technology and social entrepreneurship, alongside research in AI, education, and public policy. He is interested in how technology and better-designed systems can improve access to learning and create greater opportunities for underserved communities.",
       instagram: "https://www.instagram.com/__aryanbasnet__/",
       email: "mailto:basnetaryan05@gmail.com",
     },
@@ -47,7 +47,7 @@ export function Team({ hideHeader = false }: TeamProps) {
       position: "Chief Administrative Officer",
       image: "/images/siddhant_pokharel.png",
       description:
-        "Siddhant is a youth leader, entrepreneur, and aspiring aerospace engineer with experience spanning across engineering, environmental science, and STEM education. He has worked in embedded systems, contributed to the development and testing of Nepal’s first rocket, and founded and led STEM outreach programs across Nepal that have engaged thousands of students.As Chief Administrative Officer at Vidhata, Siddhant oversees the organization’s administrative and operational functions, including internal coordination, volunteer recruitment, onboarding, and team management. He works closely with Vidhata’s leadership and program teams to strengthen internal systems, streamline communication, coordinate activities, and ensure effective execution of organizational initiatives.",
+        "Siddhant is a youth leader, entrepreneur, and aspiring aerospace engineer with experience spanning across engineering, environmental science, and STEM education. He has worked in embedded systems, contributed to the development and testing of Nepal’s first rocket, and founded and led STEM outreach programs across Nepal that have engaged thousands of students.As Chief Administrative Officer, Siddhant oversees the organization’s administrative and operational functions, including internal coordination, volunteer recruitment, onboarding, and team management. He works closely with Vidhata’s leadership and program teams to strengthen internal systems, streamline communication, coordinate activities, and ensure effective execution of organizational initiatives.",
       instagram: "https://www.instagram.com/__siddhant_69__/",
       email: "mailto:pokhrel.siddhant69@gmail.com",
     },
