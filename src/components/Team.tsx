@@ -43,7 +43,7 @@ export function Team({ hideHeader = false }: TeamProps) {
       email: "mailto:krizmapoudel1@gmail.com",
     },
      {
-      name: "Siddhant Pokharel",
+      name: "Siddhant Pokhrel",
       position: "Chief Administrative Officer",
       image: "/images/siddhant_pokharel.png",
       description:
