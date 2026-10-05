@@ -10,7 +10,7 @@ export function Team({ hideHeader = false }: TeamProps) {
     {
       name: "Aryan Basnet",
       position: "Founder & Chief Executive Officer",
-      image: "/images/aryan_basnet_founder_vidhata.png",
+      image: "/images/AryanBasnet_founder_final.png",
       description:
         "Aryan is a technologist, social entrepreneur, policy researcher, and AI engineer working across technology, education, and social development. As Founder & CEO, he leads its overall direction and works closely with the team to shape its programs, partnerships, and growth. His work brings together technology and social entrepreneurship, alongside research in AI, education, and public policy. He is interested in how technology and better-designed systems can improve access to learning and create greater opportunities for underserved communities.",
       instagram: "https://www.instagram.com/__aryanbasnet__/",
