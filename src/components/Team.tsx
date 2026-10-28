@@ -61,17 +61,7 @@ export function Team({ hideHeader = false }: TeamProps) {
       instagram: "http://instagram.com/citentia.felix/",
       email: "mailto:sapanabastola9@gmail.com",
     },
-    {
-      name: "Siddhant Pokhrel",
-      position: "Chief Administrative Officer",
-      image: "/images/siddhant_pokharel.png",
-      description:
-        "Siddhant is a youth leader, entrepreneur, and aspiring aerospace engineer with experience spanning across engineering, environmental science, and STEM education. He has worked in embedded systems, contributed to the development and testing of Nepal’s first rocket, and founded and led STEM outreach programs across Nepal that have engaged thousands of students.As Chief Administrative Officer, Siddhant oversees the organization’s administrative and operational functions, including internal coordination, volunteer recruitment, onboarding, and team management. He works closely with Vidhata’s leadership and program teams to strengthen internal systems, streamline communication, coordinate activities, and ensure effective execution of organizational initiatives.",
-      instagram: "https://www.instagram.com/__siddhant_69__/",
-      email: "mailto:pokhrel.siddhant69@gmail.com",
-    }
-  ,
-    {
+     {
       name: "Bharat Oli",
       position: "Chief Community Officer",
       image: "/images/bharat_oli.png",
@@ -80,7 +70,16 @@ export function Team({ hideHeader = false }: TeamProps) {
       instagram: "https://www.instagram.com/inochiren/",
       email: "mailto:olibharat947@gmail.com",
     },
-   
+    {
+      name: "Siddhant Pokhrel",
+      position: "Chief Administrative Officer",
+      image: "/images/siddhant_pokharel.png",
+      description:
+        "Siddhant is a youth leader, entrepreneur, and aspiring aerospace engineer with experience spanning across engineering, environmental science, and STEM education. He has worked in embedded systems, contributed to the development and testing of Nepal’s first rocket, and founded and led STEM outreach programs across Nepal that have engaged thousands of students.As Chief Administrative Officer, Siddhant oversees the organization’s administrative and operational functions, including internal coordination, volunteer recruitment, onboarding, and team management. He works closely with Vidhata’s leadership and program teams to strengthen internal systems, streamline communication, coordinate activities, and ensure effective execution of organizational initiatives.",
+      instagram: "https://www.instagram.com/__siddhant_69__/",
+      email: "mailto:pokhrel.siddhant69@gmail.com",
+    } ,
+
   ];
 
   return (
