@@ -42,15 +42,7 @@ export function Team({ hideHeader = false }: TeamProps) {
       instagram: "http://instagram.com/_kreezma/",
       email: "mailto:krizmapoudel1@gmail.com",
     },
-     {
-      name: "Siddhant Pokhrel",
-      position: "Chief Administrative Officer",
-      image: "/images/siddhant_pokharel.png",
-      description:
-        "Siddhant is a youth leader, entrepreneur, and aspiring aerospace engineer with experience spanning across engineering, environmental science, and STEM education. He has worked in embedded systems, contributed to the development and testing of Nepal’s first rocket, and founded and led STEM outreach programs across Nepal that have engaged thousands of students.As Chief Administrative Officer, Siddhant oversees the organization’s administrative and operational functions, including internal coordination, volunteer recruitment, onboarding, and team management. He works closely with Vidhata’s leadership and program teams to strengthen internal systems, streamline communication, coordinate activities, and ensure effective execution of organizational initiatives.",
-      instagram: "https://www.instagram.com/__siddhant_69__/",
-      email: "mailto:pokhrel.siddhant69@gmail.com",
-    },
+
     {
       name: "Anish Acharya",
       position: "Chief of Outreach and Media",
@@ -60,7 +52,25 @@ export function Team({ hideHeader = false }: TeamProps) {
       instagram: "https://www.instagram.com/krazyyanishh/",
       email: "mailto:acharyaanish34@gmail.com",
     },
-    
+     {
+      name: "Sapana Bastola",
+      position: "Chief Financial Officer",
+      image: "/images/sapana_bastola.png",
+      description:
+        "Sapana is a finance enthusiast, writer, and emerging youth leader aspiring to be a people-oriented changemaker. As the Chief Financial Officer, she works at the intersection of financial strategy, resource management, and organizational growth. Her interests extend across literature, mathematics, finance, and volunteering, bringing together both analytical thinking and a curiosity for people and ideas. She is someone who looks beyond the obvious, searching for depth and meaning as she explores the world around her. Through her work, decisions, and ideas, she hopes to keep learning, contributing, and growing while creating meaningful impact along the way.",
+      instagram: "http://instagram.com/citentia.felix/",
+      email: "mailto:sapanabastola9@gmail.com",
+    },
+    {
+      name: "Siddhant Pokhrel",
+      position: "Chief Administrative Officer",
+      image: "/images/siddhant_pokharel.png",
+      description:
+        "Siddhant is a youth leader, entrepreneur, and aspiring aerospace engineer with experience spanning across engineering, environmental science, and STEM education. He has worked in embedded systems, contributed to the development and testing of Nepal’s first rocket, and founded and led STEM outreach programs across Nepal that have engaged thousands of students.As Chief Administrative Officer, Siddhant oversees the organization’s administrative and operational functions, including internal coordination, volunteer recruitment, onboarding, and team management. He works closely with Vidhata’s leadership and program teams to strengthen internal systems, streamline communication, coordinate activities, and ensure effective execution of organizational initiatives.",
+      instagram: "https://www.instagram.com/__siddhant_69__/",
+      email: "mailto:pokhrel.siddhant69@gmail.com",
+    }
+  ,
     {
       name: "Bharat Oli",
       position: "Chief Community Officer",
@@ -70,15 +80,7 @@ export function Team({ hideHeader = false }: TeamProps) {
       instagram: "https://www.instagram.com/inochiren/",
       email: "mailto:olibharat947@gmail.com",
     },
-    {
-      name: "Sapana Bastola",
-      position: "Chief Financial Officer",
-      image: "/images/sapana_bastola.png",
-      description:
-        "Sapana is a finance enthusiast, writer, and emerging youth leader aspiring to be a people-oriented changemaker. As the Chief Financial Officer, she works at the intersection of financial strategy, resource management, and organizational growth. Her interests extend across literature, mathematics, finance, and volunteering, bringing together both analytical thinking and a curiosity for people and ideas. She is someone who looks beyond the obvious, searching for depth and meaning as she explores the world around her. Through her work, decisions, and ideas, she hopes to keep learning, contributing, and growing while creating meaningful impact along the way.",
-      instagram: "http://instagram.com/citentia.felix/",
-      email: "mailto:sapanabastola9@gmail.com",
-    },
+   
   ];
 
   return (
