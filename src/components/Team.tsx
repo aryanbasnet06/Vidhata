@@ -38,7 +38,7 @@ export function Team({ hideHeader = false }: TeamProps) {
       position: "Chief of Project Management",
       image: "/images/krizma_poudel.png",
       description:
-        "Krizma is a dedicated and organized leader with a strong focus on turning ideas into meaningful action. As Chief of Project Management, she brings a structured approach to planning, coordination, and execution, ensuring that Vidhata’s initiatives are carried out effectively and with purpose. Her ability to manage teams, connect different areas of work, and keep projects moving forward makes her an important part of Vidhata’s leadership and impact.",
+        "Krizma is a dedicated and organized leader currently pursuing a degree in law, bringing a thoughtful and analytical perspective to her work. As Chief of Project Management, she brings a structured approach to planning, coordination, and execution, ensuring that Vidhata’s initiatives are carried out effectively and with purpose. Her ability to manage teams, connect different areas of work, and keep projects moving forward makes her an important part of Vidhata’s leadership and impact.",
       instagram: "http://instagram.com/_kreezma/",
       email: "mailto:krizmapoudel1@gmail.com",
     },
