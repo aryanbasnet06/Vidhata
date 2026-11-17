@@ -55,7 +55,7 @@ export function ImpactMetrics({ variant = "section", className = "" }: ImpactMet
       icon: Users,
       value: 12000,
       suffix: "+",
-      label: "Students Reached",
+      label: "Learners Reached",
       iconBg: "bg-vidhata-coral",
     },
     {
